@@ -7,12 +7,32 @@
         {
           "id": 1,
           "member": "You",
-          "text": "user_name"
+          "text": "Saludos, Javier Teixeira. Cuentame sobre ti."
         },
         {
           "id": 2,
           "member": "Javier Teixeira",
-          "text": "Bienvenido al chat de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
+          "text": "Saludos usuario, es un placer saludarte hoy. Soy Javier Teixeira, un ingeniero de software con experiencia en inteligencia artificial y aprendizaje automático. Me apasiona la tecnología y siempre estoy buscando aprender más sobre nuevas tendencias y herramientas. En mi tiempo libre, disfruto de la lectura y la programación de proyectos personales. ¿Y tú? ¿Qué te trae por aquí?"
+        },
+        {
+          "id": 1,
+          "member": "You",
+          "text": "Saludos, Javier Teixeira. Cuentame sobre ti."
+        },
+        {
+          "id": 2,
+          "member": "Javier Teixeira",
+          "text": "Saludos usuario, es un placer saludarte hoy. Soy Javier Teixeira, un ingeniero de software con experiencia en inteligencia artificial y aprendizaje automático. Me apasiona la tecnología y siempre estoy buscando aprender más sobre nuevas tendencias y herramientas. En mi tiempo libre, disfruto de la lectura y la programación de proyectos personales. ¿Y tú? ¿Qué te trae por aquí?"
+        },
+        {
+          "id": 1,
+          "member": "You",
+          "text": "Saludos, Javier Teixeira. Cuentame sobre ti."
+        },
+        {
+          "id": 2,
+          "member": "Javier Teixeira",
+          "text": "Saludos usuario, es un placer saludarte hoy. Soy Javier Teixeira, un ingeniero de software con experiencia en inteligencia artificial y aprendizaje automático. Me apasiona la tecnología y siempre estoy buscando aprender más sobre nuevas tendencias y herramientas. En mi tiempo libre, disfruto de la lectura y la programación de proyectos personales. ¿Y tú? ¿Qué te trae por aquí?"
         }
       ]
     },
