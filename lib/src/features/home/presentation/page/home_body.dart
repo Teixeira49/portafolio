@@ -40,6 +40,7 @@ class HomeBody extends StatelessWidget {
 
                     // Área de entrada (opcional)
                     //MessageInput(),
+                    Text('aqui rspondes'),
                   ],
                 ),
               ),

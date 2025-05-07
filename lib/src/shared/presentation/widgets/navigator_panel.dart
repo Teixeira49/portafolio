@@ -22,17 +22,34 @@ class NavigationPanel extends StatelessWidget {
           ),
 
           // Lista de opciones fijas
+          SizedBox(height: 24,),
+          MaterialButton(
+            color: Colors.blue,
+              child: Text('Contactar'),
+              onPressed: () {
+
+              }),
+          SizedBox(height: 24,),
           Expanded(
             child: ListView(
               children: [
-                _buildOptionItem(context, 'Opción 1', Icons.chat, 'home_chat'),
-                _buildOptionItem(context, 'Opción 2', Icons.info, 'projects_chat'),
-                _buildOptionItem(context, 'Opción 3', Icons.settings, 'experience_chat'),
+                _buildOptionItem(context, 'Home', Icons.chat, 'home_chat'),
+                _buildOptionItem(context, 'Projects', Icons.info, 'projects_chat'),
+                _buildOptionItem(context, 'Experience', Icons.settings, 'experience_chat'),
+                //_buildOptionItem(context, 'Study', Icons.settings, 'experience_chat'),
+                //_buildOptionItem(context, 'Stats', Icons.settings, 'experience_chat'),
+                //_buildOptionItem(context, 'About', Icons.settings, 'experience_chat'),
                 // Agregar más opciones según necesidad
               ],
             ),
           ),
+          ListTile(
+            leading: Icon(Icons.settings,),
+            title: Text('Configuración'),
+            onTap: () {
 
+            },
+          ),
           // Pie de página (opcional)
           Padding(
             padding: const EdgeInsets.all(16.0),
