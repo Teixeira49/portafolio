@@ -6,12 +6,12 @@
       "messages": [
         {
           "id": 1,
-          "member": "you",
+          "member": "You",
           "text": "user_name"
         },
         {
           "id": 2,
-          "member": "you",
+          "member": "Javier Teixeira",
           "text": "Bienvenido al chat de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
         }
       ]
@@ -22,12 +22,12 @@
       "messages": [
         {
           "id": 1,
-          "member": "you",
+          "member": "You",
           "text": "user_name"
         },
         {
           "id": 2,
-          "member": "you",
+          "member": "Javier Teixeira",
           "text": "Bienvenido al chat de proyectos de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
         }
       ]
@@ -38,12 +38,12 @@
       "messages": [
         {
           "id": 1,
-          "member": "you",
+          "member": "You",
           "text": "user_name"
         },
         {
           "id": 2,
-          "member": "you",
+          "member": "Javier Teixeira",
           "text": "Bienvenido al chat de experiencia de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
         }
       ]
@@ -54,7 +54,7 @@
       "messages": [
         {
           "id": 1,
-          "member": "you",
+          "member": "Javier Teixeira",
           "text": "user_name"
         },
         {
@@ -70,12 +70,12 @@
       "messages": [
         {
           "id": 1,
-          "member": "you",
+          "member": "You",
           "text": "user_name"
         },
         {
           "id": 2,
-          "member": "you",
+          "member": "Javier Teixeira",
           "text": "Bienvenido al chat de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
         }
       ]
