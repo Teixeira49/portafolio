@@ -8,6 +8,8 @@ import '../../data/datasource/local/get_chat_local_datasource.dart';
 import '../../domain/use_cases/get_messages.dart';
 import '../bloc/chat_bloc/bloc.dart';
 
+part 'home_body.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -61,34 +63,18 @@ class _MyHomePageState extends State<MyHomePage> {
               )..add(GetChatMessages('home_chat')),
         ),
       ],
-      child: Scaffold(
-        body: Center(
-          child: Row(
-            children: [
-              // Panel lateral (navegación)
-              NavigationPanel(width: 300,),
+      child: HomeView()
+    );
+  }
+}
 
-              // Área principal del chat
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    // Barra superior (opcional)
-                    AppBar(title: Text('Título de la aplicación')),
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
-                    // Área de mensajes/contenido
-                    Expanded(child: MessageContent()),
-
-                    // Área de entrada (opcional)
-                    //MessageInput(),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: HomeBody()
     );
   }
 }

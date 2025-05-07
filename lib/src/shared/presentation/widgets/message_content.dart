@@ -1,25 +1,33 @@
-
 import 'package:flutter/material.dart';
 
+import '../../../features/home/domain/entities/message.dart';
+
 class MessageContent extends StatelessWidget {
-  const MessageContent({super.key});
+  const MessageContent({super.key, required this.title, required this.content});
+
+  final String title;
+  final List<Message> content;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16.0),
-      child: ListView(
+      child: Column(
         children: [
-          // Ejemplo de mensaje del sistema
-          _buildSystemMessage('Bienvenido a nuestra plataforma'),
+          _buildSystemMessage(title ?? 'Título del mensaje'),
 
-          // Ejemplo de contenido informativo
-          _buildInfoCard(
-            title: 'Información importante',
-            content: 'Aquí va el contenido que la empresa quiere mostrar...',
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const AlwaysScrollableScrollPhysics(),
+            itemCount: content.length,
+            separatorBuilder: (context, index) => const SizedBox(height: 10),
+            itemBuilder: (context, index) {
+              return _buildInfoCard(
+                title: content[index].member,
+                content: content[index].text,
+              );
+            },
           ),
-
-          // Puedes agregar más widgets según lo que necesiten mostrar
         ],
       ),
     );
@@ -44,7 +52,10 @@ class MessageContent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+            Text(
+              title,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
             SizedBox(height: 8),
             Text(content),
           ],
