@@ -13,13 +13,13 @@ part 'chat_state.dart';
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
   ChatBloc({
-    required GetMessages getMessages,
+    required GetMessagesUseCase getMessages,
   }) : _getMessages = getMessages,
         super(const ChatState()) {
     on<GetChatMessages>(_getChatMessages);
   }
 
-  final GetMessages _getMessages;
+  final GetMessagesUseCase _getMessages;
 
   FutureOr<void> _getChatMessages(
     GetChatMessages event,
@@ -29,14 +29,19 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       emit(state.copyWith(status: ChatStatus.loading));
 
       final params = ChatSelectorParams(
-        chatId: state.chatId,
+        chatName: event.chatName,
       );
 
       final messages = await _getMessages.call(params);
 
+      print(messages.name);
+      print(messages.messages);
+      print('papaya');
       emit(
         state.copyWith(
-          messages: messages,
+          chatId: messages.id,
+          chatName: messages.name,
+          messages: messages.messages,
           status: ChatStatus.loaded,
         ),
       );
