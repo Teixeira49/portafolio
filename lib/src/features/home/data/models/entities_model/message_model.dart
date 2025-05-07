@@ -1,13 +1,13 @@
 import '../../../domain/entities/message.dart';
 
 class MessageModel extends Message {
-
   /// The [MessageModel] class is a model that represents a message.
 
   MessageModel({
     required super.id,
-    required super.content,
-    required super.timestamp,
+    required super.member,
+    required super.text,
+    //required super.timestamp,
   });
 
   /// Converts a [MessageModel] to a [Message].
@@ -19,8 +19,9 @@ class MessageModel extends Message {
   Message toEntity() {
     return Message(
       id: id,
-      content: content,
-      timestamp: timestamp,
+      member: member,
+      text: text,
+      //timestamp: timestamp,
     );
   }
 
@@ -32,13 +33,14 @@ class MessageModel extends Message {
   static MessageModel fromEntity(Message message) {
     return MessageModel(
       id: message.id,
-      content: message.content,
-      timestamp: message.timestamp,
+      member: message.member,
+      text: message.text,
+      //timestamp: message.timestamp,
     );
   }
 
   /// Converts a [MessageModel] to a [Map<String, dynamic>].
-///
+  ///
   /// **Returns:**
   ///
   /// - A [Map<String, dynamic>].
@@ -46,8 +48,8 @@ class MessageModel extends Message {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'content': content,
-      'timestamp': timestamp,
+      'member': member,
+      //'timestamp': timestamp,
     };
   }
 
@@ -60,8 +62,9 @@ class MessageModel extends Message {
   static MessageModel fromJson(Map<String, dynamic> json) {
     return MessageModel(
       id: json['id'],
-      content: json['content'],
-      timestamp: json['timestamp'],
+      member: json['member'],
+      text: json['text'],
+      //timestamp: json['timestamp'],
     );
   }
 }

@@ -1,17 +1,19 @@
 
 class Message {
   final String id;
-  final String content;
-  final DateTime timestamp;
+  final String member;
+  final String text;
+  //final DateTime timestamp;
 
   Message({
     required this.id,
-    required this.content,
-    required this.timestamp,
+    required this.member,
+    required this.text,
+    //required this.timestamp,
   });
 
   @override
   String toString() {
-    return 'Message(id: $id, content: $content, timestamp: $timestamp)';
+    return 'Message(id: $id, member: $member, content: $text)'; //, timestamp: $timestamp
   }
 }

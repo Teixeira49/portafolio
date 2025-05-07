@@ -1,14 +1,13 @@
-
+import '../../data/models/entities_model/chat_model.dart';
 import '../../data/models/params/chat_selector_params.dart';
-import '../entities/message.dart';
 import '../repositories/home_repository.dart';
 
-class GetMessages {
+class GetMessagesUseCase {
   final IHomeRepository messageRepository;
 
-  GetMessages(this.messageRepository);
+  GetMessagesUseCase(this.messageRepository);
 
-  Future<List<Message>> call(ChatSelectorParams params) async {
+  Future<ChatModel> call(ChatSelectorParams params) async {
     try {
       return await messageRepository.getMessages(params);
     } catch (e) {

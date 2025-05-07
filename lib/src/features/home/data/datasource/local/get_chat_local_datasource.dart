@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'package:flutter/services.dart';
+
+import '../../models/entities_model/chat_model.dart';
 import '../../models/entities_model/message_model.dart';
 import '../../models/params/chat_selector_params.dart';
 
@@ -6,30 +10,32 @@ abstract class GetChatMessagesDatasource {
   ///
   /// **Returns:**
   /// - A [Future] of [List<MessageModel>].
-  Future<List<MessageModel>> getChatMessages(ChatSelectorParams params);
+  Future<ChatModel> getChatMessages(ChatSelectorParams params);
 }
 
 class GetChatMessagesDatasourceImpl implements GetChatMessagesDatasource {
   @override
-  Future<List<MessageModel>> getChatMessages(ChatSelectorParams params) async {
-    // Simulate a network call
-    await Future.delayed(const Duration(seconds: 2));
-    return [
-      MessageModel(
-        id: '1',
-        content: 'Hello, how are you?',
-        timestamp: DateTime.now(),
-      ),
-      MessageModel(
-        id: '2',
-        content: 'This is a test message.',
-        timestamp: DateTime.now(),
-      ),
-      MessageModel(
-        id: '3',
-        content: 'Flutter is awesome!',
-        timestamp: DateTime.now(),
-      ),
-    ];
+  Future<ChatModel> getChatMessages(ChatSelectorParams params) async {
+    try {
+      String response = await rootBundle.loadString(
+        'data/chats.json',
+      );
+      final data = jsonDecode(response) as Map<String, dynamic>;
+      final messagesJson = data[params.chatName];
+      if (messagesJson["messages"] != null) {
+        final messages = List<MessageModel>.from(
+          messagesJson.map((message) => MessageModel.fromJson(message)),
+        );
+        return ChatModel(
+          id: messagesJson["id"],
+          name: messagesJson["name"],
+          messages: messages,
+        );
+      } else {
+        throw Exception('Chat not found');
+      }
+    } catch (e) {
+      throw Exception('Failed to load chat messages: $e');
+    }
   }
 }

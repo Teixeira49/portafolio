@@ -1,14 +1,14 @@
 
 class ChatSelectorParams {
-  final int chatId;
+  final String chatName;
 
   const ChatSelectorParams({
-    required this.chatId,
+    required this.chatName,
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'chatId': chatId,
+      'chatName': chatName,
     };
   }
 }

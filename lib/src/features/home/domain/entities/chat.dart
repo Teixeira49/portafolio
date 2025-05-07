@@ -1,7 +1,7 @@
 import 'message.dart';
 
 class Chat {
-  final String id;
+  final int id;
   final String name;
   final List<Message> messages;
   //final DateTime lastMessageTime;

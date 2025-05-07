@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../features/home/presentation/bloc/chat_bloc/bloc.dart';
+
 class NavigationPanel extends StatelessWidget {
   final double width;
 
-  const NavigationPanel({required this.width, super.key});
+  const NavigationPanel({super.key, required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -12,19 +14,20 @@ class NavigationPanel extends StatelessWidget {
       color: Colors.grey[100],
       child: Column(
         children: [
-          // Encabezado
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text('Opciones', ),//style: Theme.of(context).textTheme.headline6),
+            child: Text(
+              'Opciones',
+            ), //style: Theme.of(context).textTheme.headline6),
           ),
 
           // Lista de opciones fijas
           Expanded(
             child: ListView(
               children: [
-                _buildOptionItem(context, 'Opción 1', Icons.chat),
-                _buildOptionItem(context, 'Opción 2', Icons.info),
-                _buildOptionItem(context, 'Opción 3', Icons.settings),
+                _buildOptionItem(context, 'Opción 1', Icons.chat, 'home_chat'),
+                _buildOptionItem(context, 'Opción 2', Icons.info, 'projects_chat'),
+                _buildOptionItem(context, 'Opción 3', Icons.settings, 'experience_chat'),
                 // Agregar más opciones según necesidad
               ],
             ),
@@ -40,14 +43,15 @@ class NavigationPanel extends StatelessWidget {
     );
   }
 
-  Widget _buildOptionItem(BuildContext context, String title, IconData icon) {
+  Widget _buildOptionItem(BuildContext context, String title, IconData icon, String routeName) {
     return ListTile(
       leading: Icon(icon),
       title: Text(title),
-      onTap: () {
-        // Aquí manejas la selección de la opción
-        // Puedes usar un Provider, Bloc o simplemente setState
-      },
+      onTap: () => {
+        print('object'),
+        context.read<ChatBloc>().add(GetChatMessages(routeName)),
+        print('object'),
+      }
     );
   }
 }

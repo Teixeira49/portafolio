@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portafolio/src/features/home/data/repositories/home_repository.dart';
 
 import '../../../../shared/presentation/widgets/message_content.dart';
 import '../../../../shared/presentation/widgets/navigator_panel.dart';
+import '../../data/datasource/local/get_chat_local_datasource.dart';
+import '../../domain/use_cases/get_messages.dart';
+import '../bloc/chat_bloc/bloc.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -43,33 +48,47 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      body: Center(child: Row(
-        children: [
-          // Panel lateral (navegación)
-          NavigationPanel(width: 300),
-
-          // Área principal del chat
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                // Barra superior (opcional)
-                AppBar(title: Text('Título de la aplicación')),
-
-                // Área de mensajes/contenido
-                Expanded(
-                  child: MessageContent(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ChatBloc>(
+          create:
+              (context) => ChatBloc(
+                getMessages: GetMessagesUseCase(
+                  HomeRepository(
+                    getChatMessagesDatasource: GetChatMessagesDatasourceImpl(),
+                  ),
                 ),
+              )..add(GetChatMessages('home_chat')),
+        ),
+      ],
+      child: Scaffold(
+        body: Center(
+          child: Row(
+            children: [
+              // Panel lateral (navegación)
+              NavigationPanel(width: 300,),
 
-                // Área de entrada (opcional)
-                //MessageInput(),
-              ],
-            ),
+              // Área principal del chat
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    // Barra superior (opcional)
+                    AppBar(title: Text('Título de la aplicación')),
+
+                    // Área de mensajes/contenido
+                    Expanded(child: MessageContent()),
+
+                    // Área de entrada (opcional)
+                    //MessageInput(),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
-    ));
+    );
   }
 }
