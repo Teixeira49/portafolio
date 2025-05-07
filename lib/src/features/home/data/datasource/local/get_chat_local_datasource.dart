@@ -17,14 +17,14 @@ class GetChatMessagesDatasourceImpl implements GetChatMessagesDatasource {
   @override
   Future<ChatModel> getChatMessages(ChatSelectorParams params) async {
     try {
-      String response = await rootBundle.loadString(
-        'data/chats.json',
-      );
+      String response = await rootBundle.loadString('data/chats.json');
       final data = jsonDecode(response) as Map<String, dynamic>;
-      final messagesJson = data[params.chatName];
+      final messagesJson = data["chats"][params.chatName];
       if (messagesJson["messages"] != null) {
         final messages = List<MessageModel>.from(
-          messagesJson.map((message) => MessageModel.fromJson(message)),
+          messagesJson["messages"].map(
+            (message) => MessageModel.fromJson(message),
+          ),
         );
         return ChatModel(
           id: messagesJson["id"],

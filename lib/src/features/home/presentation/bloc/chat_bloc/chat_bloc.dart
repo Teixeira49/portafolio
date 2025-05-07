@@ -34,9 +34,6 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
       final messages = await _getMessages.call(params);
 
-      print(messages.name);
-      print(messages.messages);
-      print('papaya');
       emit(
         state.copyWith(
           chatId: messages.id,

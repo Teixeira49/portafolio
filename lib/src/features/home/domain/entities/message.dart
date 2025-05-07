@@ -1,6 +1,6 @@
 
 class Message {
-  final String id;
+  final int id;
   final String member;
   final String text;
   //final DateTime timestamp;
