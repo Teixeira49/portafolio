@@ -47,11 +47,7 @@ class NavigationPanel extends StatelessWidget {
     return ListTile(
       leading: Icon(icon),
       title: Text(title),
-      onTap: () => {
-        print('object'),
-        context.read<ChatBloc>().add(GetChatMessages(routeName)),
-        print('object'),
-      }
+      onTap: () => context.read<ChatBloc>().add(GetChatMessages(routeName)),
     );
   }
 }
