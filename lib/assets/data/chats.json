@@ -2,13 +2,15 @@
   "chats": {
     "home_chat": {
       "id": 1,
-      "name": "home_chat",
+      "name": "Home Chat",
       "messages": [
         {
+          "id": 1,
           "member": "you",
           "text": "user_name"
         },
         {
+          "id": 2,
           "member": "you",
           "text": "Bienvenido al chat de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
         }
@@ -19,12 +21,14 @@
       "name": "projects_chat",
       "messages": [
         {
+          "id": 1,
           "member": "you",
           "text": "user_name"
         },
         {
+          "id": 2,
           "member": "you",
-          "text": "Bienvenido al chat de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
+          "text": "Bienvenido al chat de proyectos de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
         }
       ]
     },
@@ -33,12 +37,14 @@
       "name": "experience_chat",
       "messages": [
         {
+          "id": 1,
           "member": "you",
           "text": "user_name"
         },
         {
+          "id": 2,
           "member": "you",
-          "text": "Bienvenido al chat de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
+          "text": "Bienvenido al chat de experiencia de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
         }
       ]
     },
@@ -47,10 +53,12 @@
       "name": "about_chat",
       "messages": [
         {
+          "id": 1,
           "member": "you",
           "text": "user_name"
         },
         {
+          "id": 2,
           "member": "you",
           "text": "Bienvenido al chat de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
         }
@@ -61,15 +69,16 @@
       "name": "contact_chat",
       "messages": [
         {
+          "id": 1,
           "member": "you",
           "text": "user_name"
         },
         {
+          "id": 2,
           "member": "you",
           "text": "Bienvenido al chat de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
         }
       ]
     }
-  },
   }
 }
