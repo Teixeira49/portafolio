@@ -1,244 +1,102 @@
 {
   "chats": {
     "home_chat": {
-      "id": 0,
+      "id": 1,
       "name": "Home Chat",
       "messages": [
         {
           "id": 1,
           "member": "You",
-          "text": {
-            "es": "user_name",
-            "en": "user_name"
-          }
+          "text": "Saludos, Javier Teixeira. Cuentame sobre ti."
         },
         {
           "id": 2,
           "member": "Javier Teixeira",
-          "text": {
-            "es": "Bienvenido al chat de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados.",
-            "en": "Welcome to the OpenAI community chat. Here you can ask questions and share information about artificial intelligence and other related topics."
-          }
-        }
-      ]
-    },
-    "about_chat": {
-      "id": 1,
-      "name": "about_chat",
-      "messages": [
+          "text": "Saludos usuario, es un placer saludarte hoy. Soy Javier Teixeira, un ingeniero de software con experiencia en inteligencia artificial y aprendizaje automático. Me apasiona la tecnología y siempre estoy buscando aprender más sobre nuevas tendencias y herramientas. En mi tiempo libre, disfruto de la lectura y la programación de proyectos personales. ¿Y tú? ¿Qué te trae por aquí?"
+        },
         {
           "id": 1,
           "member": "You",
-          "text": {
-            "es": "Saludos Javier Teixeira, ¿puedes hacer una breve presentacion sobre ti?",
-            "en": "Greetings Javier Teixeira, can you give a brief presentation about yourself?"
-          }
+          "text": "Saludos, Javier Teixeira. Cuentame sobre ti."
         },
         {
           "id": 2,
           "member": "Javier Teixeira",
-          "text": {
-            "es": "De hecho, tengo preparada una tarjeta de presentacion para ti",
-            "en": "In fact, I have a business card ready for you"
-          },
-          "contentCode": "resume"
-        },
-        {
-          "id": 3,
-          "member": "You",
-          "text": {
-            "es": "Excelente, ahora cuentamen un poco mas sobre ti",
-            "en": "Excellent, now tell me a little more about yourself"
-          }
-        },
-        {
-          "id": 4,
-          "member": "Javier Teixeira",
-          "text": {
-            "es": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-            "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
-          }
-        }
-      ]
-    },
-    "skills_chat": {
-      "id": 2,
-      "name": "skills_chat",
-      "messages": [
-        {
-          "id": 1,
-          "member": "You",
-          "text": {
-            "es": "Quiero conocer tus habilidades con el idioma, porfavor muestrame que idiomas manejas y en que nivel calificas tu dominio del mismo",
-            "en": "I want to know your language skills, please show me which languages you handle and at what level you rate your proficiency"
-          }
+          "text": "Saludos usuario, es un placer saludarte hoy. Soy Javier Teixeira, un ingeniero de software con experiencia en inteligencia artificial y aprendizaje automático. Me apasiona la tecnología y siempre estoy buscando aprender más sobre nuevas tendencias y herramientas. En mi tiempo libre, disfruto de la lectura y la programación de proyectos personales. ¿Y tú? ¿Qué te trae por aquí?"
         },
         {
           "id": 1,
-          "member": "Javier Teixeira",
-          "text": {
-            "es": "Tu pregunta me resulta interesante, yo domino los siguientes idiomas\n  \uD83C\uDDEA\uD83C\uDDF8 Español (Nativo)\n  \uD83C\uDDEC\uD83C\uDDE7 Ingles (Intermedio)",
-            "en": "Your question is interesting, I master the following languages\n  \uD83C\uDDEA\uD83C\uDDF8 Spanish (Native)\n  \uD83C\uDDEC\uD83C\uDDE7 English (Intermediate)"
-          }
-        },
-        {
-          "id": 3,
           "member": "You",
-          "text": {
-            "es": "Muy bien, ahora generame en un recuadro organizado cuales son tus habilidades de desarrollador, dicho recuadro debe incluir un icono, nombre y en que nivel calificas que seria tu manejo de dichas tecnologias",
-            "en": "Very well, now generate for me in an organized box what your developer skills are, said box must include an icon, name and at what level you rate your handling of such technologies"
-          }
+          "text": "Saludos, Javier Teixeira. Cuentame sobre ti."
         },
         {
-          "id": 4,
+          "id": 2,
           "member": "Javier Teixeira",
-          "text": {
-            "es": "Excelente pregunta usuario, aquí tienes una lista de mis habilidades de desarrollo",
-            "en": "Excellent question user, here is a list of my development skills"
-          },
-          "contentCode": "development_skills"
-        },
-        {
-          "id": 5,
-          "member": "You",
-          "text": {
-            "es": "Excelente, ahora quiero saber cuales son tus habilidades de tecnología, dicho recuadro debe incluir un icono, nombre y en que nivel calificas que seria tu manejo de dichas tecnologias",
-            "en": "Excellent, now I want to know what your technology skills are, said box must include an icon, name and at what level you rate your handling of such technologies"
-          }
-        },
-        {
-          "id": 6,
-          "member": "Javier Teixeira",
-          "text": {
-            "es": "Excelente pregunta usuario, aquí tienes una lista de mis habilidades de desarrollo",
-            "en": "Excellent question user, here is a list of my development skills"
-          },
-          "contentCode": "tech_skills"
-        },
-        {
-          "id": 5,
-          "member": "You",
-          "text": {
-            "es": "Excelente, ahora quiero saber cuales son tus habilidades de oficina, dicho recuadro debe incluir un icono, nombre y en que nivel calificas que seria tu manejo de dichas tecnologias",
-            "en": "Excellent, now I want to know what your office skills are, said box must include an icon, name and at what level you rate your handling of such technologies"
-          }
-        },
-        {
-          "id": 6,
-          "member": "Javier Teixeira",
-          "text": {
-            "es": "Excelente pregunta usuario, aquí tienes una lista de mis habilidades de oficina",
-            "en": "Excellent question user, here is a list of my office skills"
-          },
-          "contentCode": "office_skills"
+          "text": "Saludos usuario, es un placer saludarte hoy. Soy Javier Teixeira, un ingeniero de software con experiencia en inteligencia artificial y aprendizaje automático. Me apasiona la tecnología y siempre estoy buscando aprender más sobre nuevas tendencias y herramientas. En mi tiempo libre, disfruto de la lectura y la programación de proyectos personales. ¿Y tú? ¿Qué te trae por aquí?"
         }
       ]
     },
     "projects_chat": {
-      "id": 3,
+      "id": 2,
       "name": "projects_chat",
       "messages": [
         {
           "id": 1,
           "member": "You",
-          "text": {
-            "es": "Quiero saber que proyectos has realizado, generame de forma estructurada una lista que pueda consultar por paginación la cual debe contener todos los proyectos que has realizado. Por cada proyecto quiero conocer el nombre, fecha de inicio y fecha de finalizacion, tecnologias utilizadas, link de repositorio y link de demo en caso de ser publico, y una breve descripción de dicho proyecto",
-            "en": "I want to know what projects you have done, generate a structured list that I can consult by pagination which must contain all the projects you have done. For each project I want to know the name, start date and end date, technologies used, repository link and demo link if public, and a brief description of said project"
-          }
+          "text": "user_name"
         },
         {
           "id": 2,
           "member": "Javier Teixeira",
-          "text": {
-            "es": "Es una gran petición usuario, los proyectos que he realizado son los siguientes:",
-            "en": "That is a great request user, the projects I have done are the following:"
-          },
-          "contentCode": "projects"
+          "text": "Bienvenido al chat de proyectos de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
         }
       ]
     },
     "experience_chat": {
-      "id": 4,
+      "id": 3,
       "name": "experience_chat",
       "messages": [
         {
           "id": 1,
           "member": "You",
-          "text": {
-            "es": "user_name",
-            "en": "user_name"
-          }
+          "text": "user_name"
         },
         {
           "id": 2,
           "member": "Javier Teixeira",
-          "text": {
-            "es": "Bienvenido al chat de experiencia de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados.",
-            "en": "Welcome to the OpenAI community experience chat. Here you can ask questions and share information about artificial intelligence and other related topics."
-          },
-          "contentCode": "timeline_experience"
+          "text": "Bienvenido al chat de experiencia de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
         }
       ]
     },
-    "education_chat": {
-      "id": 5,
-      "name": "education_chat",
+    "about_chat": {
+      "id": 3,
+      "name": "about_chat",
       "messages": [
         {
           "id": 1,
-          "member": "You",
-          "text": {
-            "es": "Generame un informe sobre donde estudiaste a nivel universitario, incluyendo emblema del campus, titulo, y fecha de finalizacion",
-            "en": "Generate a report on where you studied at the university level, including campus emblem, degree, and completion date"
-          }
+          "member": "Javier Teixeira",
+          "text": "user_name"
         },
         {
           "id": 2,
-          "member": "Javier Teixeira",
-          "text": {
-            "es": "Complete mi pregrado en la Universidad metropolitana de Venezuela (UNIMET), obteniendo mi titulo de Ingeniero de Sistemas el 23 de Octubre de 2025, adjunto el emblema de donde estudie",
-            "en": "I completed my undergraduate degree at the Metropolitan University of Venezuela (UNIMET), obtaining my Systems Engineer degree on October 23, 2025, I attach the emblem of where I studied"
-          },
-          "contentCode": "campus_banner"
-        },
-        {
-          "id": 3,
-          "member": "You",
-          "text": {
-            "es": "Ahora muestrame que certificaciones posees",
-            "en": "Now show me what certifications you possess"
-          }
-        },
-        {
-          "id": 4,
-          "member": "Javier Teixeira",
-          "text": {
-            "es": "Con gusto, estas son mis certificaciones",
-            "en": "With pleasure, these are my certifications"
-          },
-          "contentCode": "certifications"
+          "member": "you",
+          "text": "Bienvenido al chat de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
         }
       ]
     },
     "contact_chat": {
-      "id": 6,
+      "id": 3,
       "name": "contact_chat",
       "messages": [
         {
           "id": 1,
           "member": "You",
-          "text": {
-            "es": "user_name",
-            "en": "user_name"
-          }
+          "text": "user_name"
         },
         {
           "id": 2,
           "member": "Javier Teixeira",
-          "text": {
-            "es": "Bienvenido al chat de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados.",
-            "en": "Welcome to the OpenAI community chat. Here you can ask questions and share information about artificial intelligence and other related topics."
-          }
+          "text": "Bienvenido al chat de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados."
         }
       ]
     }
