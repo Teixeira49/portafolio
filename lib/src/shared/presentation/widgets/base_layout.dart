@@ -3,7 +3,6 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/responsive.dart';
 import 'navigator_panel.dart';
 
 class BaseLayoutPage extends StatefulWidget {

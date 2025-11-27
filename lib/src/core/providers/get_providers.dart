@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:get_it/get_it.dart';
 
 import 'app_provider.dart';
