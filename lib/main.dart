@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:portafolio/src/core/providers/providers.dart';
+import 'package:portafolio/src/core/theme/app_theme.dart';
+import 'package:portafolio/src/core/variables/constants/constants.dart';
 import 'package:portafolio/src/features/home/presentation/page/home_page.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+import 'l10n/app_localizations.dart';
+
+void main() async {
+  await dotenv.load();
+  setupLocator();
   runApp(const MyApp());
 }
 
@@ -11,27 +21,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+    return ChangeNotifierProvider.value(
+      value: getIt<AppProvider>(),
+      child: Consumer<AppProvider>(
+          builder: (context, appProvider, child) {
+            return MaterialApp(
+              title: Constants.appName,
+              debugShowCheckedModeBanner: false,
+              theme: AppTheme.theme(context),
+              supportedLocales: AppLocalizations.supportedLocales,
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              locale: appProvider.locale,
+              home: const MyHomePage(title: 'Flutter Demo Home Page'),
+            );
+          }
+      ),);
   }
 }
