@@ -1,14 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:portafolio/src/features/home/data/repositories/home_repository.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import 'package:portafolio/l10n/l10n.dart';
+import '../../../../core/theme/extended_text_theme.dart';
+import '../../../../core/utils/asset_icons.dart';
+import '../../../../core/utils/helpers.dart';
+import '../../../../core/variables/values/values.dart';
+import '../../../../core/variables/variables.dart';
+import '../../../../shared/presentation/widgets/base_layout.dart';
+import '../../../../shared/presentation/widgets/dynamic_icon_button.dart';
 import '../../../../shared/presentation/widgets/message_content.dart';
 import '../../../../shared/presentation/widgets/navigator_panel.dart';
 import '../../data/datasource/local/get_chat_local_datasource.dart';
 import '../../domain/use_cases/get_messages.dart';
 import '../bloc/chat_bloc/bloc.dart';
 
-part 'home_body.dart';
+part '../widget/home_body.dart';
+
+part '../widget/home_buttons.dart';
+
+part '../widget/home_readlines.dart';
+
+part '../widget/home_widgets.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -73,8 +90,8 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: HomeBody()
+    return BaseLayoutPage(
+      child: HomeBody()
     );
   }
 }
