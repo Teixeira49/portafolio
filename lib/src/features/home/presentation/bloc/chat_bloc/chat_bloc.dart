@@ -21,6 +21,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
   final GetMessagesUseCase _getMessages;
 
+  int getChatId() => state.chatId;
+
   FutureOr<void> _getChatMessages(
     GetChatMessages event,
     Emitter<ChatState> emit,

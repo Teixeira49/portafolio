@@ -7,6 +7,7 @@ class MessageModel extends Message {
     required super.id,
     required super.member,
     required super.text,
+    super.contentCode,
     //required super.timestamp,
   });
 
@@ -21,6 +22,7 @@ class MessageModel extends Message {
       id: id,
       member: member,
       text: text,
+      contentCode: contentCode,
       //timestamp: timestamp,
     );
   }
@@ -35,6 +37,7 @@ class MessageModel extends Message {
       id: message.id,
       member: message.member,
       text: message.text,
+      contentCode: message.contentCode,
       //timestamp: message.timestamp,
     );
   }
@@ -64,6 +67,7 @@ class MessageModel extends Message {
       id: json['id'],
       member: json['member'],
       text: json['text'],
+      contentCode: json['contentCode'],
       //timestamp: json['timestamp'],
     );
   }
