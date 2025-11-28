@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../core/variables/values/values.dart';
@@ -17,11 +16,15 @@ class CertificationsBody extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildCertifications(BuildContext context, List<dynamic> project) {
+  List<Widget> _buildCertifications(
+    BuildContext context,
+    List<dynamic> project,
+  ) {
     final columnCount = _calculateResponsiveColumn(context) + 1;
     final rows = <List<dynamic>>[];
     for (var i = 0; i < project.length; i += columnCount) {
-      final end = (i + columnCount < project.length) ? i + columnCount : project.length;
+      final end =
+          (i + columnCount < project.length) ? i + columnCount : project.length;
       rows.add(project.sublist(i, end));
     }
 
@@ -29,17 +32,18 @@ class CertificationsBody extends StatelessWidget {
       return Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: WidthValues.spacingSm,
-        children: rowProject.map((skillBlock) {
-          return Expanded(
-            child: CertificationsCard(
-              title: skillBlock['title'],
-              issuingEntity: skillBlock['issuing_entity'],
-              location: skillBlock['location'],
-              date: skillBlock['date'],
-              link: skillBlock['link'],
-            ),
-          );
-        }).toList(),
+        children:
+            rowProject.map((skillBlock) {
+              return Expanded(
+                child: CertificationsCard(
+                  title: skillBlock['title'],
+                  issuingEntity: skillBlock['issuing_entity'],
+                  location: skillBlock['location'],
+                  date: skillBlock['date'],
+                  link: skillBlock['link'],
+                ),
+              );
+            }).toList(),
       );
     }).toList();
   }
@@ -48,14 +52,8 @@ class CertificationsBody extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     if (width < 1200) {
       return 0;
-    }
-    else if (width < 1600) {
-      return 1;
-    }
-    else if (width < 2000) {
-      return 2;
     } else {
-      return 3;
+      return 1;
     }
   }
 }

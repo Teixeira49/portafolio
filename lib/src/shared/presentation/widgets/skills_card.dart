@@ -38,23 +38,25 @@ class SkillsCard extends StatelessWidget {
                   ? SvgPicture.asset(asset!, width: 50, height: 50)
                   : Image.asset(AssetImages.emptyImage, width: 50, height: 50),
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: ExtendedTextTheme.titleMedium(context),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            Text(
-              "${context.l10n.skillsPageLevelLabel}: ${level.levelTitle(context)}",
-              style: ExtendedTextTheme.textMedium(context),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
+        Flexible(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: ExtendedTextTheme.titleMedium(context),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                "${context.l10n.skillsPageLevelLabel}: ${level.levelTitle(context)}",
+                style: ExtendedTextTheme.textMedium(context),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
         ),
       ],
     ),

@@ -24,63 +24,66 @@ class MessageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final ScrollController scrollController = ScrollController();
 
-    return Container(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _buildSystemMessage(title),
-          Expanded(
-            child: Scrollbar(
-              thumbVisibility: true,
-              interactive: true,
-              controller: scrollController,
-              child: ListView.builder(
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 924),
+      child: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _buildSystemMessage(title),
+            Expanded(
+              child: Scrollbar(
+                thumbVisibility: true,
+                interactive: true,
                 controller: scrollController,
-                shrinkWrap: true,
-                physics: BouncingScrollPhysics(),
-                //padding: EdgeInsets.only(right: 16.0),
-                itemCount: content.length,
-                //separatorBuilder: (context, index) => const SizedBox(height: 10),
-                itemBuilder: (context, index) {
-                  var widget;
-                  if (content[index].contentCode != null) {
-                    switch (content[index].contentCode) {
-                      case 'resume':
-                        widget = ResumeBody(aboutData: aboutData);
-                        break;
-                      case 'development_skills':
-                        widget = SkillsBody(skills: developmentSkills);
-                        break;
-                      case 'tech_skills':
-                        widget = SkillsBody(skills: techSkills);
-                        break;
-                      case 'office_skills':
-                        widget = SkillsBody(skills: officeSkills);
-                        break;
-                      case 'projects':
-                        widget = ProjectsBody(projects: projects);
-                        break;
-                      case 'timeline_experience':
-                        widget = ExperienceTimeline(experience: experience);
-                      case 'campus_banner':
-                        widget = CampusBanner();
-                        break;
-                      case 'certifications':
-                        widget = CertificationsBody(
-                          certifications: certifications,
-                        );
-                        break;
+                child: ListView.builder(
+                  controller: scrollController,
+                  shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
+                  //padding: EdgeInsets.only(right: 16.0),
+                  itemCount: content.length,
+                  //separatorBuilder: (context, index) => const SizedBox(height: 10),
+                  itemBuilder: (context, index) {
+                    var widget;
+                    if (content[index].contentCode != null) {
+                      switch (content[index].contentCode) {
+                        case 'resume':
+                          widget = ResumeBody(aboutData: aboutData);
+                          break;
+                        case 'development_skills':
+                          widget = SkillsBody(skills: developmentSkills);
+                          break;
+                        case 'tech_skills':
+                          widget = SkillsBody(skills: techSkills);
+                          break;
+                        case 'office_skills':
+                          widget = SkillsBody(skills: officeSkills);
+                          break;
+                        case 'projects':
+                          widget = ProjectsBody(projects: projects);
+                          break;
+                        case 'timeline_experience':
+                          widget = ExperienceTimeline(experience: experience);
+                        case 'campus_banner':
+                          widget = CampusBanner();
+                          break;
+                        case 'certifications':
+                          widget = CertificationsBody(
+                            certifications: certifications,
+                          );
+                          break;
+                      }
                     }
-                  }
-                  return MessageCard(message: content[index], child: widget);
-                },
+                    return MessageCard(message: content[index], child: widget);
+                  },
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 120),
-        ],
+            SizedBox(height: 120),
+          ],
+        ),
       ),
     );
   }

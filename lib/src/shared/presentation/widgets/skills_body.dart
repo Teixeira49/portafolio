@@ -47,16 +47,8 @@ class SkillsBody extends StatelessWidget {
       return 0;
     } else if (width < 1200) {
       return 1;
-    } else if (width < 1400) {
+    } else  {
       return 2;
-    } else if (width < 1600) {
-      return 3;
-    } else if (width < 1900) {
-      return 4;
-    } else if (width < 2400) {
-      return 5;
-    } else {
-      return 6;
     }
   }
 }
