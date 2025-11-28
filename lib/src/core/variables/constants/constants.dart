@@ -41,10 +41,7 @@ class Constants {
 
   static final String campusWebsite = 'https://www.unimet.edu.ve/';
 
-  static const String location = String.fromEnvironment(
-    'LOC',
-    defaultValue: StringConstants.emptyString,
-  );
+  static const String location = 'Caracas, Venezuela';
 
   static const String locationLink = String.fromEnvironment('LOC_LINK',
     defaultValue: StringConstants.emptyString,
