@@ -10,6 +10,7 @@ import '../../../../core/utils/asset_icons.dart';
 import '../../../../core/utils/helpers.dart';
 import '../../../../core/variables/variables.dart';
 import '../../../../shared/presentation/widgets/base_layout.dart';
+import '../../../../shared/presentation/widgets/custom_badged.dart';
 import '../../../../shared/presentation/widgets/dynamic_icon_button.dart';
 import '../../../../shared/presentation/widgets/message_content.dart';
 import '../../data/datasource/local/get_chat_local_datasource.dart';
@@ -67,7 +68,14 @@ class HomeView extends StatelessWidget {
             state.chatName != "Home Chat"
                 ? Text('Portafolio de Teixeira49')
                 : null;
-        return BaseLayoutPage(title: title, child: HomeBody());
+        return BaseLayoutPage(
+          title: title,
+          centerTitle: false,
+          actions: [
+            if (title != null) CustomTitleBadged(name: state.chatName),
+          ],
+          child: HomeBody(),
+        );
       },
     );
   }

@@ -7,8 +7,16 @@ import 'navigator_panel.dart';
 class BaseLayoutPage extends StatefulWidget {
   final Widget child;
   final Widget? title;
+  final bool centerTitle;
+  final List<Widget>? actions;
 
-  const BaseLayoutPage({super.key, required this.child, this.title});
+  const BaseLayoutPage({
+    super.key,
+    required this.child,
+    this.title,
+    this.centerTitle = true,
+    this.actions,
+  });
 
   @override
   State<BaseLayoutPage> createState() => _BaseLayoutPageState();
@@ -35,7 +43,11 @@ class _BaseLayoutPageState extends State<BaseLayoutPage> {
 
         if (isMobile) {
           return Scaffold(
-            appBar: AppBar(title: widget.title),
+            appBar: AppBar(
+              title: widget.title,
+              centerTitle: widget.centerTitle,
+              actions: widget.actions,
+            ),
             drawer: NavigationPanel(width: maxPanelWidth),
             body: widget.child,
           );

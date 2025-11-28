@@ -43,10 +43,7 @@ class _ChatTextFieldWidgetState extends State<_ChatTextFieldWidget> {
   Widget build(BuildContext context) => ConstrainedBox(
     constraints: const BoxConstraints(maxWidth: 816),
     child: Container(
-      margin:
-          Responsive.isMobile(context)
-              ? null
-              : EdgeInsets.symmetric(horizontal: WidthValues.padding),
+      margin: EdgeInsets.symmetric(horizontal: WidthValues.padding),
       child: InkWell(
         onTap: () => toggleContainer(),
         borderRadius: BorderRadius.circular(WidthValues.radiusMd),

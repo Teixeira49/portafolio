@@ -32,7 +32,6 @@ class MessageContent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _buildSystemMessage(title),
             Expanded(
               child: Scrollbar(
                 thumbVisibility: true,
