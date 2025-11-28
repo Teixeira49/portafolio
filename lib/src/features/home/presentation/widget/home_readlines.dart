@@ -1,14 +1,15 @@
 part of '../page/home_page.dart';
 
-
 class _TitleChatHomeWidget extends StatelessWidget {
   @override
-  Widget build(BuildContext context) =>
-      Text(
-        context.l10n.appMainTitle,
-        style: ExtendedTextTheme.displaySmall(context),
-        textAlign: TextAlign.center,
-      );
+  Widget build(BuildContext context) => Text(
+    context.l10n.appMainTitle,
+    style:
+        Responsive.isMobile(context)
+            ? ExtendedTextTheme.displayExtraSmall(context)
+            : ExtendedTextTheme.displaySmall(context),
+    textAlign: TextAlign.center,
+  );
 }
 
 class _SubTitleChatHomeWidget extends StatelessWidget {
@@ -17,14 +18,15 @@ class _SubTitleChatHomeWidget extends StatelessWidget {
     constraints: const BoxConstraints(maxWidth: 700),
     child: Text(
       context.l10n.appMainSubtitle,
-      style: ExtendedTextTheme.textLarge(context),
+      style: Responsive.isMobile(context)
+          ? ExtendedTextTheme.textSmall(context)
+          : ExtendedTextTheme.textLarge(context),
       textAlign: TextAlign.center,
     ),
   );
 }
 
 class _ChatTextFieldSearchQuestion extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) => Align(
     key: ValueKey('text'),
@@ -32,8 +34,8 @@ class _ChatTextFieldSearchQuestion extends StatelessWidget {
     child: Row(
       spacing: WidthValues.spacingXs,
       children: [
-        Icon(Icons.search_outlined, size: 18,),
-        Text(context.l10n.homePageQuestionLayer)
+        Icon(Icons.search_outlined, size: 18),
+        Text(context.l10n.homePageQuestionLayer),
       ],
     ),
   );

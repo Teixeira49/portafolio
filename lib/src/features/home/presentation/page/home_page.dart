@@ -5,10 +5,9 @@ import 'package:portafolio/src/features/home/data/repositories/home_repository.d
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:portafolio/l10n/l10n.dart';
-import '../../../../core/theme/extended_text_theme.dart';
+import '../../../../core/theme/responsive.dart';
 import '../../../../core/utils/asset_icons.dart';
 import '../../../../core/utils/helpers.dart';
-import '../../../../core/variables/values/values.dart';
 import '../../../../core/variables/variables.dart';
 import '../../../../shared/presentation/widgets/base_layout.dart';
 import '../../../../shared/presentation/widgets/dynamic_icon_button.dart';
@@ -25,37 +24,10 @@ part '../widget/home_readlines.dart';
 
 part '../widget/home_widgets.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
               )..add(GetChatMessages('home_chat')),
         ),
       ],
-      child: HomeView()
+      child: HomeView(),
     );
   }
 }
@@ -88,8 +60,15 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseLayoutPage(
-      child: HomeBody()
+    return BlocBuilder<ChatBloc, ChatState>(
+      buildWhen: (previous, current) => previous.status != current.status,
+      builder: (context, state) {
+        final title =
+            state.chatName != "Home Chat"
+                ? Text('Portafolio de Teixeira49')
+                : null;
+        return BaseLayoutPage(title: title, child: HomeBody());
+      },
     );
   }
 }

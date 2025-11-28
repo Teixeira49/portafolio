@@ -13,6 +13,7 @@ class _WelcomeToChatWidget extends StatelessWidget {
         children: [
           _TitleChatHomeWidget(),
           _SubTitleChatHomeWidget(),
+          Gap(WidthValues.spacingNone),
           _ChatTextFieldWidget(),
           Gap(WidthValues.spacingNone),
           _ButtonsMenu(),
@@ -42,50 +43,85 @@ class _ChatTextFieldWidgetState extends State<_ChatTextFieldWidget> {
   Widget build(BuildContext context) => ConstrainedBox(
     constraints: const BoxConstraints(maxWidth: 816),
     child: Container(
-      margin: EdgeInsets.symmetric(horizontal: WidthValues.padding),
+      margin:
+          Responsive.isMobile(context)
+              ? null
+              : EdgeInsets.symmetric(horizontal: WidthValues.padding),
       child: InkWell(
         onTap: () => toggleContainer(),
         borderRadius: BorderRadius.circular(WidthValues.radiusMd),
-        child: Container(
-          height: 120,
-          width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.all(WidthValues.padding),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(WidthValues.radiusMd),
-            border: Border.all(color: Colors.black54, width: 0.5),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                blurRadius: 10,
-                offset: const Offset(0, 5),
-              ),
-            ],
-          ),
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
-            transitionBuilder:
-                (child, animation) =>
-                    FadeTransition(opacity: animation, child: child),
-            child:
-                _isSelected
-                    ? const _QuestionMenu(key: ValueKey('buttons'))
-                    : Stack(
-                      children: [
-                        _ChatTextFieldSearchQuestion(),
-                        Align(
-                          alignment: Alignment.bottomLeft,
-                          child: _ChatTextFieldContainerBotModel(),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: _ChatTextFieldResumeButton()
-                        ),
-                      ],
-                    ),
-          ),
-        ),
+        child: _ChatTextFieldAnimatedContainer(isSelected: _isSelected),
       ),
+    ),
+  );
+}
+
+class _ChatTextFieldAnimatedContainer extends StatelessWidget {
+  const _ChatTextFieldAnimatedContainer({required this.isSelected});
+
+  final bool isSelected;
+
+  @override
+  Widget build(BuildContext context) => AnimatedSize(
+    duration: const Duration(milliseconds: 300),
+    curve: Curves.easeInOut,
+    alignment: Alignment.topCenter,
+    child: Container(
+      width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.all(WidthValues.padding),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(WidthValues.radiusMd),
+        border: Border.all(color: Colors.black54, width: 0.5),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        layoutBuilder:
+            (currentChild, previousChildren) => Stack(
+              alignment: Alignment.topCenter,
+              children: <Widget>[
+                ...previousChildren,
+                if (currentChild != null) currentChild,
+              ],
+            ),
+        transitionBuilder:
+            (child, animation) =>
+                FadeTransition(opacity: animation, child: child),
+        child:
+            isSelected
+                ? const _QuestionMenu(key: ValueKey('buttons'))
+                : _ChatTextFieldDefaultModel(),
+      ),
+    ),
+  );
+}
+
+class _ChatTextFieldDefaultModel extends StatelessWidget {
+  const _ChatTextFieldDefaultModel();
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+    height: 120,
+    key: const ValueKey('stack'),
+    child: Stack(
+      children: [
+        _ChatTextFieldSearchQuestion(),
+        Align(
+          alignment: Alignment.bottomLeft,
+          child: _ChatTextFieldContainerBotModel(),
+        ),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: _ChatTextFieldResumeButton(),
+        ),
+      ],
     ),
   );
 }
