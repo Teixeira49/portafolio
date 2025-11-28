@@ -1,5 +1,5 @@
 class AssetIcons {
-  static const String _iconRoute = 'icons';
+  static const String _iconRoute = 'assets/icons';
 
   static const String iconCanva = '$_iconRoute/canva.svg';
 

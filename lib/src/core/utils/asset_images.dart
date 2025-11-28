@@ -1,5 +1,5 @@
 class AssetImages {
-  static const String _images = 'images';
+  static const String _images = 'assets/images';
 
   static const String ceisLogo = '$_images/ceis_unimet_logo.png';
 
