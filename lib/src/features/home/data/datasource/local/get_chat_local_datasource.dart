@@ -17,7 +17,7 @@ class GetChatMessagesDatasourceImpl implements GetChatMessagesDatasource {
   @override
   Future<ChatModel> getChatMessages(ChatSelectorParams params) async {
     try {
-      String response = await rootBundle.loadString('data/chats.json');
+      String response = await rootBundle.loadString('assets/data/chats.json');
       final data = jsonDecode(response) as Map<String, dynamic>;
       final messagesJson = data["chats"][params.chatName];
       if (messagesJson["messages"] != null) {
