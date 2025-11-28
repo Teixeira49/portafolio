@@ -1,9 +1,9 @@
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Map<String, dynamic> aboutData = {
-  "name": "a",//dotenv.env['REAL_NAME'] ?? '',
-  "location": "a",//dotenv.env['LOCATION'] ?? '',
-  "location_link": "a",//dotenv.env['LOCATION_LINK'] ?? '',
+  "name": dotenv.env['REAL_NAME'] ?? '',
+  "location": dotenv.env['LOCATION'] ?? '',
+  "location_link": dotenv.env['LOCATION_LINK'] ?? '',
   "years": 3,
   "projects": 10,
 };

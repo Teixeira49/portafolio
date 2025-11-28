@@ -1,4 +1,4 @@
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Constants {
   static const String appName = 'Portafolio Ing. Teixeira';
@@ -9,21 +9,21 @@ class Constants {
 
   static const String developerName = 'Ing. Javier Teixeira';
 
-  static final String githubAccount = "a";//"a";//dotenv.env['GITHUB_ACCOUNT'] ?? '';
+  static final String githubAccount = dotenv.env['GITHUB_ACCOUNT'] ?? '';
 
-  static final String linkedinAccount = "a";//dotenv.env['LINKEDIN_ACCOUNT'] ?? '';
+  static final String linkedinAccount = dotenv.env['LINKEDIN_ACCOUNT'] ?? '';
 
-  static final String gmailAccount = "a";//dotenv.env['GMAIL_ACCOUNT'] ?? '';
+  static final String gmailAccount = dotenv.env['GMAIL_ACCOUNT'] ?? '';
 
-  static final String mainPhoneNumber = "a";//dotenv.env['MAIN_PHONE'] ?? '';
+  static final String mainPhoneNumber = dotenv.env['MAIN_PHONE'] ?? '';
 
-  static final String secondPhoneNumber = "a";//dotenv.env['SECOND_PHONE'] ?? '';
+  static final String secondPhoneNumber = dotenv.env['SECOND_PHONE'] ?? '';
 
-  static final String resume = "a";//dotenv.env['CV'] ?? '';
+  static final String resume = dotenv.env['CV'] ?? '';
 
-  static final String campusLocation = "a";//dotenv.env['UNIMET_LOCATION'] ?? '';
+  static final String campusLocation = dotenv.env['UNIMET_LOCATION'] ?? '';
 
-  static final String campusWebsite = "a";//dotenv.env['UNIMET_WEBSITE'] ?? '';
+  static final String campusWebsite = dotenv.env['UNIMET_WEBSITE'] ?? '';
 }
 
 class HttpConstants {
