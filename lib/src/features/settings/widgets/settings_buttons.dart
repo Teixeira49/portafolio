@@ -34,21 +34,30 @@ class _LanguageButton extends StatelessWidget {
 }
 
 class _ThemeOptionButton extends StatelessWidget {
-  const _ThemeOptionButton(this.icon, this.label);
+  const _ThemeOptionButton({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+    required this.currentTheme,
+    required this.myTheme,
+  });
 
   final IconData icon;
   final String label;
+  final ThemeMode currentTheme;
+  final ThemeMode myTheme;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: ColorValues.utilityGray100(context),
+      color: currentTheme == myTheme ? ColorValues.bgBrandPrimary(context) : ColorValues.utilityGray100(context),
       borderRadius: BorderRadius.all(Radius.circular(WidthValues.radiusSm)),
       child: InkWell(
-        borderRadius: const BorderRadius.all(Radius.circular(5)),
+        borderRadius: BorderRadius.all(Radius.circular(WidthValues.radiusSm)),
         hoverColor: ColorValues.bgBrandPrimary(context),
         hoverDuration: const Duration(milliseconds: 250),
-        onTap: () {},
+        onTap: onTap,
         child: Container(
           padding: EdgeInsets.symmetric(
             horizontal: WidthValues.padding,
@@ -60,7 +69,12 @@ class _ThemeOptionButton extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(icon, size: WidthValues.spacingXl),
-              Text(label, style: ExtendedTextTheme.textSmall(context), overflow: TextOverflow.ellipsis, maxLines: 1),
+              Text(
+                label,
+                style: ExtendedTextTheme.textSmall(context),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
             ],
           ),
         ),

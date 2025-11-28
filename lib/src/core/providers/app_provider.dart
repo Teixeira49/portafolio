@@ -8,6 +8,23 @@ class AppProvider extends ChangeNotifier {
 
   Locale? get locale => _locale;
 
+  ThemeMode _themeMode = ThemeMode.system;
+
+  ThemeMode get themeMode => _themeMode;
+
+  void setThemeMode(ThemeMode mode) {
+    _themeMode = mode;
+    notifyListeners();
+  }
+
+  void toggleTheme() {
+    if (_themeMode == ThemeMode.dark) {
+      setThemeMode(ThemeMode.light);
+    } else {
+      setThemeMode(ThemeMode.dark);
+    }
+  }
+
   void setLocale(Locale? newLocale) {
     if (_locale == newLocale) return;
 

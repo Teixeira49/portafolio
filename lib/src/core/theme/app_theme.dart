@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../variables/variables.dart';
 
 class AppTheme {
-  static ThemeData theme(BuildContext context) {
-    final brightness = Theme
+  static ThemeData theme(BuildContext context, Brightness? myBrightness) {
+    final brightness = myBrightness ?? Theme
         .of(context)
         .brightness;
 

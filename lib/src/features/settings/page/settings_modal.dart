@@ -32,16 +32,32 @@ class SettingsDialog extends StatelessWidget {
               sectionTitle: context.l10n.settingsPageThemeLabel,
               sectionRows: [
                 _ThemeOptionButton(
-                  Icons.light_mode,
-                  context.l10n.themeLightLabel,
+                  icon: Icons.light_mode,
+                  currentTheme: appProvider.themeMode,
+                  myTheme: ThemeMode.light,
+                  label: context.l10n.themeLightLabel,
+                  onTap: () {
+                    getIt<AppProvider>().setThemeMode(ThemeMode.light);
+                  },
                 ),
                 _ThemeOptionButton(
-                  Icons.dark_mode,
-                  context.l10n.themeDarkLabel,
+                  icon: Icons.dark_mode,
+                  currentTheme: appProvider.themeMode,
+                  myTheme: ThemeMode.dark,
+                  label: context.l10n.themeDarkLabel,
+                  onTap: () {
+                    getIt<AppProvider>().setThemeMode(ThemeMode.dark);
+                  },
                 ),
+
                 _ThemeOptionButton(
-                  Icons.settings,
-                  context.l10n.themeSystemLabel,
+                  icon: Icons.settings,
+                  currentTheme: appProvider.themeMode,
+                  myTheme: ThemeMode.system,
+                  label: context.l10n.themeSystemLabel,
+                  onTap: () {
+                    getIt<AppProvider>().setThemeMode(ThemeMode.system);
+                  },
                 ),
               ],
             ),
