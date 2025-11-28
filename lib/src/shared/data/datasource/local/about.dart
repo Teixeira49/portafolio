@@ -1,9 +1,9 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import '../../../../core/variables/constants/constants.dart';
 
 Map<String, dynamic> aboutData = {
-  "name": dotenv.env['REAL_NAME'] ?? '',
-  "location": dotenv.env['LOCATION'] ?? '',
-  "location_link": dotenv.env['LOCATION_LINK'] ?? '',
+  "name": 'Javier Teixeira',
+  "location": Constants.location,
+  "location_link": Constants.locationLink,
   "years": 3,
   "projects": 10,
 };

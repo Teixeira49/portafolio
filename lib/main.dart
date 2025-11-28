@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:portafolio/src/core/providers/providers.dart';
 import 'package:portafolio/src/core/theme/app_theme.dart';
@@ -11,7 +10,6 @@ import 'package:provider/provider.dart';
 import 'l10n/app_localizations.dart';
 
 void main() async {
-  await dotenv.load();
   setupLocator();
   runApp(const MyApp());
 }
