@@ -67,13 +67,14 @@ class _ChatTextFieldAnimatedContainer extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.all(WidthValues.padding),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: ColorValues.bgSecondary(context),
         borderRadius: BorderRadius.circular(WidthValues.radiusMd),
-        border: Border.all(color: Colors.black54, width: 0.5),
+        border: Border.all(color: ColorValues.borderSolid(context), width: 0.5),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
+            color: ColorValues.shadowPrimary(context).withAlpha(200),
             blurRadius: 10,
+            spreadRadius: 1,
             offset: const Offset(0, 5),
           ),
         ],
@@ -133,16 +134,22 @@ class _ChatTextFieldContainerBotModel extends StatelessWidget {
       horizontal: WidthValues.spacingSm,
     ),
     decoration: BoxDecoration(
-      color: Colors.white38,
+      color: ColorValues.utilityGray200(context),
       borderRadius: BorderRadius.circular(WidthValues.radiusMd),
-      border: Border.all(color: Colors.black54, width: 0.5),
+      border: Border.all(
+        color: ColorValues.borderSolid(context).withAlpha(120),
+        width: 0.5,
+      ),
     ),
     child: Row(
       spacing: WidthValues.spacingXs,
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(context.l10n.homePageIAModelLayer),
-        Icon(Icons.keyboard_arrow_up_outlined, color: Colors.black87),
+        Icon(
+          Icons.keyboard_arrow_up_outlined,
+          color: ColorValues.borderSolid(context).withAlpha(220),
+        ),
       ],
     ),
   );

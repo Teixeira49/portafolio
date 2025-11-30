@@ -14,34 +14,40 @@ class HomeBody extends StatelessWidget {
       builder: (context, state) {
         return state.chatName == "Home Chat"
             ? _WelcomeToChatWidget()
-            : Scaffold(
-              appBar:
-                  state.chatName != "Home Chat" && !Responsive.isMobile(context)
-                      ? AppBar(
-                        title: Text('Portafolio de Teixeira49'),
-                        centerTitle: true,
-                        actions: [
-                          CustomTitleBadged(name: state.chatName),
-                        ],
-                      )
-                      : null,
-              body: Stack(
-                alignment: Alignment.topCenter,
-                children: [
-                  MessageContent(
+            : Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                if (state.chatName != "Home Chat" &&
+                    !Responsive.isMobile(context)) ...[
+                  Positioned(
+                    top: WidthValues.padding,
+                    child: Text(
+                      'Portafolio de Teixeira49',
+                      style: ExtendedTextTheme.titleMedium(context),
+                    ),
+                  ),
+                  Positioned(
+                    top: WidthValues.padding,
+                    right: WidthValues.padding,
+                    child: CustomTitleBadged(name: state.chatName),
+                  ),
+                ],
+                Padding(
+                  padding: EdgeInsets.only(top: WidthValues.spacing2xl),
+                  child: MessageContent(
                     title: state.chatName,
                     content: state.messages.isNotEmpty ? state.messages : [],
                   ),
+                ),
 
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: WidthValues.padding),
-                      child: _ChatTextFieldWidget(),
-                    ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: WidthValues.padding),
+                    child: _ChatTextFieldWidget(),
                   ),
-                ],
-              ),
+                ),
+              ],
             );
       },
     );
