@@ -16,6 +16,7 @@ class AppTheme {
         textTheme: _CustomThemeValues.textTheme(context),
         elevatedButtonTheme: _CustomThemeValues.elevatedButtonTheme(context),
         outlinedButtonTheme: _CustomThemeValues.outlinedButtonTheme(context),
+        textButtonTheme: _CustomThemeValues.textButtonTheme(context),
         iconTheme: _CustomThemeValues.iconTheme(context),
         canvasColor: ColorValues.bgSecondary(context),
         dialogTheme: _CustomThemeValues.dialogTheme(context),
@@ -121,6 +122,25 @@ class _CustomThemeValues {
           ),
         ),
       );
+
+  static TextButtonThemeData textButtonTheme(BuildContext context) => TextButtonThemeData(
+    style: TextButton.styleFrom(
+      padding: EdgeInsets.symmetric(
+        vertical: WidthValues.spacingMd,
+        horizontal: WidthValues.spacingXl,
+      ),
+      foregroundColor: ColorValues.buttonSecondaryFg(context),
+      overlayColor: ColorValues.fgBrandPrimary(context).withAlpha(51),
+      textStyle: TextStyle(
+        fontWeight: TextValues.semibold,
+        fontSize: TextValues.textMd,
+        color: ColorValues.bgPrimary(context),
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(WidthValues.radiusMd),
+      ),
+    ),
+  );
 
   static IconThemeData iconTheme(BuildContext context) =>
       IconThemeData(
