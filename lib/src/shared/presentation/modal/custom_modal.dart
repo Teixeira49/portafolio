@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portafolio/l10n/l10n.dart';
 
 import '../../../core/variables/variables.dart';
 
@@ -26,6 +27,7 @@ class CustomModal extends StatelessWidget {
         minHeight: 300,
       ),
       child: Dialog(
+        backgroundColor: ColorValues.bgSecondary(context),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(WidthValues.radiusMd),
         ),
@@ -45,6 +47,13 @@ class CustomModal extends StatelessWidget {
               ),
               Divider(),
               ...children,
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text(context.l10n.closeButtonLabel, style: TextStyle(color: ColorValues.fgBrandPrimary(context)),), // "Close"
+                ),
+              ),
             ],
           ),
         ),

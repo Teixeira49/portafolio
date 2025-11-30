@@ -96,13 +96,6 @@ class SettingsDialog extends StatelessWidget {
                 ),
               ],
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text(context.l10n.closeButtonLabel), // "Close"
-              ),
-            ),
           ],
         ),
   );
