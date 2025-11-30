@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portafolio/l10n/l10n.dart';
 import 'package:portafolio/src/core/theme/extended_text_theme.dart';
 import 'package:portafolio/src/core/variables/constants/constants.dart';
 import 'package:portafolio/src/core/variables/values/values.dart';
@@ -85,11 +86,20 @@ class _TextDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (end == null) {
-      return Text(init);
+      return Text(
+        init,
+        style: TextStyle(color: ColorValues.textTertiary(context)),
+      );
     } else if (end == StringConstants.emptyString) {
-      return Text("$init - actualidad");
+      return Text(
+        "$init - ${context.l10n.projectActualDateLabel}",
+        style: TextStyle(color: ColorValues.textTertiary(context)),
+      );
     } else {
-      return Text("$init - $end");
+      return Text(
+        "$init - $end",
+        style: TextStyle(color: ColorValues.textTertiary(context)),
+      );
     }
   }
 }
