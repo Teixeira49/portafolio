@@ -111,7 +111,7 @@ class _CustomThemeValues {
           foregroundColor: ColorValues.buttonSecondaryFg(context),
           side: BorderSide(
             color: ColorValues.buttonSecondaryBorder(context),
-            width: 1.5,
+            width: 1.25,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(WidthValues.radiusMd),
