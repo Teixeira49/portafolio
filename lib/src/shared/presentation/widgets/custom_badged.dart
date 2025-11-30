@@ -19,9 +19,11 @@ class CustomTitleBadged extends StatelessWidget {
       horizontal: WidthValues.spacingSm,
       vertical: WidthValues.spacingXxs,
     ),
-    child: Text(
-      selectChatName(context, name),
-      style: ExtendedTextTheme.titleSmall(context),
+    child: Center(
+      child: Text(
+        selectChatName(context, name),
+        style: ExtendedTextTheme.titleSmall(context),
+      ),
     ),
   );
 
