@@ -9,10 +9,12 @@ class DynamicIconButton extends StatefulWidget {
     super.key,
     required this.asset,
     required this.route,
+    this.maskColor,
   });
 
   final String asset;
   final String? route;
+  final Color? maskColor;
 
   @override
   State<DynamicIconButton> createState() => DynamicIconButtonState();
@@ -23,14 +25,14 @@ class DynamicIconButtonState extends State<DynamicIconButton> {
 
   @override
   Widget build(BuildContext context) {
-    final color = _isHovered ? null : Colors.blueGrey;
+    final color = _isHovered ? widget.maskColor : ColorValues.utilityGray400(context);
 
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       cursor: SystemMouseCursors.click,
-      // Cambia el cursor a una mano para indicar que es clickeable
       child: InkWell(
+        borderRadius: BorderRadius.circular(WidthValues.radiusXxs),
         onTap:
             () =>
                 widget.route != null
@@ -53,10 +55,12 @@ class DynamicIconPopMenu extends StatefulWidget {
     super.key,
     required this.asset,
     required this.options,
+    this.maskColor,
   });
 
   final String asset;
   final List options;
+  final Color? maskColor;
 
   @override
   State<DynamicIconPopMenu> createState() => DynamicIconPopMenuState();
@@ -67,7 +71,7 @@ class DynamicIconPopMenuState extends State<DynamicIconPopMenu> {
 
   @override
   Widget build(BuildContext context) {
-    final color = _isHovered ? null : Colors.blueGrey;
+    final color = _isHovered ? widget.maskColor : ColorValues.utilityGray400(context);
 
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
