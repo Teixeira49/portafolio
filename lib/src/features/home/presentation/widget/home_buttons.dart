@@ -13,6 +13,10 @@ class _ButtonsMenu extends StatelessWidget {
       DynamicIconButton(
         asset: AssetIcons.iconGithubLight,
         route: Constants.githubAccount,
+        maskColor:
+            AppTheme.theme(context, null).brightness == Brightness.dark
+                ? ColorValues.fgPrimary(context).withAlpha(180)
+                : null,
       ),
       DynamicIconButton(
         asset: AssetIcons.iconLinkedin,
