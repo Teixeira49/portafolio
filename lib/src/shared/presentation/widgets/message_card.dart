@@ -124,7 +124,7 @@ class _MessageCardAvatar extends StatelessWidget {
                 isMe
                     ? null
                     : SvgPicture.asset(
-                      AssetIcons.profile,
+                      AssetIcons.iconProfile,
                       color: ColorValues.borderSolid(context),
                     ),
           );
