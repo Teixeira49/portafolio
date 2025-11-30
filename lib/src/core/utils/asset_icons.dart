@@ -81,7 +81,9 @@ class AssetIcons {
 
   static const String iconWhatsApp = '$_iconRoute/whatsapp_icon.svg';
 
-  static const String profile = '$_iconRoute/profile_icon.svg';
+  static const String iconBot = '$_iconRoute/bot_icon.svg';
+
+  static const String iconProfile = '$_iconRoute/profile_icon.svg';
 
   static const String iconLock = '$_iconRoute/lock.svg';
 }
