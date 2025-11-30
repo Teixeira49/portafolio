@@ -80,20 +80,8 @@ class MessageContent extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 120),
+            SizedBox(height: 150),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSystemMessage(String text) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: Text(
-          text,
-          style: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic),
         ),
       ),
     );

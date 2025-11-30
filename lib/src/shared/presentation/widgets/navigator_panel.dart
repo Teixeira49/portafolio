@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:portafolio/l10n/l10n.dart';
+import 'package:portafolio/src/core/theme/extended_text_theme.dart';
 
 import '../../../core/theme/responsive.dart';
 import '../../../core/utils/asset_images.dart';
@@ -43,11 +44,18 @@ class _NavigationPanelState extends State<NavigationPanel> {
                 topRight: Radius.circular(WidthValues.radiusMd),
                 bottomRight: Radius.circular(WidthValues.radiusMd),
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: ColorValues.shadowPrimary(context).withAlpha(200),
+                  blurRadius: 10,
+                  spreadRadius: 1,
+                  offset: const Offset(0, 5),
+                ),
+              ],
             ),
             child: Column(
               spacing: 10,
               children: [
-                // Lista de opciones fijas
                 SizedBox(height: 64),
                 _MainChatButton(
                   expanded: _isExpanded,
@@ -187,7 +195,6 @@ class _MainChatButton extends StatelessWidget {
             spacing: expanded ? 8 : 0,
             children: [
               Flexible(child: Icon(iconData)),
-
               Flexible(
                 child: AnimatedOpacity(
                   duration: const Duration(milliseconds: 300),
@@ -224,25 +231,39 @@ class _TileOptionItem extends StatelessWidget {
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(WidthValues.radiusMd),
     ),
-    child: ListTile(
-      tileColor:
-          context.read<ChatBloc>().getChatId() == id
-              ? ColorValues.utilityBrand300(context)
-              : Colors.transparent,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(WidthValues.padding),
+    child: Padding(
+      padding: EdgeInsets.only(bottom: WidthValues.spacingXs),
+      child: ListTile(
+        tileColor:
+            context.read<ChatBloc>().getChatId() == id
+                ? ColorValues.utilityBrand300(context)
+                : Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(WidthValues.padding),
+        ),
+        leading: Icon(
+          icon,
+          color: ColorValues.textPrimary(context).withAlpha(200),
+        ),
+        title:
+            (expanded)
+                ? AnimatedOpacity(
+                  duration: const Duration(milliseconds: 150),
+                  opacity: expanded ? 1.0 : 0.0,
+                  child: Text(
+                    title,
+                    style: ExtendedTextTheme.textMedium(context),
+                    overflow: TextOverflow.clip,
+                    maxLines: 1,
+                  ),
+                )
+                : null,
+        onTap: () => context.read<ChatBloc>().add(GetChatMessages(routeName)),
+        hoverColor:
+            context.read<ChatBloc>().getChatId() == id
+                ? ColorValues.utilityBrand400(context)
+                : ColorValues.utilityBrand200(context),
       ),
-      leading: Icon(icon),
-      title:
-          (expanded)
-              ? AnimatedOpacity(
-                duration: const Duration(milliseconds: 150),
-                opacity: expanded ? 1.0 : 0.0,
-                child: Text(title, overflow: TextOverflow.clip, maxLines: 1),
-              )
-              : null,
-      onTap: () => context.read<ChatBloc>().add(GetChatMessages(routeName)),
-      hoverColor: ColorValues.utilityBrand300(context),
     ),
   );
 }
