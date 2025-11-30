@@ -22,7 +22,7 @@ class HomeBody extends StatelessWidget {
                   Positioned(
                     top: WidthValues.padding,
                     child: Text(
-                      'Portafolio de Teixeira49',
+                      context.l10n.appTitle,
                       style: ExtendedTextTheme.titleMedium(context),
                     ),
                   ),

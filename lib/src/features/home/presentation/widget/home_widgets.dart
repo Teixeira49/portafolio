@@ -108,18 +108,38 @@ class _ChatTextFieldDefaultModel extends StatelessWidget {
   Widget build(BuildContext context) => SizedBox(
     height: 120,
     key: const ValueKey('stack'),
-    child: Stack(
-      children: [
-        _ChatTextFieldSearchQuestion(),
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: _ChatTextFieldContainerBotModel(),
-        ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: _ChatTextFieldResumeButton(),
-        ),
-      ],
+    child: LayoutBuilder(
+      builder: (context, constraints) {
+        final isSmallScreen = constraints.maxWidth < 305;
+        final children = [
+          _ChatTextFieldContainerBotModel(),
+          _ChatTextFieldResumeButton(),
+        ];
+        return Stack(
+          children: [
+            _ChatTextFieldSearchQuestion(),
+            Align(
+              alignment:
+                  isSmallScreen
+                      ? Alignment.bottomRight
+                      : Alignment.bottomCenter,
+              child:
+                  isSmallScreen
+                      ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        spacing: WidthValues.spacingXs,
+                        mainAxisSize: MainAxisSize.min,
+                        children: children,
+                      )
+                      : Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: children,
+                      ),
+            ),
+          ],
+        );
+      },
     ),
   );
 }
@@ -145,7 +165,10 @@ class _ChatTextFieldContainerBotModel extends StatelessWidget {
       spacing: WidthValues.spacingXs,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(context.l10n.homePageIAModelLayer),
+        Text(
+          context.l10n.homePageIAModelLayer,
+          style: ExtendedTextTheme.textSmall(context),
+        ),
         Icon(
           Icons.keyboard_arrow_up_outlined,
           color: ColorValues.borderSolid(context).withAlpha(220),

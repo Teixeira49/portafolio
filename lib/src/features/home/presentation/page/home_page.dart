@@ -67,13 +67,23 @@ class HomeView extends StatelessWidget {
       builder: (context, state) {
         final title =
             state.chatName != "Home Chat"
-                ? Text('Portafolio de Teixeira49')
+                ? Text(
+                  context.l10n.appTitle,
+                  style: ExtendedTextTheme.titleMedium(context),
+                )
                 : null;
         return BaseLayoutPage(
           title: title,
           centerTitle: false,
           actions: [
-            if (title != null) CustomTitleBadged(name: state.chatName),
+            if (title != null)
+              Container(
+                margin: EdgeInsets.symmetric(
+                  vertical: WidthValues.spacingXs,
+                  horizontal: WidthValues.spacingMd,
+                ),
+                child: CustomTitleBadged(name: state.chatName),
+              ),
           ],
           child: HomeBody(),
         );
