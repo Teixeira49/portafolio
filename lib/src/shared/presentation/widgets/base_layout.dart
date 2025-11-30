@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme.dart';
-import '../../../core/variables/values/values.dart';
 import 'navigator_panel.dart';
 
 class BaseLayoutPage extends StatefulWidget {
