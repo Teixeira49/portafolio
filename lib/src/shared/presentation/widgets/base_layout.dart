@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../core/theme/app_theme.dart';
+import '../../../core/variables/values/values.dart';
 import 'navigator_panel.dart';
 
 class BaseLayoutPage extends StatefulWidget {
@@ -43,7 +45,11 @@ class _BaseLayoutPageState extends State<BaseLayoutPage> {
 
         if (isMobile) {
           return Scaffold(
+            backgroundColor:
+                AppTheme.theme(context, null).scaffoldBackgroundColor,
             appBar: AppBar(
+              backgroundColor:
+              AppTheme.theme(context, null).scaffoldBackgroundColor,
               title: widget.title,
               centerTitle: widget.centerTitle,
               actions: widget.actions,
@@ -53,12 +59,13 @@ class _BaseLayoutPageState extends State<BaseLayoutPage> {
           );
         } else {
           return Scaffold(
+            backgroundColor:
+                AppTheme.theme(context, null).scaffoldBackgroundColor,
             body: Row(
               children: [
                 NavigationPanel(
                   width: _isPanelOpen ? panelWidth : minPanelWidth,
                 ),
-
                 Expanded(child: widget.child),
               ],
             ),
