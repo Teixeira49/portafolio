@@ -14,7 +14,7 @@ class CampusBanner extends StatelessWidget {
       alignment: Alignment.topLeft,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(WidthValues.radiusMd),
-        color: Colors.white,
+        color: ColorValues.bgSecondary(context),
       ),
       width: 240,
       padding: EdgeInsets.all(WidthValues.padding),

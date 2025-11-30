@@ -23,7 +23,7 @@ class SkillsCard extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(WidthValues.radiusMd),
-      color: Colors.white,
+      color: ColorValues.bgSecondary(context),
     ),
     padding: EdgeInsets.all(WidthValues.padding),
     child: Row(

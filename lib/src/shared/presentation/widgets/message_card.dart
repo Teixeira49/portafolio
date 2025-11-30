@@ -81,7 +81,10 @@ class _MessageCardWidget extends StatelessWidget {
         bottomLeft: Radius.circular(WidthValues.radiusMd),
         bottomRight: Radius.circular(WidthValues.radiusMd),
       ),
-      color: isMe ? ColorValues.bgBrandPrimary(context) : Colors.white,
+      color:
+          isMe
+              ? ColorValues.bgBrandPrimary(context)
+              : ColorValues.bgSecondary(context),
     ),
     child: Column(
       spacing: WidthValues.spacingXs,
@@ -122,7 +125,7 @@ class _MessageCardAvatar extends StatelessWidget {
                     ? null
                     : SvgPicture.asset(
                       AssetIcons.profile,
-                      color: Colors.black87,
+                      color: ColorValues.borderSolid(context),
                     ),
           );
 }
