@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio/src/core/utils/asset_icons.dart';
 
+import '../../../core/theme/app_theme.dart';
 import '../../../core/variables/variables.dart';
 import 'dynamic_icon_button.dart';
 
@@ -83,6 +84,9 @@ class ProjectCard extends StatelessWidget {
               DynamicIconPopMenu(
                 asset: AssetIcons.iconGithubLight,
                 options: repository,
+                maskColor: AppTheme.theme(context, null).brightness == Brightness.dark
+                    ? ColorValues.fgPrimary(context).withAlpha(180)
+                    : null,
               ),
             ] else ...[
               Tooltip(
@@ -95,6 +99,9 @@ class ProjectCard extends StatelessWidget {
                   child: DynamicIconButton(
                     asset: AssetIcons.iconLock,
                     route: null,
+                    maskColor: AppTheme.theme(context, null).brightness == Brightness.dark
+                        ? ColorValues.fgPrimary(context).withAlpha(220)
+                        : null,
                   ),
                 ),
               ),
