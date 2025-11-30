@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../../../../core/utils/asset_icons.dart';
 import '../../../domain/entities/enums/enums.dart';
 
@@ -101,6 +103,7 @@ List techSkills = [
     "level": SkillLevel.medium,
     "image": AssetIcons.iconGithubLight,
     "visible": true,
+    "color": Colors.white,
   },
   {
     "name": "Postman",

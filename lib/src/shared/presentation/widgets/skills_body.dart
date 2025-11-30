@@ -34,6 +34,7 @@ class SkillsBody extends StatelessWidget {
               title: skillBlock['name'],
               asset: skillBlock['image'],
               level: skillBlock['level'],
+              color: skillBlock['color'],
             ),
           );
         }).toList(),
