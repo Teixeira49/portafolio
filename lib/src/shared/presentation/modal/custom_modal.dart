@@ -33,7 +33,7 @@ class CustomModal extends StatelessWidget {
         ),
         child: Padding(
           padding: EdgeInsets.all(WidthValues.padding),
-          child: Column(
+          child: SingleChildScrollView(child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: crossAxisAlignment,
             spacing: WidthValues.padding,
@@ -55,7 +55,7 @@ class CustomModal extends StatelessWidget {
                 ),
               ),
             ],
-          ),
+          ),)
         ),
       ),
     ),

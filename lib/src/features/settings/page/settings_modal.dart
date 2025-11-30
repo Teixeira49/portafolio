@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:portafolio/l10n/l10n.dart';
 import 'package:portafolio/src/core/theme/extended_text_theme.dart';
 
 import 'package:provider/provider.dart' show Consumer;
 
 import '../../../core/providers/providers.dart';
+import '../../../core/utils/asset_icons.dart';
 import '../../../core/variables/values/values.dart';
 import '../../../shared/presentation/modal/custom_modal.dart';
 
@@ -25,7 +27,16 @@ class SettingsDialog extends StatelessWidget {
               sectionTitle: context.l10n.settingsPageIAModelLabel,
               sectionRows: [
                 _SettingsIAModel(),
-                Icon(Icons.verified_user_outlined),
+                SvgPicture.asset(
+                  AssetIcons.iconBot,
+                  fit: BoxFit.contain,
+                  width: 24,
+                  height: 24,
+                  colorFilter: ColorFilter.mode(
+                    ColorValues.borderSolid(context),
+                    BlendMode.srcIn,
+                  ),
+                ),
               ],
             ),
             _SettingsSectionRow(

@@ -19,16 +19,23 @@ class _LanguageButton extends StatelessWidget {
 
     return OutlinedButton(
       onPressed: onTap,
-      style:
-          isSelected
-              ? OutlinedButton.styleFrom(
-                backgroundColor: Theme.of(
-                  context,
-                ).primaryColor.withOpacity(0.1),
-                side: BorderSide(color: Theme.of(context).primaryColor),
-              )
-              : null,
-      child: Text(label, overflow: TextOverflow.ellipsis, maxLines: 1),
+      style: OutlinedButton.styleFrom(
+        backgroundColor:
+            isSelected ? Theme.of(context).primaryColor.withAlpha(40) : null,
+        side:
+            isSelected
+                ? BorderSide(color: Theme.of(context).primaryColor, width: 1)
+                : null,
+        // Add hover effect color
+        foregroundColor: Theme.of(context).textTheme.bodyMedium?.color,
+        overlayColor: Theme.of(context).primaryColor.withAlpha(30),
+      ),
+      child: Text(
+        label,
+        style: ExtendedTextTheme.textSmall(context),
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+      ),
     );
   }
 }
@@ -51,7 +58,10 @@ class _ThemeOptionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: currentTheme == myTheme ? ColorValues.bgBrandPrimary(context) : ColorValues.utilityGray100(context),
+      color:
+          currentTheme == myTheme
+              ? Theme.of(context).primaryColor.withAlpha(40)
+              : ColorValues.utilityGray200(context),
       borderRadius: BorderRadius.all(Radius.circular(WidthValues.radiusSm)),
       child: InkWell(
         borderRadius: BorderRadius.all(Radius.circular(WidthValues.radiusSm)),
