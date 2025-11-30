@@ -11,13 +11,14 @@ class CustomTitleBadged extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    alignment: AlignmentGeometry.center,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(WidthValues.radiusSm),
       color: ColorValues.bgBrandPrimary(context),
     ),
-    padding: EdgeInsets.symmetric(horizontal: WidthValues.spacingSm),
-    margin: EdgeInsets.all(WidthValues.spacingXs),
+    padding: EdgeInsets.symmetric(
+      horizontal: WidthValues.spacingSm,
+      vertical: WidthValues.spacingXxs,
+    ),
     child: Text(
       selectChatName(context, name),
       style: ExtendedTextTheme.titleSmall(context),
