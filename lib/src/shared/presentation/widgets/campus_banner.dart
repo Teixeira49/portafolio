@@ -23,7 +23,10 @@ class CampusBanner extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         spacing: WidthValues.spacingSm,
         children: [
-          Image.asset(AssetImages.unimetBanner, height: 80),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(WidthValues.radiusXs),
+            child: Image.asset(AssetImages.unimetBanner, height: 80,),
+          ),
           Divider(),
           _SelectedTextRow(
             location: context.l10n.locationLabel,
