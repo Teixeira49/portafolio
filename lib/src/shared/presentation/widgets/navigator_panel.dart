@@ -61,10 +61,12 @@ class _NavigationPanelState extends State<NavigationPanel> {
                   expanded: _isExpanded,
                   title: context.l10n.dashboardHomeButton,
                   iconData: Icons.home_outlined,
-                  onPressed:
-                      () => context.read<ChatBloc>().add(
-                        GetChatMessages('home_chat'),
-                      ),
+                  onPressed: () {
+                    context.read<ChatBloc>().add(GetChatMessages('home_chat'));
+                    if (Responsive.isMobile(context)) {
+                      Navigator.of(context).pop();
+                    }
+                  },
                 ),
                 Expanded(
                   child: BlocBuilder<ChatBloc, ChatState>(
@@ -258,7 +260,12 @@ class _TileOptionItem extends StatelessWidget {
                   ),
                 )
                 : null,
-        onTap: () => context.read<ChatBloc>().add(GetChatMessages(routeName)),
+        onTap: () {
+          context.read<ChatBloc>().add(GetChatMessages(routeName));
+          if (Responsive.isMobile(context)) {
+            Navigator.of(context).pop();
+          }
+        },
         hoverColor:
             context.read<ChatBloc>().getChatId() == id
                 ? ColorValues.utilityBrand400(context)
