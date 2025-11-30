@@ -4,7 +4,7 @@ part of 'package:portafolio/src/core/variables/values/color_values.dart';
 /// color palette for your app. Please remember to fill the values with your
 /// desired hexcode colors.
 class _ColorConstants {
-  static const MaterialColor brandFirstColor = MaterialColor(
+  static const MaterialColor brandSecond = MaterialColor(
     _brandColorPrimaryValue,
     <int, Color>{
       50: Color(0xFFD9F3D9),  // Muy claro
@@ -12,7 +12,7 @@ class _ColorConstants {
       200: Color(0xFF93E494), // Un poco claro
       300: Color(0xFF6DD66F), // Medio claro
       400: Color(0xFF4BC14D), // Más cercano al base
-      500: Color(0xFF00FC04), // Base (#FE5200)
+      500: Color(_brandColorPrimaryValue), // Base (#FE5200)
       600: Color(0xFF279E29), // Un poco más oscuro
       700: Color(0xFF157817), // Oscuro
       800: Color(0xFF084309), // Más oscuro
@@ -22,7 +22,7 @@ class _ColorConstants {
 
   static const int _brandColorPrimaryValue = 0xFF00FC04;
 
-  static const MaterialColor brandSecond =
+  static const MaterialColor brandFirstColor =
   MaterialColor(_brandColorSecondaryValue, <int, Color>{
     50: Color(0xFFE6F6F5),
     100: Color(0xFFB1E3DE),

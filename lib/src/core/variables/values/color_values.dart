@@ -210,6 +210,11 @@ class ColorValues {
   // -- colors in your designs across light and dark modes. --
   // ---------------------------------------------------------
 
+  static final _borderSolid = _ColorScheme(
+    light: _ColorConstants.grayLight.shade700,
+    dark: _ColorConstants.grayDark.shade200,
+  );
+
   static final _borderPrimary = _ColorScheme(
     light: _ColorConstants.grayLight.shade300,
     dark: _ColorConstants.grayDark.shade700,
@@ -275,6 +280,10 @@ class ColorValues {
     light: _ColorConstants.success.shade600,
     dark: _ColorConstants.success,
   );
+
+  /// High contrast borders. Created for mark the border in area
+  static Color borderSolid(BuildContext context) =>
+      _borderSolid.getColor(context);
 
   /// High contrast borders. These are used for components such as input fields,
   ///  button groups, and checkboxes.
@@ -350,7 +359,87 @@ class ColorValues {
   /// Default solid (dark) success state semantic border color. Useful for
   static Color borderSuccessSolid(BuildContext context) =>
       _borderSuccessSolid.getColor(context);
+  
+  // -------------------------------------------------------------
+  // <----------------   Shadow color values   ------------------>
+  // -------------------------------------------------------------
+  // ---------- Use shadows color variables to manage all --------
+  // ----- borders with blurs effects in your designs across -----
+  // ------------------- light and dark modes. -------------------
+  // -------------------------------------------------------------
+  
+  static final _shadowPrimary = _ColorScheme(
+    light: _ColorConstants.grayDark.shade400,
+    dark: _ColorConstants.grayLight.shade600
+  );
+  
+  static final _shadowSecondary = _ColorScheme(
+    light: _ColorConstants.grayDark.shade200,
+    dark: _ColorConstants.grayLight.shade800
+  );
+  
+  static final _shadowTertiary = _ColorScheme(
+    light: _ColorConstants.grayDark.shade100,
+    dark: _ColorConstants.grayLight.shade800,
+  );
 
+  static final _shadowInversePrimary = _ColorScheme(
+      light: _ColorConstants.grayLight.shade700,
+      dark: _ColorConstants.grayDark.shade200
+  );
+
+  static final _shadowInverseSecondary = _ColorScheme(
+      light: _ColorConstants.grayLight.shade200,
+      dark: _ColorConstants.grayDark.shade800
+  );
+
+  static final _shadowInverseTertiary = _ColorScheme(
+    light: _ColorConstants.grayLight.shade100,
+    dark: _ColorConstants.grayDark.shade800,
+  );
+  
+  static final _shadowBrand = _ColorScheme(
+    light: _ColorConstants.brandFirstColor.shade300,
+    dark: _ColorConstants.brandFirstColor.shade400,
+  );
+  
+  static final _shadowBrandSolid = _ColorScheme(
+    light: _ColorConstants.brandFirstColor.shade600,
+    dark: _ColorConstants.brandFirstColor,
+  );
+
+  /// Primary shadow color.
+  static Color shadowPrimary(BuildContext context) =>
+      _shadowPrimary.getColor(context);
+
+  /// Secondary shadow color.
+  static Color shadowSecondary(BuildContext context) =>
+      _shadowSecondary.getColor(context);
+
+  /// Tertiary shadow color.
+  static Color shadowTertiary(BuildContext context) =>
+      _shadowTertiary.getColor(context);
+
+  /// Primary inverse shadow color.
+  static Color shadowInversePrimary(BuildContext context) =>
+      _shadowInversePrimary.getColor(context);
+
+  /// Secondary inverse shadow color.
+  static Color shadowInverseSecondary(BuildContext context) =>
+      _shadowInverseSecondary.getColor(context);
+
+  /// Tertiary inverse shadow color.
+  static Color shadowInverseTertiary(BuildContext context) =>
+      _shadowInverseTertiary.getColor(context);
+
+  /// Brand shadow color.
+  static Color shadowBrand(BuildContext context) =>
+      _shadowBrand.getColor(context);
+
+  /// Solid brand shadow color.
+  static Color shadowBrandSolid(BuildContext context) =>
+      _shadowBrandSolid.getColor(context);
+  
   // -------------------------------------------------------------
   // <---------------- Foreground color values ------------------>
   // -------------------------------------------------------------
@@ -581,7 +670,7 @@ class ColorValues {
 
   static final _bgBrandPrimary = _ColorScheme(
     light: _ColorConstants.brandFirstColor.shade50,
-    dark: _ColorConstants.brandFirstColor,
+    dark: _ColorConstants.brandFirstColor.shade900,
     altLight: _ColorConstants.brandFirstColor.shade50,
     altDark: _ColorConstants.grayDark.shade800,
   );
