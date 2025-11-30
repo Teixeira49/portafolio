@@ -158,6 +158,9 @@ class _CustomThemeValues {
           fontWeight: FontWeight.w700,
           color: ColorValues.textPrimary(context),
         ),
+        iconTheme: IconThemeData(
+          color: ColorValues.fgQuaternary(context),
+        ),
         actionsIconTheme:
         IconThemeData(color: ColorValues.fgQuaternary(context)),
         shadowColor: ColorValues.utilityGray100(context),
