@@ -122,7 +122,7 @@ class _ResumeData extends StatelessWidget {
     spacing: WidthValues.spacingXs,
     children: [
       _SubContainer(
-        data: aboutData["years"].toString(),
+        data: (DateTime.now().year - aboutData["years"]).toString(),
         title: context.l10n.resumeYearsCompleteLabel,
         function:
             () => context.read<ChatBloc>().add(GetChatMessages('experience_chat')),

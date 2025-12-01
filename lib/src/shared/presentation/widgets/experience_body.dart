@@ -5,6 +5,8 @@ import 'package:portafolio/src/core/variables/constants/constants.dart';
 import 'package:portafolio/src/core/variables/values/values.dart';
 import 'package:timelines_plus/timelines_plus.dart';
 
+import '../../../core/utils/helpers.dart';
+
 class ExperienceTimeline extends StatelessWidget {
   const ExperienceTimeline({super.key, required this.experience});
 
@@ -87,17 +89,17 @@ class _TextDate extends StatelessWidget {
   Widget build(BuildContext context) {
     if (end == null) {
       return Text(
-        init,
+        Helpers.getParsedDate(context, init, shortMonth: true),
         style: TextStyle(color: ColorValues.textTertiary(context)),
       );
     } else if (end == StringConstants.emptyString) {
       return Text(
-        "$init - ${context.l10n.projectActualDateLabel}",
+        "${Helpers.getParsedDate(context, init, shortMonth: true)} - ${context.l10n.projectActualDateLabel}",
         style: TextStyle(color: ColorValues.textTertiary(context)),
       );
     } else {
       return Text(
-        "$init - $end",
+        "${Helpers.getParsedDate(context, init, shortMonth: true)} - ${Helpers.getParsedDate(context, end!, shortMonth: true)}",
         style: TextStyle(color: ColorValues.textTertiary(context)),
       );
     }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:portafolio/src/core/utils/asset_icons.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/responsive.dart';
+import '../../../core/utils/helpers.dart';
 import '../../../core/variables/variables.dart';
 import 'dynamic_icon_button.dart';
 
@@ -51,7 +53,7 @@ class ProjectCard extends StatelessWidget {
         Align(
           alignment: Alignment.topLeft,
           child: Text(
-            "$initDate - $endDate",
+            "${Helpers.getParsedDate(context, initDate, shortMonth: Responsive.isMobile(context))} - ${Helpers.getParsedDate(context, endDate, shortMonth: Responsive.isMobile(context))}",
             style: ExtendedTextTheme.textSmall(context),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -77,16 +79,17 @@ class ProjectCard extends StatelessWidget {
                 padding: EdgeInsets.only(right: WidthValues.spacingSm),
                 child: DynamicIconButton(
                   asset: AssetIcons.iconFigma,
-                  route: prototype!
+                  route: prototype!,
                 ),
               ),
             ] else if (repository.isNotEmpty && !private) ...[
               DynamicIconPopMenu(
                 asset: AssetIcons.iconGithubLight,
                 options: repository,
-                maskColor: AppTheme.theme(context, null).brightness == Brightness.dark
-                    ? ColorValues.fgPrimary(context).withAlpha(180)
-                    : null,
+                maskColor:
+                    AppTheme.theme(context, null).brightness == Brightness.dark
+                        ? ColorValues.fgPrimary(context).withAlpha(180)
+                        : null,
               ),
             ] else ...[
               Tooltip(
@@ -99,9 +102,11 @@ class ProjectCard extends StatelessWidget {
                   child: DynamicIconButton(
                     asset: AssetIcons.iconLock,
                     route: null,
-                    maskColor: AppTheme.theme(context, null).brightness == Brightness.dark
-                        ? ColorValues.fgPrimary(context).withAlpha(220)
-                        : null,
+                    maskColor:
+                        AppTheme.theme(context, null).brightness ==
+                                Brightness.dark
+                            ? ColorValues.fgPrimary(context).withAlpha(220)
+                            : null,
                   ),
                 ),
               ),
