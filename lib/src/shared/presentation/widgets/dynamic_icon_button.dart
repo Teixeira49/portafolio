@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/theme/extended_text_theme.dart';
 import '../../../core/variables/values/values.dart';
 
 class DynamicIconButton extends StatefulWidget {
@@ -78,6 +79,8 @@ class DynamicIconPopMenuState extends State<DynamicIconPopMenu> {
       onExit: (_) => setState(() => _isHovered = false),
       cursor: SystemMouseCursors.click,
       child: PopupMenuButton(
+        color: ColorValues.bgPrimary(context),
+        padding: EdgeInsets.zero,
         icon: SvgPicture.asset(
           widget.asset,
           width: 25,
@@ -94,7 +97,7 @@ class DynamicIconPopMenuState extends State<DynamicIconPopMenu> {
                 widget.options.map((repository) {
                   return PopupMenuItem(
                     value: repository["link"],
-                    child: Text(repository["name"]),
+                    child: Text(repository["name"], style: ExtendedTextTheme.textMedium(context)),
                     onTap: () => launchUrl(Uri.parse(repository["link"])),
                   );
                 }).toList(),
