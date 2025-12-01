@@ -49,7 +49,19 @@
   "chatYouLabel": "You",
   "locationLabel": "Caracas, Venezuela",
   "visitWebsiteButtonLabel": "Visit Website",
-  "resumeYearsCompleteLabel": "experience years",
+  "resumeYearsCompleteLabel": "Experience years",
   "resumeProjectsCompleteLabel": "Projects completed",
-  "resumeTitleLabel": "System Engineer | Developer"
+  "resumeTitleLabel": "System Engineer | Developer",
+  "dateJanuaryLabel": "January",
+  "dateFebruaryLabel": "February",
+  "dateMarchLabel": "March",
+  "dateAprilLabel": "April",
+  "dateMayLabel": "May",
+  "dateJuneLabel": "June",
+  "dateJulyLabel": "July",
+  "dateAugustLabel": "August",
+  "dateSeptemberLabel": "September",
+  "dateOctoberLabel": "October",
+  "dateNovemberLabel": "November",
+  "dateDecemberLabel": "December"
 }

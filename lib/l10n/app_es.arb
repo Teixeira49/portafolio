@@ -49,7 +49,19 @@
   "chatYouLabel": "Tu",
   "locationLabel": "Caracas, Venezuela",
   "visitWebsiteButtonLabel": "Visitar Website",
-  "resumeYearsCompleteLabel": "años de experiencia",
+  "resumeYearsCompleteLabel": "Años de experiencia",
   "resumeProjectsCompleteLabel": "Proyectos completados",
-  "resumeTitleLabel": "Ingeniero de Sistemas | Desarrollador"
+  "resumeTitleLabel": "Ingeniero de Sistemas | Desarrollador",
+  "dateJanuaryLabel": "Enero",
+  "dateFebruaryLabel": "Febrero",
+  "dateMarchLabel": "Marzo",
+  "dateAprilLabel": "Abril",
+  "dateMayLabel": "Mayo",
+  "dateJuneLabel": "Junio",
+  "dateJulyLabel": "Julio",
+  "dateAugustLabel": "Agosto",
+  "dateSeptemberLabel": "Septiembre",
+  "dateOctoberLabel": "Octubre",
+  "dateNovemberLabel": "Noviembre",
+  "dateDecemberLabel": "Diciembre"
 }
