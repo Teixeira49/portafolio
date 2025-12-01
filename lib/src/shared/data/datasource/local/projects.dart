@@ -1,8 +1,8 @@
 List<Map<String, dynamic>> projects = [
   {
     "name": "Bookstore inventory API",
-    "init_time": "Nov - 2025",
-    "end_time": "Nov - 2025",
+    "init_time": "11/2025",
+    "end_time": "11/2025",
     "technologies": ["Python", "FastAPI", "PostgresSQL"],
     "repository": [
       {
@@ -17,8 +17,8 @@ List<Map<String, dynamic>> projects = [
   },
   {
     "name": "BCV Tracker",
-    "init_time": "Oct - 2025",
-    "end_time": "Oct - 2025",
+    "init_time": "10/2025",
+    "end_time": "10/2025",
     "technologies": ["Python", "FastAPI", "PostgresSQL"],
     "repository": [
       {
@@ -33,8 +33,8 @@ List<Map<String, dynamic>> projects = [
   },
   {
     "name": "Prototipo NeoBanking - Suiche7B",
-    "init_time": "Sep - 2025",
-    "end_time": "Oct - 2025",
+    "init_time": "09/2025",
+    "end_time": "10/2025",
     "technologies": ["Figma"],
     "repository": [],
     "prototype":
@@ -45,8 +45,8 @@ List<Map<String, dynamic>> projects = [
   },
   {
     "name": "PadelNow App",
-    "init_time": "Jul - 2025",
-    "end_time": "Oct - 2025",
+    "init_time": "07/2025",
+    "end_time": "10/2025",
     "technologies": ["Flutter", "Dart", "Socket.io", "FCM"],
     "repository": [
       {
@@ -60,8 +60,8 @@ List<Map<String, dynamic>> projects = [
   },
   {
     "name": "New You App",
-    "init_time": "Jun - 2025",
-    "end_time": "Sep - 2025",
+    "init_time": "06/2025",
+    "end_time": "09/2025",
     "technologies": ["Flutter", "Dart"],
     "repository": [
       {
@@ -75,8 +75,8 @@ List<Map<String, dynamic>> projects = [
   },
   {
     "name": "Arturos - POS",
-    "init_time": "Jun - 2025",
-    "end_time": "Sep - 2025",
+    "init_time": "06/2025",
+    "end_time": "09/2025",
     "technologies": ["Flutter", "Dart", "Socket.io"],
     "repository": [
       {
@@ -90,8 +90,8 @@ List<Map<String, dynamic>> projects = [
   },
   {
     "name": "Kudo",
-    "init_time": "Abr - 2025",
-    "end_time": "Oct - 2025",
+    "init_time": "04/2025",
+    "end_time": "10/2025",
     "technologies": [
       "Flutter",
       "Dart",
@@ -112,8 +112,8 @@ List<Map<String, dynamic>> projects = [
   },
   {
     "name": "Drive On",
-    "init_time": "Abr - 2025",
-    "end_time": "Abr - 2025",
+    "init_time": "04/2025",
+    "end_time": "04/2025",
     "technologies": ["Flutter", "Dart", "Express.js", "Node.js"],
     "repository": [
       {"name": "Mobile App", "link": "https://github.com/flembeetech/kudo-app"},
@@ -125,8 +125,8 @@ List<Map<String, dynamic>> projects = [
   },
   {
     "name": "JM Report",
-    "init_time": "Mar - 2024",
-    "end_time": "Mar - 2025",
+    "init_time": "03/2024",
+    "end_time": "03/2025",
     "technologies": [
       "Flutter",
       "Dart",
@@ -145,8 +145,8 @@ List<Map<String, dynamic>> projects = [
   },
   {
     "name": "MetroTravel 2024",
-    "init_time": "Jun - 2024",
-    "end_time": "Jun - 2024",
+    "init_time": "06/2024",
+    "end_time": "06/2024",
     "technologies": ["Python", "Flet"],
     "repository": [
       {
@@ -160,8 +160,8 @@ List<Map<String, dynamic>> projects = [
   },
   {
     "name": "En la Parada",
-    "init_time": "Jun - 2023",
-    "end_time": "Dic - 2023",
+    "init_time": "06/2023",
+    "end_time": "12/2023",
     "technologies": ["Java", "Spring boot", "PostgresSQL", "Microservices"],
     "repository": [],
     "link": "",
@@ -171,12 +171,12 @@ List<Map<String, dynamic>> projects = [
   },
   {
     "name": "Cinema - APP",
-    "init_time": "Feb - 2022",
-    "end_time": "Feb - 2022",
+    "init_time": "02/2022",
+    "end_time": "02/2022",
     "technologies": ["React", "Javascript", "CSS", "HTML", "Firebase"],
     "repository": [
       {
-        "name": "Desktop App",
+        "name": "Mobile App",
         "link": "https://github.com/Teixeira49/cinema-app",
       },
     ],
