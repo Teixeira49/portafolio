@@ -69,13 +69,27 @@ class _TimelineElement extends StatelessWidget {
           ),
           Flexible(
             child: Text(
-              experience['description'],
+              selectLocale(
+                Localizations.localeOf(context).languageCode,
+                experience['description'],
+              ),
               style: ExtendedTextTheme.textSmall(context),
             ),
           ),
         ],
       ),
     );
+  }
+
+  String selectLocale(String locale, Map<String, dynamic> message) {
+    switch (locale) {
+      case 'en':
+        return message['en'].toString();
+      case 'es':
+        return message['es'].toString();
+      default:
+        return message['en'].toString();
+    }
   }
 }
 
