@@ -30,16 +30,16 @@
           "id": 1,
           "member": "You",
           "text": {
-            "es": "Saludos Javier Teixeira, ¿puedes hacer una breve presentacion sobre ti?",
-            "en": "Greetings Javier Teixeira, can you give a brief presentation about yourself?"
+            "es": "¡Saludos, Javier Teixeira! ¿Puedes hacer una breve presentación sobre ti, como si fuera una tarjeta de contacto o de visita?",
+            "en": "Hello Javier Teixeira! Could you give a brief introduction about yourself, like a business card?"
           }
         },
         {
           "id": 2,
           "member": "Javier Teixeira",
           "text": {
-            "es": "De hecho, tengo preparada una tarjeta de presentacion para ti",
-            "en": "In fact, I have a business card ready for you"
+            "es": "¡Hola! Con gusto.\n\nAquí tienes una tarjeta de presentacion sobre mi",
+            "en": "Hi! I'm happy to help.\n\nHere's my presentation card"
           },
           "contentCode": "resume"
         },
@@ -47,16 +47,16 @@
           "id": 3,
           "member": "You",
           "text": {
-            "es": "Excelente, ahora cuentamen un poco mas sobre ti",
-            "en": "Excellent, now tell me a little more about yourself"
+            "es": "¡Excelente! Ahora cuéntame un poco más sobre ti, ¿cuál es tu perfil ejecutivo y en qué te especializas profesionalmente?",
+            "en": "Excellent! Now tell me a little more about yourself, what is your executive profile and what do you specialize in professionally?"
           }
         },
         {
           "id": 4,
           "member": "Javier Teixeira",
           "text": {
-            "es": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-            "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+            "es": "Mi perfil combina solidez técnica con un enfoque proactivo.\n\nSoy Ingeniero de Sistemas de la Universidad Metropolitana (UNIMET), con sólida experiencia en desarrollo de software, programación y bases de datos.\n\nMi especialización se centra en el Desarrollo Full-Stack, con experiencia en:\n\n - Desarrollo de aplicaciones móviles con Flutter y Clean Architecture.\n - Implementación de Endpoints en Node.Js y Microservicios en SpringBoot.\n - Uso de PostgreSQL y Firebase para la gestión de datos.\n\n Además de mi experticia técnica, complemento mi perfil con conocimientos de marketing digital y educación. Soy un profesional apasionado por la innovación y listo para afrontar desafíos tecnológicos de alto impacto.",
+            "en": "My profile combines technical expertise with a proactive approach.\n\nI am a Systems Engineer from the Metropolitan University (UNIMET), with solid experience in software development, programming, and databases.\n\nMy specialization focuses on Full-Stack Development, with experience in:\n\n - Developing mobile applications with Flutter and Clean Architecture.\n - Implementing Endpoints in Node.js and Microservices in Spring Boot.\n - Using PostgreSQL and Firebase for data management.\n\n In addition to my technical expertise, I complement my profile with knowledge of digital marketing and education. I am a professional passionate about innovation and ready to take on high-impact technological challenges."
           }
         }
       ]
@@ -69,32 +69,32 @@
           "id": 1,
           "member": "You",
           "text": {
-            "es": "Quiero conocer tus habilidades con el idioma, porfavor muestrame que idiomas manejas y en que nivel calificas tu dominio del mismo",
-            "en": "I want to know your language skills, please show me which languages you handle and at what level you rate your proficiency"
+            "es": "Quiero conocer tus habilidades con el idioma. Por favor, indícame qué idiomas manejas y cómo calificarías tu nivel de dominio en cada uno",
+            "en": "I'd like to know about your language skills. Please tell me which languages you speak and how you would rate your proficiency level in each one."
           }
         },
         {
           "id": 1,
           "member": "Javier Teixeira",
           "text": {
-            "es": "Tu pregunta me resulta interesante, yo domino los siguientes idiomas\n  \uD83C\uDDEA\uD83C\uDDF8 Español (Nativo)\n  \uD83C\uDDEC\uD83C\uDDE7 Ingles (Intermedio)",
-            "en": "Your question is interesting, I master the following languages\n  \uD83C\uDDEA\uD83C\uDDF8 Spanish (Native)\n  \uD83C\uDDEC\uD83C\uDDE7 English (Intermediate)"
+            "es": "Tu pregunta me resulta interesante. Mi dominio de idiomas es el siguiente:\n  \uD83C\uDDEA\uD83C\uDDF8 Español (Nativo)\n  \uD83C\uDDEC\uD83C\uDDE7 Ingles (Intermedio)",
+            "en": "Your question is interesting to me. My language skills are as follows:\n  \uD83C\uDDEA\uD83C\uDDF8 Spanish (Native)\n  \uD83C\uDDEC\uD83C\uDDE7 English (Intermediate)"
           }
         },
         {
           "id": 3,
           "member": "You",
           "text": {
-            "es": "Muy bien, ahora generame en un recuadro organizado cuales son tus habilidades de desarrollador, dicho recuadro debe incluir un icono, nombre y en que nivel calificas que seria tu manejo de dichas tecnologias",
-            "en": "Very well, now generate for me in an organized box what your developer skills are, said box must include an icon, name and at what level you rate your handling of such technologies"
+            "es": "Muy bien, ahora generame en un recuadro organizado cuáles son tus habilidades de desarrollador. Dicho recuadro debe incluir un icono, nombre y en qué nivel calificas que sería tu manejo de dichas tecnologías",
+            "en": "Great, now create a box outlining your developer skills. This box should include an icon, a name, and your skill level in each technology."
           }
         },
         {
           "id": 4,
           "member": "Javier Teixeira",
           "text": {
-            "es": "Excelente pregunta usuario, aquí tienes una lista de mis habilidades de desarrollo",
-            "en": "Excellent question user, here is a list of my development skills"
+            "es": "Excelente pregunta. Aquí tienes mis habilidades clave en el ámbito de desarrollo, organizadas por dominio y nivel de manejo:",
+            "en": "Excellent question. Here are my key skills in the development field, organized by domain and proficiency level:"
           },
           "contentCode": "development_skills"
         },
@@ -102,33 +102,33 @@
           "id": 5,
           "member": "You",
           "text": {
-            "es": "Excelente, ahora quiero saber cuales son tus habilidades de tecnología, dicho recuadro debe incluir un icono, nombre y en que nivel calificas que seria tu manejo de dichas tecnologias",
-            "en": "Excellent, now I want to know what your technology skills are, said box must include an icon, name and at what level you rate your handling of such technologies"
+            "es": "Excelente. Ahora, ¿podrías detallar tus habilidades en tecnologías de infraestructura y herramientas, como Github o Cloud? El formato debe ser el mismo: un recuadro con icono, nombre y tu nivel de dominio",
+            "en": "Excellent. Now, could you elaborate on your skills in infrastructure technologies and tools, such as GitHub or Cloud? The format should be the same: a box with an icon, name, and your proficiency level"
           }
         },
         {
           "id": 6,
           "member": "Javier Teixeira",
           "text": {
-            "es": "Excelente pregunta usuario, aquí tienes una lista de mis habilidades de desarrollo",
-            "en": "Excellent question user, here is a list of my development skills"
+            "es": "¡Claro! Mis habilidades en el ecosistema de infraestructura, Cloud y herramientas son:",
+            "en": "Of course! My skills in the infrastructure, cloud, and tools ecosystem are:"
           },
           "contentCode": "tech_skills"
         },
         {
-          "id": 5,
+          "id": 7,
           "member": "You",
           "text": {
-            "es": "Excelente, ahora quiero saber cuales son tus habilidades de oficina, dicho recuadro debe incluir un icono, nombre y en que nivel calificas que seria tu manejo de dichas tecnologias",
-            "en": "Excellent, now I want to know what your office skills are, said box must include an icon, name and at what level you rate your handling of such technologies"
+            "es": "Excelente, para finalizar, quiero saber cuáles son tus habilidades de oficina. Por favor, muéstrame el recuadro con el icono, el nombre de la herramienta y tu nivel de manejo",
+            "en": "Excellent. Finally, I'd like to know about your office skills. Please show me the box with the icon, the tool's name, and your proficiency level."
           }
         },
         {
-          "id": 6,
+          "id": 8,
           "member": "Javier Teixeira",
           "text": {
-            "es": "Excelente pregunta usuario, aquí tienes una lista de mis habilidades de oficina",
-            "en": "Excellent question user, here is a list of my office skills"
+            "es": "Completando mi perfil de habilidades, aquí están las herramientas de oficina y gestión que domino:",
+            "en": "To complete my skills profile, here are the office and management tools I am proficient in:"
           },
           "contentCode": "office_skills"
         }
@@ -142,16 +142,16 @@
           "id": 1,
           "member": "You",
           "text": {
-            "es": "Quiero saber que proyectos has realizado, generame de forma estructurada una lista que pueda consultar por paginación la cual debe contener todos los proyectos que has realizado. Por cada proyecto quiero conocer el nombre, fecha de inicio y fecha de finalizacion, tecnologias utilizadas, link de repositorio y link de demo en caso de ser publico, y una breve descripción de dicho proyecto",
-            "en": "I want to know what projects you have done, generate a structured list that I can consult by pagination which must contain all the projects you have done. For each project I want to know the name, start date and end date, technologies used, repository link and demo link if public, and a brief description of said project"
+            "es": "Me gustaría conocer tu portafolio de proyectos. Por favor, genera una lista estructurada que detalle cada proyecto que has completado. Para cada entrada, incluye el Nombre del proyecto, el Rango de fechas (inicio y fin), las Tecnologías utilizadas, los Enlaces (repositorio y demo, si aplica) y una Breve descripción",
+            "en": "I'd like to see your project portfolio. Please create a structured list detailing each project you've completed. For each entry, include the Project Name, Date Range (start and end), Technologies used, Links (repository and demo, if applicable), and a brief description"
           }
         },
         {
           "id": 2,
           "member": "Javier Teixeira",
           "text": {
-            "es": "Es una gran petición usuario, los proyectos que he realizado son los siguientes:",
-            "en": "That is a great request user, the projects I have done are the following:"
+            "es": "A continuación, se presenta una lista estructurada de los proyectos más relevantes que he completado. Puedes consultar los detalles de cada uno:",
+            "en": "Below is a structured list of the most relevant projects I have completed. You can view the details of each one:"
           },
           "contentCode": "projects"
         }
@@ -165,16 +165,16 @@
           "id": 1,
           "member": "You",
           "text": {
-            "es": "user_name",
-            "en": "user_name"
+            "es": "Me interesa conocer tu trayectoria profesional. Por favor, genera una línea de tiempo que resuma tu experiencia laboral desde el inicio de tu carrera hasta la actualidad. Para cada experiencia, detalla el Lugar y Cargo ocupado, el Periodo de tiempo de duración, y un Resumen conciso de tus responsabilidades",
+            "en": "I'm interested in learning about your professional background. Please create a timeline summarizing your work experience from the beginning of your career to the present. For each position, please detail the place and title held, the duration of employment, and a concise summary of your responsibilities"
           }
         },
         {
           "id": 2,
           "member": "Javier Teixeira",
           "text": {
-            "es": "Bienvenido al chat de experiencia de la comunidad de OpenAI. Aquí puedes hacer preguntas y compartir información sobre la inteligencia artificial y otros temas relacionados.",
-            "en": "Welcome to the OpenAI community experience chat. Here you can ask questions and share information about artificial intelligence and other related topics."
+            "es": "A continuación, se detalla mi experiencia laboral clave, organizada cronológicamente desde el inicio de mi carrera:",
+            "en": "Below is a detailed summary of my key work experience, organized chronologically from the beginning of my career:"
           },
           "contentCode": "timeline_experience"
         }
@@ -188,16 +188,16 @@
           "id": 1,
           "member": "You",
           "text": {
-            "es": "Generame un informe sobre donde estudiaste a nivel universitario, incluyendo emblema del campus, titulo, y fecha de finalizacion",
-            "en": "Generate a report on where you studied at the university level, including campus emblem, degree, and completion date"
+            "es": "Genera un informe de tu educación universitaria. Incluye el Nombre de la Universidad, el Logo del Campus (o institución), el Título obtenido y la Fecha de Finalización de cada carrera o estudio relevante",
+            "en": "Generate a report of your university education. Include the University Name, Campus (or institution) Logo, Degree obtained, and Completion Date for each relevant degree or course of study"
           }
         },
         {
           "id": 2,
           "member": "Javier Teixeira",
           "text": {
-            "es": "Complete mi pregrado en la Universidad metropolitana de Venezuela (UNIMET), obteniendo mi titulo de Ingeniero de Sistemas el 23 de Octubre de 2025, adjunto el emblema de donde estudie",
-            "en": "I completed my undergraduate degree at the Metropolitan University of Venezuela (UNIMET), obtaining my Systems Engineer degree on October 23, 2025, I attach the emblem of where I studied"
+            "es": "Complete mi pregrado en la Universidad metropolitana de Venezuela (UNIMET), obteniendo mi titulo de Ingeniero de Sistemas el 23 de Octubre de 2025, adjunto detalles sobre donde estudie mi carrera universitaria",
+            "en": "I completed my undergraduate studies at the Metropolitan University of Venezuela (UNIMET), obtaining my degree in Systems Engineering on October 23, 2025. I have attached details about where I studied my university degree."
           },
           "contentCode": "campus_banner"
         },
@@ -205,16 +205,16 @@
           "id": 3,
           "member": "You",
           "text": {
-            "es": "Ahora muestrame que certificaciones posees",
-            "en": "Now show me what certifications you possess"
+            "es": "¡Muchas gracias por el detalle de tu formación universitaria! Para terminar de perfilar tu perfil, ahora quiero conocer tus certificaciones y cursos complementarios. Genera una lista que incluya el Nombre de la certificación/curso, la Institución que lo imparte y la Fecha de finalización",
+            "en": "Thank you so much for the details about your university education! To complete your profile, I'd like to learn about your certifications and additional courses. Please provide a list that includes the name of the certification/course, the institution that offered it, and the completion date"
           }
         },
         {
           "id": 4,
           "member": "Javier Teixeira",
           "text": {
-            "es": "Con gusto, estas son mis certificaciones",
-            "en": "With pleasure, these are my certifications"
+            "es": "¡Perfecto! Aquí tienes el detalle de mis certificaciones y formación continua, que complementan mi base universitaria:",
+            "en": "Perfect! Here are the details of my certifications and continuing education, which complement my university degree:"
           },
           "contentCode": "certifications"
         }
