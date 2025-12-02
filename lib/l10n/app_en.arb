@@ -28,6 +28,7 @@
   "skillsPageMediumLevelLabel": "Medium",
   "skillsPageHighLevelLabel": "High",
   "projectActualDateLabel": "Actually",
+  "projectIsPrivateLabel": "This project is private",
   "settingsPageLabel": "Settings",
   "settingsPageThemeLabel": "Theme",
   "settingsPageLanguageLabel": "Language",
