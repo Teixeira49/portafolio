@@ -11,8 +11,12 @@ List<Map<String, dynamic>> projects = [
       },
     ],
     "link": "https://bookstore-inventory-api-nine.vercel.app/",
-    "description":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "description": {
+      "en":
+          "Book inventory API for an online store, where you can perform CRUD operations on books, search for and check books with low stock.",
+      "es":
+          "API de inventario de libros para una tienda en línea, donde se puede realizar un CRUD de libros, realizar busquedas y consultar libros con stock bajo.",
+    },
     "private": false,
   },
   {
@@ -27,8 +31,12 @@ List<Map<String, dynamic>> projects = [
       },
     ],
     "link": "https://bcv-tracker-backend.vercel.app/",
-    "description":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "description": {
+      "en":
+          "API with Web Scraping that allows you to know the price of the dollar and other available currencies at the BCV rate in Venezuela.",
+      "es":
+          "API con Web Scraping que te permite conocer el precio del dolar y otras monedas disponibles en la BCV en Venezuela.",
+    },
     "private": false,
   },
   {
@@ -39,8 +47,12 @@ List<Map<String, dynamic>> projects = [
     "repository": [],
     "prototype":
         "https://www.figma.com/design/AGJPcLDNiDiIBlp9Bnf0Qy/Suiche7B-NeoBanking?node-id=4-3&t=xYOedxyNJc3lvXoP-1",
-    "description":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "description": {
+      "en":
+          "Proposed and prototyped design to implement new features in the interbank mobile payment modality.",
+      "es":
+          "Diseño propuesto y prototipado para implementar nuevas funciones en la modalidad de pago movíl interbancario.",
+    },
     "private": false,
   },
   {
@@ -54,8 +66,12 @@ List<Map<String, dynamic>> projects = [
         "link": "https://github.com/padelnow/padelnow-app",
       },
     ],
-    "description":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "description": {
+      "en":
+          "Mobile application for booking padel court times in Venezuela and organizing padel tournaments.",
+      "es":
+          "Aplicación móvil para reservar horarios en canchas de padel en Venezuela y organizar torneos de padel.",
+    },
     "private": true,
   },
   {
@@ -69,8 +85,12 @@ List<Map<String, dynamic>> projects = [
         "link": "https://github.com/Teixeira49/new_you_app",
       },
     ],
-    "description":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "description": {
+      "en":
+          "Prototype developed for NewYou magazine in the USA that shows vertical format videos of its products and magazine publications.",
+      "es":
+          "Prototipo desarrollado para la revista NewYou en EEUU que muestra videos formato vertical  de sus productos y publicaciones de revista.",
+    },
     "private": false,
   },
   {
@@ -84,8 +104,12 @@ List<Map<String, dynamic>> projects = [
         "link": "https://github.com/flembeetech/arturos-pos",
       },
     ],
-    "description":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "description": {
+      "en":
+          "Role-based POS prototype for managing inventory, real-time orders via sockets, branches and customers of the Arturos food chain.",
+      "es":
+          "Prototipo de POS basado en roles para la gestión de inventario, pedidos en tiempo real vía sockets, sucursales y clientes de la cadena de comida Arturos.",
+    },
     "private": true,
   },
   {
@@ -106,8 +130,12 @@ List<Map<String, dynamic>> projects = [
       {"name": "Mobile App", "link": "https://github.com/flembeetech/kudo-app"},
       {"name": "Backend", "link": "https://github.com/flembeetech/kudo-api"},
     ],
-    "description":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "description": {
+      "en":
+          "Customer loyalty application. Manages loyalty cards so customers can collect stamps and redeem them for prizes.",
+      "es":
+          "Aplicación de fidelización de clientes. Gestiona tarjetas de fidelización para que los clientes puedan coleccionar sellos y canjearlos por premios.",
+    },
     "private": true,
   },
   {
@@ -119,8 +147,12 @@ List<Map<String, dynamic>> projects = [
       {"name": "Mobile App", "link": "https://github.com/flembeetech/kudo-app"},
       {"name": "Backend", "link": "https://github.com/flembeetech/kudo-api"},
     ],
-    "description":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "description": {
+      "en":
+          "Role-based security contact portfolio prototype that allows for the management of insurance budgets and emergency contacts.",
+      "es":
+          "Prototipo de cartera de contactos de seguridad basada en roles que permite la gestión de presupuestos de seguros y contactos de emergencia.",
+    },
     "private": false,
   },
   {
@@ -139,8 +171,12 @@ List<Map<String, dynamic>> projects = [
       {"name": "Mobile App", "link": "https://github.com/flembeetech/kudo-app"},
       {"name": "Backend", "link": "https://github.com/flembeetech/kudo-api"},
     ],
-    "description":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "description": {
+      "en":
+          "Clinical system for managing patient histories, written collaboratively between doctors and residents.",
+      "es":
+          "Sistema clínico para la gestión de historias de pacientes, escritas de forma colaborativa entre médicos y residentes.",
+    },
     "private": false,
   },
   {
@@ -154,8 +190,12 @@ List<Map<String, dynamic>> projects = [
         "link": "https://github.com/Teixeira49/MetroTravel2024",
       },
     ],
-    "description":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "description": {
+      "en":
+          "University Graph Exercise showing the use of Dijkstra's Algorithm to find the shortest path between flight climbs",
+      "es":
+          "Ejercicio de grafos universitario que muestra el uso del algoritmo de Dijkstra para encontrar la ruta más corta entre ascensos de vuelo",
+    },
     "private": false,
   },
   {
@@ -165,8 +205,12 @@ List<Map<String, dynamic>> projects = [
     "technologies": ["Java", "Spring boot", "PostgresSQL", "Microservices"],
     "repository": [],
     "link": "",
-    "description":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "description": {
+      "en":
+          "Microservices Architecture for a Role-Based System for Fast Purchase and Payment of Bus Tickets in Venezuela",
+      "es":
+          "Arquitectura de microservicios para un sistema basado en roles para la compra y pago rápido de pasajes de autobús en Venezuela",
+    },
     "private": true,
   },
   {
@@ -181,8 +225,10 @@ List<Map<String, dynamic>> projects = [
       },
     ],
     "link": "https://cinema-db-9fbbd.web.app/home",
-    "description":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "description": {
+      "en": "University exercise using the MovieDB API to view movie information",
+      "es": "Ejercicio universitario usando la API de MovieDB para ver información de películas",
+    },
     "private": false,
   },
 ];

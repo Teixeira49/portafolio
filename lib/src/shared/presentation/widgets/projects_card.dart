@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portafolio/l10n/l10n.dart';
 import 'package:portafolio/src/core/utils/asset_icons.dart';
 
 import '../../../core/theme/app_theme.dart';
@@ -27,7 +28,7 @@ class ProjectCard extends StatelessWidget {
   final List<String> technologies;
   final List repository;
   final String? link;
-  final String description;
+  final Map<String, dynamic> description;
   final String? prototype;
   final bool private;
 
@@ -59,7 +60,13 @@ class ProjectCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
         ),
-        Text(description, style: ExtendedTextTheme.textMedium(context)),
+        Text(
+          selectLocale(
+            Localizations.localeOf(context).languageCode,
+            description,
+          ),
+          style: ExtendedTextTheme.textMedium(context),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -93,7 +100,7 @@ class ProjectCard extends StatelessWidget {
               ),
             ] else ...[
               Tooltip(
-                message: 'This project is private',
+                message: context.l10n.projectIsPrivateLabel,
                 child: Padding(
                   padding: EdgeInsets.only(
                     right: WidthValues.spacingXs,
@@ -116,6 +123,17 @@ class ProjectCard extends StatelessWidget {
       ],
     ),
   );
+
+  String selectLocale(String locale, Map<String, dynamic> message) {
+    switch (locale) {
+      case 'en':
+        return message['en'].toString();
+      case 'es':
+        return message['es'].toString();
+      default:
+        return message['en'].toString();
+    }
+  }
 }
 
 class _TechnologyBadged extends StatelessWidget {
