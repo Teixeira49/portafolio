@@ -275,7 +275,10 @@ class _CustomThemeValues {
   static ScrollbarThemeData scrollBarTheme(BuildContext context) =>
       ScrollbarThemeData(
         thumbColor: WidgetStateProperty.all(
-          ColorValues.darkBrand(context).withAlpha(45),),
-        radius: Radius.circular(WidthValues.radiusXs),
+          ColorValues.textTertiary(context).withValues(alpha: 0.4),
+        ),
+        thickness: WidgetStateProperty.all(9),
+        radius: const Radius.circular(8),
+        interactive: true,
       );
 }
