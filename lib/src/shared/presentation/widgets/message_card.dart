@@ -211,12 +211,12 @@ class _FormattedText extends StatelessWidget {
 // Renders a single bullet item:  ● (green)  text
 Widget _bulletItem({required String text, required BuildContext context}) {
   return Padding(
-    padding: const EdgeInsets.only(bottom: 8),
+    padding: const EdgeInsets.only(bottom: 8, left: 12),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 3, top: 8),
+          padding: const EdgeInsets.only(left: 3, top: 10),
           child: Container(
             width: 7,
             height: 7,

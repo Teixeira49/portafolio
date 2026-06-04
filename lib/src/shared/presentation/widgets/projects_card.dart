@@ -131,7 +131,7 @@ class _ProjectCardState extends State<ProjectCard> {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              Spacer(),
+              Gap(WidthValues.spacingXs),
               Text(
                 _localizedDesc(context),
                 style: ExtendedTextTheme.textMedium(context).copyWith(
