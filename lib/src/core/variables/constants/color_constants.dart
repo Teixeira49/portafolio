@@ -1,74 +1,79 @@
 part of 'package:portafolio/src/core/variables/values/color_values.dart';
 
-/// This contants class was generated with Mason. You can use it to define your
-/// color palette for your app. Please remember to fill the values with your
-/// desired hexcode colors.
+/// Color palette for the Teixeira Portfolio design system.
+/// Tri-color brand: green (#00E660) · blue (#1F55C4) · red (#E60000)
 class _ColorConstants {
+  /// Brand green — CTA buttons, gradient start. Design: --c-green #00E660
   static const MaterialColor brandSecond = MaterialColor(
     _brandColorPrimaryValue,
     <int, Color>{
-      50: Color(0xFFD9F3D9),  // Muy claro
-      100: Color(0xFFB6EFB6), // Claro
-      200: Color(0xFF93E494), // Un poco claro
-      300: Color(0xFF6DD66F), // Medio claro
-      400: Color(0xFF4BC14D), // Más cercano al base
-      500: Color(_brandColorPrimaryValue), // Base (#FE5200)
-      600: Color(0xFF279E29), // Un poco más oscuro
-      700: Color(0xFF157817), // Oscuro
-      800: Color(0xFF084309), // Más oscuro
-      900: Color(0xFF032503), // Muy oscuro
+      50: Color(0xFFE6FFED),
+      100: Color(0xFFCFFFDC),
+      200: Color(0xFF99FFBA),
+      300: Color(0xFF66FF97),
+      400: Color(0xFF33FF74),
+      500: Color(_brandColorPrimaryValue),
+      600: Color(0xFF00B84D),
+      700: Color(0xFF008A3A),
+      800: Color(0xFF005C27),
+      900: Color(0xFF002E13),
     },
   );
 
-  static const int _brandColorPrimaryValue = 0xFF00FC04;
+  static const int _brandColorPrimaryValue = 0xFF00E660;
 
+  /// Brand blue — primary interactive color. Design: --c-blue #1F55C4
   static const MaterialColor brandFirstColor =
   MaterialColor(_brandColorSecondaryValue, <int, Color>{
-    50: Color(0xFFE6F6F5),
-    100: Color(0xFFB1E3DE),
-    200: Color(0xFF8BD6CF),
-    300: Color(0xFF56C3B9),
-    400: Color(0xFF35B8AB),
+    50: Color(0xFFEEF2FD),
+    100: Color(0xFFD4E0F9),
+    200: Color(0xFFAABEF3),
+    300: Color(0xFF7F9EED),
+    400: Color(0xFF547DE7),
     500: Color(_brandColorSecondaryValue),
-    600: Color(0xFF039789),
-    700: Color(0xFF02766B),
-    800: Color(0xFF025B53),
-    900: Color(0xFF01463F),
+    600: Color(0xFF1844A0),
+    700: Color(0xFF12347C),
+    800: Color(0xFF0C2458),
+    900: Color(0xFF071434),
   });
 
-  static const int _brandColorSecondaryValue = 0xFF03A696;
+  static const int _brandColorSecondaryValue = 0xFF1F55C4;
 
+  /// Light-mode surface palette — greenish tones from the design mockup.
+  /// 50=#FFFFFF (sidebar) · 100=#EEF3F1 (bg) · 800=#17231E (txt)
   static const MaterialColor grayLight =
       MaterialColor(_grayLightPrimaryValue, <int, Color>{
-    50: Color(0xFFF9FAFB),
-    100: Color(0xFFF2F4F7),
-    200: Color(0xFFE4E7EC),
-    300: Color(0xFFD0D5DD),
-    400: Color(0xFF98A2B3),
+    50: Color(0xFFFFFFFF),
+    100: Color(0xFFEEF3F1),
+    200: Color(0xFFE8F1ED),
+    300: Color(0xFFE0E8E4),
+    400: Color(0xFFDCEBE5),
     500: Color(_grayLightPrimaryValue),
-    600: Color(0xFF475467),
+    600: Color(0xFF51605A),
     700: Color(0xFF344054),
-    800: Color(0xFF182230),
-    900: Color(0xFF101828),
+    800: Color(0xFF17231E),
+    900: Color(0xFF0F1A15),
   });
 
-  static const int _grayLightPrimaryValue = 0xFF667085;
+  static const int _grayLightPrimaryValue = 0xFF8A9893;
 
+  /// Dark-mode surface palette — near-black charcoal tones from the design mockup.
+  /// 50=#ECEDEE (txt) · 800=#161718 (sidebar) · 900=#0D0E0F (bg)
   static const MaterialColor grayDark =
       MaterialColor(_grayDarkPrimaryValue, <int, Color>{
-    50: Color(0xFFF5F5F6),
-    100: Color(0xFFF0F1F1),
-    200: Color(0xFFECECED),
-    300: Color(0xFFCECFD2),
-    400: Color(0xFF94969C),
+    50: Color(0xFFECEDEE),
+    100: Color(0xFFCECFD2),
+    200: Color(0xFFA3A7AA),
+    300: Color(0xFF74787B),
+    400: Color(0xFF61646C),
     500: Color(_grayDarkPrimaryValue),
-    600: Color(0xFF61646C),
-    700: Color(0xFF333741),
-    800: Color(0xFF1F242F),
-    900: Color(0xFF161B26),
+    600: Color(0xFF262829),
+    700: Color(0xFF202223),
+    800: Color(0xFF161718),
+    900: Color(0xFF0D0E0F),
   });
 
-  static const int _grayDarkPrimaryValue = 0xFF85888E;
+  static const int _grayDarkPrimaryValue = 0xFF2A2C2D;
 
   static const MaterialColor success =
       MaterialColor(_successPrimaryValue, <int, Color>{
@@ -146,21 +151,22 @@ class _ColorConstants {
 
   static const int _yellowConstantPrimaryValue = 0xFFF79009;
 
+  /// Brand red — logo mark, gradient end. Design: --c-red #E60000
   static const MaterialColor redConstant = MaterialColor(
   _redConstantPrimaryValue, <int, Color>{
-    50: Color(0xFFFEF3F2),
-    100: Color(0xFFFEE4E2),
-    200: Color(0xFFFECDCA),
-    300: Color(0xffff9999),
-    400: Color(0xFFF97066),
+    50: Color(0xFFFFECEC),
+    100: Color(0xFFFFD9D9),
+    200: Color(0xFFFFB3B3),
+    300: Color(0xFFFF8080),
+    400: Color(0xFFFF4D4D),
     500: Color(_redConstantPrimaryValue),
-    600: Color(0xFFDC2626),
-    700: Color(0xFFB91C1C),
-    800: Color(0xFF991B1B),
-    900: Color(0xFF7F1D1D),
+    600: Color(0xFFCC0000),
+    700: Color(0xFF990000),
+    800: Color(0xFF660000),
+    900: Color(0xFF330000),
   });
 
-  static const int _redConstantPrimaryValue = 0xFFF04438;
+  static const int _redConstantPrimaryValue = 0xFFE60000;
 
   static const MaterialColor blueConstant = MaterialColor(
   _blueConstantPrimaryValue, <int, Color>{
