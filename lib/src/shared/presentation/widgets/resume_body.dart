@@ -222,21 +222,27 @@ class _IdLocation extends StatefulWidget {
   State<_IdLocation> createState() => _IdLocationState();
 }
 
+// Fallback Google Maps URL for Caracas when no env link is provided.
+const String _kCaracasMapsUrl =
+    'https://maps.google.com/?q=Caracas,+Venezuela';
+
 class _IdLocationState extends State<_IdLocation> {
   bool _hovered = false;
+
+  String get _resolvedUrl =>
+      widget.link.isNotEmpty ? widget.link : _kCaracasMapsUrl;
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      cursor: widget.link.isNotEmpty
-          ? SystemMouseCursors.click
-          : SystemMouseCursors.basic,
+      cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
       child: GestureDetector(
-        onTap: widget.link.isNotEmpty
-            ? () => launchUrl(Uri.parse(widget.link))
-            : null,
+        onTap: () => launchUrl(
+          Uri.parse(_resolvedUrl),
+          mode: LaunchMode.externalApplication,
+        ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
