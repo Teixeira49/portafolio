@@ -1,33 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio/l10n/l10n.dart';
 
-import '../../../core/theme/extended_text_theme.dart';
 import '../../../core/variables/values/values.dart';
 
+/// Section breadcrumb label shown in the chat top bar.
+/// Matches the design's `.crumb` element:
+///   font-size: 14.5px · font-weight: 600 · color: --txt-mute
 class CustomTitleBadged extends StatelessWidget {
   const CustomTitleBadged({super.key, required this.name});
 
   final String name;
 
   @override
-  Widget build(BuildContext context) => Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(WidthValues.radiusSm),
-      color: ColorValues.bgBrandPrimary(context),
-    ),
-    padding: EdgeInsets.symmetric(
-      horizontal: WidthValues.spacingSm,
-      vertical: WidthValues.spacingXxs,
-    ),
-    child: Center(
-      child: Text(
-        selectChatName(context, name),
-        style: ExtendedTextTheme.titleSmall(context),
+  Widget build(BuildContext context) {
+    return Text(
+      _label(context),
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(
+        fontSize: 14.5,
+        fontWeight: FontWeight.w600,
+        color: ColorValues.textTertiary(context),
       ),
-    ),
-  );
+    );
+  }
 
-  String selectChatName(BuildContext context, String name) {
+  String _label(BuildContext context) {
     switch (name) {
       case 'home_chat':
         return context.l10n.dashboardHomeButton;
