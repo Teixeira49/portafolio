@@ -48,7 +48,7 @@ class _BaseLayoutPageState extends State<BaseLayoutPage> {
                 AppTheme.theme(context, null).scaffoldBackgroundColor,
             appBar: AppBar(
               backgroundColor:
-              AppTheme.theme(context, null).scaffoldBackgroundColor,
+                  AppTheme.theme(context, null).scaffoldBackgroundColor,
               title: widget.title,
               centerTitle: widget.centerTitle,
               actions: widget.actions,
@@ -65,7 +65,11 @@ class _BaseLayoutPageState extends State<BaseLayoutPage> {
                 NavigationPanel(
                   width: _isPanelOpen ? panelWidth : minPanelWidth,
                 ),
-                Expanded(child: widget.child),
+                Expanded(child: Stack(
+                  children: [
+                    widget.child,
+                  ]
+                )),
               ],
             ),
           );

@@ -38,8 +38,8 @@
           "id": 2,
           "member": "Javier Teixeira",
           "text": {
-            "es": "¡Hola! Con gusto.\n\nAquí tienes una tarjeta de presentacion sobre mi",
-            "en": "Hi! I'm happy to help.\n\nHere's my presentation card"
+            "es": "¡Hola! Con gusto.\n\nAquí tienes una tarjeta de presentación sobre mí 👇",
+            "en": "Hi! I'm happy to help.\n\nHere's my presentation card 👇"
           },
           "contentCode": "resume"
         },
@@ -55,8 +55,8 @@
           "id": 4,
           "member": "Javier Teixeira",
           "text": {
-            "es": "Mi perfil combina solidez técnica con un enfoque proactivo.\n\nSoy Ingeniero de Sistemas de la Universidad Metropolitana (UNIMET), con sólida experiencia en desarrollo de software, programación y bases de datos.\n\nMi especialización se centra en el Desarrollo Full-Stack, con experiencia en:\n\n - Desarrollo de aplicaciones móviles con Flutter y Clean Architecture.\n - Implementación de Endpoints en Node.Js y Microservicios en SpringBoot.\n - Uso de PostgreSQL y Firebase para la gestión de datos.\n\n Además de mi experticia técnica, complemento mi perfil con conocimientos de marketing digital y educación. Soy un profesional apasionado por la innovación y listo para afrontar desafíos tecnológicos de alto impacto.",
-            "en": "My profile combines technical expertise with a proactive approach.\n\nI am a Systems Engineer from the Metropolitan University (UNIMET), with solid experience in software development, programming, and databases.\n\nMy specialization focuses on Full-Stack Development, with experience in:\n\n - Developing mobile applications with Flutter and Clean Architecture.\n - Implementing Endpoints in Node.js and Microservices in Spring Boot.\n - Using PostgreSQL and Firebase for data management.\n\n In addition to my technical expertise, I complement my profile with knowledge of digital marketing and education. I am a professional passionate about innovation and ready to take on high-impact technological challenges."
+            "es": "Mi perfil combina **solidez técnica** con un enfoque proactivo. 🚀\n\nSoy **Ingeniero de Sistemas** de la Universidad Metropolitana (UNIMET), con sólida experiencia en desarrollo de software, programación y bases de datos.\n\nMi especialización se centra en el **Desarrollo Full-Stack**, con experiencia en:\n\n- Desarrollo de aplicaciones móviles con **Flutter** y Clean Architecture.\n- Implementación de Endpoints en **Node.js** y Microservicios en **Spring Boot**.\n- Uso de **PostgreSQL** y **Firebase** para la gestión de datos.\n\nAdemás de mi experticia técnica, complemento mi perfil con conocimientos de **marketing digital** y educación. Soy un profesional apasionado por la innovación y listo para afrontar desafíos tecnológicos de alto impacto. 💡",
+            "en": "My profile combines **technical expertise** with a proactive approach. 🚀\n\nI am a **Systems Engineer** from the Metropolitan University (UNIMET), with solid experience in software development, programming, and databases.\n\nMy specialization focuses on **Full-Stack Development**, with experience in:\n\n- Developing mobile applications with **Flutter** and Clean Architecture.\n- Implementing Endpoints in **Node.js** and Microservices in **Spring Boot**.\n- Using **PostgreSQL** and **Firebase** for data management.\n\nIn addition to my technical expertise, I complement my profile with knowledge of **digital marketing** and education. I am a professional passionate about innovation and ready to take on high-impact technological challenges. 💡"
           }
         }
       ]
@@ -77,9 +77,10 @@
           "id": 1,
           "member": "Javier Teixeira",
           "text": {
-            "es": "Tu pregunta me resulta interesante. Mi dominio de idiomas es el siguiente:\n  \uD83C\uDDEA\uD83C\uDDF8 Español (Nativo)\n  \uD83C\uDDEC\uD83C\uDDE7 Ingles (Intermedio)",
-            "en": "Your question is interesting to me. My language skills are as follows:\n  \uD83C\uDDEA\uD83C\uDDF8 Spanish (Native)\n  \uD83C\uDDEC\uD83C\uDDE7 English (Intermediate)"
-          }
+            "es": "Tu pregunta me resulta interesante. Mi dominio de idiomas es el siguiente:",
+            "en": "Your question is interesting to me. My language skills are as follows:"
+          },
+          "contentCode": "language_skills"
         },
         {
           "id": 3,

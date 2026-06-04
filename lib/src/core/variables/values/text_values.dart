@@ -46,10 +46,10 @@ class TextValues {
   /// Font family for all text inside the app.
   // Replace this with your desired font family.
 
-  static const String fontFamilyName = 'Poppins';
+  static const String fontFamilyName = 'PlusJakartaSans';
 
   static TextTheme fontFamily(BuildContext context) =>
-      GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme);
+      GoogleFonts.plusJakartaSansTextTheme(Theme.of(context).textTheme);
 
   // -------------------------------------------------
   // <---------------- Font weight ------------------>
