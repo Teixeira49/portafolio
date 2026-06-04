@@ -1,7 +1,9 @@
+import 'dart:ui' show ImageFilter;
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:portafolio/src/core/theme/app_theme.dart';
 import 'package:portafolio/src/features/home/data/repositories/home_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -12,9 +14,9 @@ import '../../../../core/utils/helpers.dart';
 import '../../../../core/variables/variables.dart';
 import '../../../../shared/presentation/widgets/base_layout.dart';
 import '../../../../shared/presentation/widgets/custom_badged.dart';
-import '../../../../shared/presentation/widgets/dynamic_icon_button.dart';
 import '../../../../shared/presentation/widgets/message_content.dart';
 import '../../data/datasource/local/get_chat_local_datasource.dart';
+import '../../domain/entities/message.dart';
 import '../../domain/use_cases/get_messages.dart';
 import '../bloc/chat_bloc/bloc.dart';
 

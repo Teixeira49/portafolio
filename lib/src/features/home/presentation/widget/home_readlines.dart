@@ -2,14 +2,36 @@ part of '../page/home_page.dart';
 
 class _TitleChatHomeWidget extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Text(
-    context.l10n.appMainTitle,
-    style:
-        Responsive.isMobile(context)
-            ? ExtendedTextTheme.displayExtraSmall(context)
-            : ExtendedTextTheme.displaySmall(context),
-    textAlign: TextAlign.center,
-  );
+  Widget build(BuildContext context) {
+    final baseStyle = Responsive.isMobile(context)
+        ? ExtendedTextTheme.displayExtraSmall(context)
+        : ExtendedTextTheme.displaySmall(context);
+
+    return Text.rich(
+      textAlign: TextAlign.center,
+      TextSpan(
+        style: baseStyle,
+        children: [
+          // Static prefix — inherits base color from theme
+          TextSpan(text: context.l10n.appMainTitlePrefix),
+          // Accent name — gradient via ShaderMask WidgetSpan
+          WidgetSpan(
+            alignment: PlaceholderAlignment.baseline,
+            baseline: TextBaseline.alphabetic,
+            child: ShaderMask(
+              shaderCallback: (bounds) =>
+                  GradientValues.brandAccent.createShader(bounds),
+              blendMode: BlendMode.srcIn,
+              child: Text(
+                context.l10n.appMainTitleAccent,
+                style: baseStyle.copyWith(color: Colors.white),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class _SubTitleChatHomeWidget extends StatelessWidget {
@@ -26,17 +48,3 @@ class _SubTitleChatHomeWidget extends StatelessWidget {
   );
 }
 
-class _ChatTextFieldSearchQuestion extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => Align(
-    key: ValueKey('text'),
-    alignment: Alignment.topLeft,
-    child: Row(
-      spacing: WidthValues.spacingXs,
-      children: [
-        Icon(Icons.search_outlined, size: 18),
-        Text(context.l10n.homePageQuestionLayer),
-      ],
-    ),
-  );
-}
