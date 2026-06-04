@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:portafolio/l10n/l10n.dart';
-import 'package:portafolio/src/core/theme/extended_text_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/utils/asset_images.dart';
 import '../../../core/variables/values/values.dart';
 import '../../../features/home/presentation/bloc/chat_bloc/bloc.dart';
+
+const _kBrandGradientV = LinearGradient(
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
+  colors: [Color(0xFF00E660), Color(0xFF1F55C4), Color(0xFFE60000)],
+  stops: [0.0, 0.52, 1.0],
+);
+
+const _kBrandGradientH = LinearGradient(
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+  colors: [Color(0xFF00E660), Color(0xFF1F55C4), Color(0xFFE60000)],
+  stops: [0.0, 0.52, 1.0],
+);
 
 class ResumeBody extends StatelessWidget {
   const ResumeBody({super.key, required this.aboutData});
@@ -15,219 +28,331 @@ class ResumeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final children = [
-      _ResumeTitle(aboutData: aboutData),
-      _DynamicDivider(width: width),
-      _ResumeData(aboutData: aboutData),
-    ];
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(WidthValues.radiusMd),
-        color: ColorValues.bgSecondary(context),
-      ),
-      padding: EdgeInsets.all(WidthValues.padding),
-      child:
-          width > 1100
-              ? Row(
-                spacing: WidthValues.spacingMd,
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: children,
-              )
-              : Column(
-                spacing: WidthValues.spacingMd,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: children,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isWide = constraints.maxWidth >= 500;
+
+        return Container(
+          margin: const EdgeInsets.only(top: 18),
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+            color: ColorValues.bgSurface(context),
+            border: Border.all(color: ColorValues.borderSurface(context)),
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x991A1A1A),
+                blurRadius: 44,
+                spreadRadius: -22,
+                offset: Offset(0, 14),
               ),
+            ],
+          ),
+          child: Stack(
+            children: [
+              // Accent bar — 5 px gradient strip flush to the left edge
+              Positioned(
+                left: 0,
+                top: 0,
+                bottom: 0,
+                child: Container(
+                  width: 5,
+                  decoration: const BoxDecoration(gradient: _kBrandGradientV),
+                ),
+              ),
+
+              // Main content (30 px left pad = 5 accent + 25 gap)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(30, 22, 26, 22),
+                child: isWide ? _WideLayout(aboutData: aboutData) : _NarrowLayout(aboutData: aboutData),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
 
-class _ResumeTitle extends StatelessWidget {
-  const _ResumeTitle({required this.aboutData});
+// ─── Wide layout (≥ 500 px): left info | divider | stats ─────────────────────
 
+class _WideLayout extends StatelessWidget {
+  const _WideLayout({required this.aboutData});
   final Map<String, dynamic> aboutData;
-
-  @override
-  Widget build(BuildContext context) => LayoutBuilder(
-    builder: (context, constraints) {
-      final width = constraints.maxWidth;
-      final avatar = CircleAvatar(
-        backgroundImage: AssetImage(AssetImages.profile),
-        radius: 40,
-      );
-      final children = [
-        if (width > 315) avatar,
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              aboutData["name"].toString(),
-              style: ExtendedTextTheme.titleMedium(context),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-
-            Text(
-              context.l10n.resumeTitleLabel,
-              style: ExtendedTextTheme.textMedium(context),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            Divider(height: 2),
-            _LocationRow(
-              location: aboutData["location"].toString(),
-              link: aboutData["location_link"].toString(),
-            ),
-          ],
-        ),
-      ];
-      return width > 315
-          ? Row(
-            spacing: WidthValues.spacingMd,
-            mainAxisSize: MainAxisSize.min,
-            children: children,
-          )
-          : Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            spacing: WidthValues.spacingXs,
-            children: [
-              avatar,
-              Row(
-                spacing: WidthValues.spacingMd,
-                mainAxisSize: MainAxisSize.min,
-                children: children,
-              ),
-            ],
-          );
-    },
-  );
-}
-
-class _ResumeData extends StatelessWidget {
-  const _ResumeData({required this.aboutData});
-
-  final Map<String, dynamic> aboutData;
-
-  @override
-  Widget build(BuildContext context) => Column(
-    mainAxisSize: MainAxisSize.min,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    mainAxisAlignment: MainAxisAlignment.center,
-    textBaseline: TextBaseline.alphabetic,
-    verticalDirection: VerticalDirection.down,
-    spacing: WidthValues.spacingXs,
-    children: [
-      _SubContainer(
-        data: (DateTime.now().year - aboutData["years"]).toString(),
-        title: context.l10n.resumeYearsCompleteLabel,
-        function:
-            () => context.read<ChatBloc>().add(GetChatMessages('experience_chat')),
-      ),
-      _SubContainer(
-        data: aboutData["projects"].toString(),
-        title: context.l10n.resumeProjectsCompleteLabel,
-        function:
-            () => context.read<ChatBloc>().add(GetChatMessages('projects_chat')),
-      ),
-    ],
-  );
-}
-
-class _DynamicDivider extends StatelessWidget {
-  final double width;
-
-  const _DynamicDivider({required this.width});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width > 1100 ? 2.5 : width,
-      height: width > 1100 ? 80 : 2.5,
-      color: ColorValues.fgBrandPrimary(context),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Expanded(child: _IdLeft(aboutData: aboutData)),
+        const Gap(28),
+        // Fixed-height divider avoids IntrinsicHeight + Expanded conflicts
+        Container(
+          width: 2,
+          height: 80,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(2),
+            gradient: _kBrandGradientV,
+          ),
+        ),
+        const Gap(28),
+        _IdStats(aboutData: aboutData),
+      ],
     );
   }
 }
 
-class _LocationRow extends StatefulWidget {
-  const _LocationRow({required this.location, required this.link});
+// ─── Narrow layout (< 500 px): stacked ───────────────────────────────────────
 
+class _NarrowLayout extends StatelessWidget {
+  const _NarrowLayout({required this.aboutData});
+  final Map<String, dynamic> aboutData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _IdLeft(aboutData: aboutData),
+        const Gap(18),
+        Container(
+          height: 2,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(2),
+            gradient: _kBrandGradientH,
+          ),
+        ),
+        const Gap(18),
+        _IdStats(aboutData: aboutData),
+      ],
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Left section: avatar + name / role / location
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _IdLeft extends StatelessWidget {
+  const _IdLeft({required this.aboutData});
+  final Map<String, dynamic> aboutData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _IdAvatar(),
+        const Gap(18),
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                aboutData['name'].toString(),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 19,
+                  fontWeight: FontWeight.w700,
+                  color: ColorValues.textPrimary(context),
+                ),
+              ),
+              const SizedBox(height: 3),
+              Text(
+                context.l10n.resumeTitleLabel,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: ColorValues.textSecondary(context),
+                ),
+              ),
+              const SizedBox(height: 7),
+              _IdLocation(
+                location: aboutData['location'].toString(),
+                link: aboutData['location_link'].toString(),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Avatar: 74 × 74 gradient circle, green ring, "JT" initials
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _IdAvatar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 74,
+      height: 74,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        image: DecorationImage(
+          image: AssetImage(AssetImages.profile),
+          fit: BoxFit.cover,
+        ),
+        boxShadow: const [
+          BoxShadow(color: Color(0xFF00E660), blurRadius: 0, spreadRadius: 2),
+        ],
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Location row with red pin icon
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _IdLocation extends StatefulWidget {
+  const _IdLocation({required this.location, required this.link});
   final String location;
   final String link;
 
   @override
-  State<_LocationRow> createState() => _LocationRowState();
+  State<_IdLocation> createState() => _IdLocationState();
 }
 
-class _LocationRowState extends State<_LocationRow> {
-  bool _isHovered = false;
-
-  @override
-  Widget build(BuildContext context) => MouseRegion(
-    onEnter: (_) => setState(() => _isHovered = true),
-    onExit: (_) => setState(() => _isHovered = false),
-    cursor: SystemMouseCursors.click,
-    child: GestureDetector(
-      onTap: () => launchUrl(Uri.parse(widget.link)),
-      child: Row(
-        spacing: WidthValues.spacingXs,
-        children: [
-          Icon(Icons.location_on, size: 16),
-          Text(
-            widget.location,
-            style: ExtendedTextTheme.textSmall(context),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-class _SubContainer extends StatefulWidget {
-  const _SubContainer({
-    required this.title,
-    required this.data,
-    required this.function,
-  });
-
-  final String title;
-  final String data;
-  final VoidCallback function;
-
-  @override
-  State<_SubContainer> createState() => _SubContainerState();
-}
-
-class _SubContainerState extends State<_SubContainer> {
-  bool _isHovered = false;
+class _IdLocationState extends State<_IdLocation> {
+  bool _hovered = false;
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      cursor: SystemMouseCursors.click,
+      cursor: widget.link.isNotEmpty
+          ? SystemMouseCursors.click
+          : SystemMouseCursors.basic,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
       child: GestureDetector(
-        onTap: widget.function,
+        onTap: widget.link.isNotEmpty
+            ? () => launchUrl(Uri.parse(widget.link))
+            : null,
         child: Row(
-          spacing: WidthValues.spacingSm,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.location_on, size: 16, color: Color(0xFFE60000)),
+            const Gap(6),
+            Flexible(
+              child: Text(
+                widget.location,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: _hovered
+                      ? ColorValues.textSecondary(context)
+                      : ColorValues.textTertiary(context),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Stats: years of experience (green) + projects completed (blue)
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _IdStats extends StatelessWidget {
+  const _IdStats({required this.aboutData});
+  final Map<String, dynamic> aboutData;
+
+  @override
+  Widget build(BuildContext context) {
+    final years =
+        (DateTime.now().year - (aboutData['years'] as int)).toString();
+    final projects = aboutData['projects'].toString();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _StatRow(
+          value: years,
+          label: context.l10n.resumeYearsCompleteLabel,
+          valueColor: const Color(0xFF00E660),
+          onTap: () => context
+              .read<ChatBloc>()
+              .add(GetChatMessages('experience_chat')),
+        ),
+        const Gap(14),
+        _StatRow(
+          value: projects,
+          label: context.l10n.resumeProjectsCompleteLabel,
+          valueColor: const Color(0xFF1F55C4),
+          onTap: () => context
+              .read<ChatBloc>()
+              .add(GetChatMessages('projects_chat')),
+        ),
+      ],
+    );
+  }
+}
+
+class _StatRow extends StatefulWidget {
+  const _StatRow({
+    required this.value,
+    required this.label,
+    required this.valueColor,
+    required this.onTap,
+  });
+
+  final String value;
+  final String label;
+  final Color valueColor;
+  final VoidCallback onTap;
+
+  @override
+  State<_StatRow> createState() => _StatRowState();
+}
+
+class _StatRowState extends State<_StatRow> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+          textBaseline: TextBaseline.alphabetic,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              widget.data,
-              style: ExtendedTextTheme.titleMedium(context),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+              widget.value,
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.w800,
+                height: 1,
+                color: _hovered
+                    ? widget.valueColor.withValues(alpha: 0.75)
+                    : widget.valueColor,
+              ),
             ),
+            const Gap(13),
             Text(
-              widget.title,
-              style: ExtendedTextTheme.textMedium(context),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+              widget.label,
+              style: TextStyle(
+                fontSize: 15,
+                color: ColorValues.textSecondary(context),
+              ),
             ),
           ],
         ),
