@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio/src/shared/presentation/widgets/skills_card.dart';
-import '../../../core/variables/values/values.dart';
+
+// Mirrors the CSS .skill-grid: repeat(auto-fill, minmax(205px, 1fr))
+// Column counts based on available width:
+//   < 480 px  → 1 column
+//   < 740 px  → 2 columns
+//   ≥ 740 px  → 3 columns
+const double _kGap = 12;
+
+int _columns(double width) {
+  if (width < 480) return 1;
+  if (width < 740) return 2;
+  return 3;
+}
 
 class SkillsBody extends StatelessWidget {
   const SkillsBody({super.key, required this.skills});
@@ -9,47 +21,28 @@ class SkillsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: WidthValues.spacingSm,
-      children: _buildSkills(context, skills),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final cols = _columns(constraints.maxWidth);
+        final cardWidth =
+            (constraints.maxWidth - (cols - 1) * _kGap) / cols;
+
+        return Wrap(
+          spacing: _kGap,
+          runSpacing: _kGap,
+          children: skills.map((s) {
+            return SizedBox(
+              width: cardWidth,
+              child: SkillsCard(
+                title: s['name'] as String,
+                asset: s['image'] as String?,
+                level: s['level'],
+                color: s['color'] as Color?,
+              ),
+            );
+          }).toList(),
+        );
+      },
     );
-  }
-
-  List<Widget> _buildSkills(BuildContext context, List<dynamic> skill) {
-    final columnCount = _calculateResponsiveColumn(context) + 1;
-
-    final rows = <List<dynamic>>[];
-    for (var i = 0; i < skill.length; i += columnCount) {
-      final end = (i + columnCount < skill.length) ? i + columnCount : skill.length;
-      rows.add(skill.sublist(i, end));
-    }
-
-    return rows.map((rowSkills) {
-      return Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: WidthValues.spacingSm,
-        children: rowSkills.map((skillBlock) {
-          return Expanded(
-            child: SkillsCard(
-              title: skillBlock['name'],
-              asset: skillBlock['image'],
-              level: skillBlock['level'],
-              color: skillBlock['color'],
-            ),
-          );
-        }).toList(),
-      );
-    }).toList();
-  }
-
-  int _calculateResponsiveColumn(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    if (width < 850) {
-      return 0;
-    } else if (width < 1200) {
-      return 1;
-    } else  {
-      return 2;
-    }
   }
 }

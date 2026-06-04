@@ -171,8 +171,8 @@ List officeSkills = [
 ];
 
 List languageSkills = [
-  {"name": "Español", "level": "Native"},
-  {"name": "English", "level": "Mid"},
+  {"name": "Español", "flag": "🇪🇸", "level": "native"},
+  {"name": "English", "flag": "🇬🇧", "level": "intermediate"},
 ];
 
 //   {
