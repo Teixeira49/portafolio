@@ -26,24 +26,35 @@ class ProjectsBody extends StatelessWidget {
     }
 
     return rows.map((rowProject) {
-      return Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: WidthValues.spacingSm,
-        children: rowProject.map((skillBlock) {
-          return Expanded(
-            child: ProjectCard(
-              name: skillBlock['name'],
-              initDate: skillBlock['init_time'],
-              endDate: skillBlock['end_time'],
-              technologies: skillBlock['technologies'],
-              repository: skillBlock['repository'],
-              prototype: skillBlock['prototype'],
-              link: skillBlock['link'],
-              description: skillBlock['description'],
-              private: skillBlock['private'],
+      return LayoutBuilder(
+        builder: (context, constraints) {
+          final n = rowProject.length;
+          final gap = WidthValues.spacingSm;
+          final cardWidth = (constraints.maxWidth - gap * (n - 1)) / n;
+
+          return IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              spacing: gap,
+              children: rowProject.map((skillBlock) {
+                return Expanded(
+                  child: ProjectCard(
+                    name: skillBlock['name'],
+                    initDate: skillBlock['init_time'],
+                    endDate: skillBlock['end_time'],
+                    technologies: skillBlock['technologies'],
+                    repository: skillBlock['repository'],
+                    prototype: skillBlock['prototype'],
+                    link: skillBlock['link'],
+                    description: skillBlock['description'],
+                    private: skillBlock['private'],
+                    cardWidth: cardWidth,
+                  ),
+                );
+              }).toList(),
             ),
           );
-        }).toList(),
+        },
       );
     }).toList();
   }
