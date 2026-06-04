@@ -13,31 +13,31 @@ class ColorValues {
   // -------------------------------------------------------
 
   static final _textPrimary = _ColorScheme(
-    light: _ColorConstants.grayLight.shade900,
-    dark: _ColorConstants.grayLight.shade50,
+    light: _ColorConstants.grayLight.shade800,
+    dark: _ColorConstants.grayDark.shade50,
     onBrandLight: Colors.white,
-    onBrandDark: _ColorConstants.grayLight[50],
+    onBrandDark: _ColorConstants.grayDark.shade50,
   );
 
   static final _textSecondary = _ColorScheme(
-    light: _ColorConstants.grayLight.shade700,
-    dark: _ColorConstants.grayLight.shade300,
+    light: _ColorConstants.grayLight.shade600,
+    dark: _ColorConstants.grayDark.shade200,
+    onBrandLight: _ColorConstants.brandFirstColor.shade200,
+    onBrandDark: _ColorConstants.grayDark.shade200,
+  );
+
+  static final _textTertiary = _ColorScheme(
+    light: _ColorConstants.grayLight.shade500,
+    dark: _ColorConstants.grayDark.shade300,
     onBrandLight: _ColorConstants.brandFirstColor.shade200,
     onBrandDark: _ColorConstants.grayDark.shade300,
   );
 
-  static final _textTertiary = _ColorScheme(
-    light: _ColorConstants.grayLight.shade600,
-    dark: _ColorConstants.grayDark.shade400,
-    onBrandLight: _ColorConstants.brandFirstColor.shade200,
-    onBrandDark: _ColorConstants.grayDark.shade400,
-  );
-
   static final _textQuaternary = _ColorScheme(
-    light: _ColorConstants.grayLight,
-    dark: _ColorConstants.grayDark.shade400,
+    light: _ColorConstants.grayLight.shade500,
+    dark: _ColorConstants.grayDark.shade300,
     onBrandLight: _ColorConstants.brandFirstColor.shade300,
-    onBrandDark: _ColorConstants.grayDark.shade400,
+    onBrandDark: _ColorConstants.grayDark.shade300,
   );
 
   static final _textDisabled = _ColorScheme(
@@ -1712,6 +1712,143 @@ class ColorValues {
   /// Toggle button foreground color when disabled.
   static Color toggleButtonFgDisabled(BuildContext context) =>
       _toggleButtonFgDisabled.getColor(context);
+
+  // ------------------------------------------------------------------
+  // <------------ Navigation & Layout color values  ----------------->
+  // ------------------------------------------------------------------
+  // -- Semantic tokens that map to the portfolio design's CSS vars.  --
+  // -- Used for sidebar, nav items, glassmorphism composer, chips.   --
+  // ------------------------------------------------------------------
+
+  /// Sidebar item hover — dark: #222425  light: #E8F1ED (--sidebar-hover)
+  static final _bgSidebarHover = _ColorScheme(
+    light: _ColorConstants.grayLight.shade200,
+    dark: _ColorConstants.grayDark.shade700,
+  );
+
+  /// Active nav-item pill — dark: #2A2C2D  light: #DCEBE5 (--pill)
+  static final _bgNavPill = _ColorScheme(
+    light: _ColorConstants.grayLight.shade400,
+    dark: _ColorConstants.grayDark.shade500,
+  );
+
+  /// Sidebar / section divider line — dark: #262829  light: #E0E8E4 (--line)
+  static final _borderLine = _ColorScheme(
+    light: _ColorConstants.grayLight.shade300,
+    dark: _ColorConstants.grayDark.shade600,
+  );
+
+  /// Glassmorphism surface background — dark: rgba(28,30,31,.92)  light: rgba(255,255,255,.9)
+  static final _bgSurface = _ColorScheme(
+    light: const Color(0xE6FFFFFF),
+    dark: const Color(0xEA1C1E1F),
+  );
+
+  /// Glassmorphism surface border — dark: rgba(255,255,255,.09)  light: rgba(0,0,0,.09)
+  static final _borderSurface = _ColorScheme(
+    light: const Color(0x17000000),
+    dark: const Color(0x17FFFFFF),
+  );
+
+  /// Glassmorphism surface border on focus — dark: rgba(255,255,255,.22)  light: rgba(0,0,0,.2)
+  static final _borderSurfaceFocus = _ColorScheme(
+    light: const Color(0x33000000),
+    dark: const Color(0x38FFFFFF),
+  );
+
+  /// Chip/model-pill background — dark: rgba(255,255,255,.07)  light: rgba(0,0,0,.05)
+  static final _bgChip = _ColorScheme(
+    light: const Color(0x0D000000),
+    dark: const Color(0x12FFFFFF),
+  );
+
+  /// Chip hover background — dark: rgba(255,255,255,.13)  light: rgba(0,0,0,.09)
+  static final _bgChipHover = _ColorScheme(
+    light: const Color(0x17000000),
+    dark: const Color(0x21FFFFFF),
+  );
+
+  /// Chip border — dark: rgba(255,255,255,.08)  light: rgba(0,0,0,.1)
+  static final _borderChip = _ColorScheme(
+    light: const Color(0x1A000000),
+    dark: const Color(0x14FFFFFF),
+  );
+
+  /// Subtle green ambient tint — dark: rgba(0,230,96,.13)  light: rgba(0,200,84,.16)
+  static final _bgGreenTint = _ColorScheme(
+    light: const Color(0x2900C854),
+    dark: const Color(0x2100E660),
+  );
+
+  /// Brand green, always #00E660. For CTA buttons and accents.
+  static final _brandGreenSolid = _ColorScheme(
+    light: const Color(0xFF00E660),
+    dark: const Color(0xFF00E660),
+  );
+
+  /// Brand blue, always #1F55C4. For primary action buttons and accents.
+  static final _brandBlueSolid = _ColorScheme(
+    light: const Color(0xFF1F55C4),
+    dark: const Color(0xFF1F55C4),
+  );
+
+  /// Brand red, always #E60000. For the logo mark and gradient end.
+  static final _brandRedSolid = _ColorScheme(
+    light: const Color(0xFFE60000),
+    dark: const Color(0xFFE60000),
+  );
+
+  /// Sidebar item hover background.
+  static Color bgSidebarHover(BuildContext context) =>
+      _bgSidebarHover.getColor(context);
+
+  /// Active nav-item pill background (selected state).
+  static Color bgNavPill(BuildContext context) =>
+      _bgNavPill.getColor(context);
+
+  /// Sidebar/section divider line color.
+  static Color borderLine(BuildContext context) =>
+      _borderLine.getColor(context);
+
+  /// Glassmorphism surface fill (backdrop-blur panels, composer).
+  static Color bgSurface(BuildContext context) =>
+      _bgSurface.getColor(context);
+
+  /// Glassmorphism surface border (default).
+  static Color borderSurface(BuildContext context) =>
+      _borderSurface.getColor(context);
+
+  /// Glassmorphism surface border when focused.
+  static Color borderSurfaceFocus(BuildContext context) =>
+      _borderSurfaceFocus.getColor(context);
+
+  /// Chip/model-pill fill (default state).
+  static Color bgChip(BuildContext context) =>
+      _bgChip.getColor(context);
+
+  /// Chip/model-pill fill (hover state).
+  static Color bgChipHover(BuildContext context) =>
+      _bgChipHover.getColor(context);
+
+  /// Chip border.
+  static Color borderChip(BuildContext context) =>
+      _borderChip.getColor(context);
+
+  /// Subtle green ambient glow tint behind the composer.
+  static Color bgGreenTint(BuildContext context) =>
+      _bgGreenTint.getColor(context);
+
+  /// Brand green, invariant. Use for the contact/CTA button.
+  static Color brandGreenSolid(BuildContext context) =>
+      _brandGreenSolid.getColor(context);
+
+  /// Brand blue, invariant. Use for the CV/primary-action button.
+  static Color brandBlueSolid(BuildContext context) =>
+      _brandBlueSolid.getColor(context);
+
+  /// Brand red, invariant. Use for the logo mark and error accents.
+  static Color brandRedSolid(BuildContext context) =>
+      _brandRedSolid.getColor(context);
 }
 
 class _ColorScheme {
