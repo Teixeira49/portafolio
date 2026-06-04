@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "skills": {
+    "flutter-add-integration-test": {
+      "source": "flutter/skills",
+      "sourceType": "github",
+      "skillPath": "skills/flutter-add-integration-test/SKILL.md",
+      "computedHash": "9ead37fef54371fed6ad07a9ba3de7a908135a0867b05baf74c28b7095343999"
+    },
+    "flutter-add-widget-test": {
+      "source": "flutter/skills",
+      "sourceType": "github",
+      "skillPath": "skills/flutter-add-widget-test/SKILL.md",
+      "computedHash": "c4f263c59cfe331ef42dba2aa81e25142aa4f7284518907c6b847e04502676b0"
+    },
+    "flutter-animations": {
+      "source": "madteacher/mad-agents-skills",
+      "sourceType": "github",
+      "skillPath": "flutter-animations/SKILL.md",
+      "computedHash": "a0f81c4bbff81b43be42cd11ebf33b6a4e50e2f94134d3071e441785fc4872e8"
+    },
+    "flutter-architecture": {
+      "source": "madteacher/mad-agents-skills",
+      "sourceType": "github",
+      "skillPath": "flutter-architecture/SKILL.md",
+      "computedHash": "4d6f1ed8f203933dfcf1087acbf0a63289ff3eefe6fc12f246005a029c6fcaa3"
+    },
+    "flutter-bloc": {
+      "source": "dhruvanbhalara/skills",
+      "sourceType": "github",
+      "skillPath": "skills/flutter/flutter-bloc/SKILL.md",
+      "computedHash": "73054ba120a4c894888179f1304519d8a46726ccfdb57d5c21a939a3dcbc45d4"
+    },
+    "flutter-expert": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/flutter-expert/SKILL.md",
+      "computedHash": "e28eee451a918cfa15e89627fde48838dc63bf2a72d51b2af12ccc419fd7968b"
+    },
+    "flutter-ui-ux": {
+      "source": "ajianaz/skills-collection",
+      "sourceType": "github",
+      "skillPath": "skills/flutter-ui-ux/SKILL.md",
+      "computedHash": "a0fc21d9328f80ab16c3e3463a12f4fd86462bc6370fe0ea016dc06ae1616654"
+    }
+  }
+}
