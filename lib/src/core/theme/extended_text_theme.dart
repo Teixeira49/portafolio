@@ -6,99 +6,99 @@ import 'package:portafolio/src/core/variables/values/text_values.dart';
 
 extension ExtendedTextTheme on TextTheme {
   static TextStyle displayTwoExtraLarge(BuildContext context) =>
-      GoogleFonts.poppins(
+      GoogleFonts.plusJakartaSans(
         fontSize: TextValues.display2xl,
         fontWeight: TextValues.regular,
         color: ColorValues.textPrimary(context),
       );
 
   static TextStyle displayExtraLarge(BuildContext context) =>
-      GoogleFonts.poppins(
+      GoogleFonts.plusJakartaSans(
         fontSize: TextValues.displayXl,
         fontWeight: TextValues.regular,
         color: ColorValues.textPrimary(context),
       );
 
-  static TextStyle displayLarge(BuildContext context) => GoogleFonts.poppins(
+  static TextStyle displayLarge(BuildContext context) => GoogleFonts.plusJakartaSans(
         fontSize: TextValues.displayLg,
         fontWeight: TextValues.regular,
         color: ColorValues.textPrimary(context),
       );
 
-  static TextStyle displayMedium(BuildContext context) => GoogleFonts.poppins(
+  static TextStyle displayMedium(BuildContext context) => GoogleFonts.plusJakartaSans(
         fontSize: TextValues.displayMd,
         fontWeight: TextValues.regular,
         color: ColorValues.textPrimary(context),
       );
 
-  static TextStyle displaySmall(BuildContext context) => GoogleFonts.poppins(
+  static TextStyle displaySmall(BuildContext context) => GoogleFonts.plusJakartaSans(
         fontSize: TextValues.displaySm,
         fontWeight: TextValues.regular,
         color: ColorValues.textPrimary(context),
       );
 
   static TextStyle displayExtraSmall(BuildContext context) =>
-      GoogleFonts.poppins(
+      GoogleFonts.plusJakartaSans(
         fontSize: TextValues.displayXs,
         fontWeight: TextValues.regular,
         color: ColorValues.textPrimary(context),
       );
 
-  static TextStyle textExtraLarge(BuildContext context) => GoogleFonts.poppins(
+  static TextStyle textExtraLarge(BuildContext context) => GoogleFonts.plusJakartaSans(
         fontSize: TextValues.textXl,
         fontWeight: TextValues.regular,
         color: ColorValues.textPrimary(context),
       );
 
-  static TextStyle textLarge(BuildContext context) => GoogleFonts.poppins(
+  static TextStyle textLarge(BuildContext context) => GoogleFonts.plusJakartaSans(
         fontSize: TextValues.textLg,
         fontWeight: TextValues.regular,
         color: ColorValues.textPrimary(context),
       );
 
-  static TextStyle textMedium(BuildContext context) => GoogleFonts.poppins(
+  static TextStyle textMedium(BuildContext context) => GoogleFonts.plusJakartaSans(
         fontSize: TextValues.textMd,
         fontWeight: TextValues.regular,
         color: ColorValues.textPrimary(context),
       );
 
-  static TextStyle textSmall(BuildContext context) => GoogleFonts.poppins(
+  static TextStyle textSmall(BuildContext context) => GoogleFonts.plusJakartaSans(
         fontSize: TextValues.textSm,
         fontWeight: TextValues.regular,
         color: ColorValues.textPrimary(context),
       );
 
-  static TextStyle textExtraSmall(BuildContext context) => GoogleFonts.poppins(
+  static TextStyle textExtraSmall(BuildContext context) => GoogleFonts.plusJakartaSans(
         fontSize: TextValues.textXs,
         fontWeight: TextValues.regular,
         color: ColorValues.textPrimary(context),
       );
 
-  static TextStyle titleExtraLarge(BuildContext context) => GoogleFonts.poppins(
+  static TextStyle titleExtraLarge(BuildContext context) => GoogleFonts.plusJakartaSans(
     fontSize: TextValues.textXl,
     fontWeight: TextValues.semibold,
     color: ColorValues.textPrimary(context),
   );
 
-  static TextStyle titleLarge(BuildContext context) => GoogleFonts.poppins(
+  static TextStyle titleLarge(BuildContext context) => GoogleFonts.plusJakartaSans(
     fontSize: TextValues.textLg,
     fontWeight: TextValues.semibold,
     color: ColorValues.textPrimary(context),
   );
 
-  static TextStyle titleMedium(BuildContext context) => GoogleFonts.poppins(
+  static TextStyle titleMedium(BuildContext context) => GoogleFonts.plusJakartaSans(
     fontSize: TextValues.textMd,
     fontWeight: TextValues.semibold,
     color: ColorValues.textPrimary(context),
   );
 
-  static TextStyle titleSmall(BuildContext context) => GoogleFonts.poppins(
+  static TextStyle titleSmall(BuildContext context) => GoogleFonts.plusJakartaSans(
     fontSize: TextValues.textSm,
     fontWeight: TextValues.semibold,
     color: ColorValues.textPrimary(context),
   );
 
-  static TextStyle titleExtraSmall(BuildContext context) => GoogleFonts.poppins(
+  static TextStyle titleExtraSmall(BuildContext context) => GoogleFonts.plusJakartaSans(
     fontSize: TextValues.textXs,
     fontWeight: TextValues.semibold,
     color: ColorValues.textPrimary(context),
