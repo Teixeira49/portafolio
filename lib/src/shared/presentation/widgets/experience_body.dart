@@ -294,16 +294,17 @@ class _ExperienceCard extends StatelessWidget {
   final Color accentColor;
 
   // Normalises single-company and multi-company entries into one list.
-  List<({String name, String? url})> _companies() {
+  List<({String name, String? url, String? image})> _companies() {
     if (item['companies'] != null) {
       return (item['companies'] as List)
           .cast<Map<String, dynamic>>()
-          .map((c) => (name: c['name'] as String, url: c['url'] as String?))
+          .map((c) => (name: c['name'] as String, url: c['url'] as String?, image: c['image'] as String?))
           .toList();
     }
     return [(
       name: item['company'] as String,
       url: item['company_url'] as String?,
+      image: item['image'] as String?,
     )];
   }
 
@@ -327,6 +328,7 @@ class _ExperienceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final companies = _companies();
     final primaryName = companies.first.name;
+    final primaryImage = companies.first.image;
     final role = item['role'] as String?;
     final event = item['event'] as String?;
     final eventUrls = item['event_urls'] == null
@@ -351,7 +353,7 @@ class _ExperienceCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Logo: initial of the primary (first) company
+              // Logo: initial of the primary (first) company or image
               Container(
                 width: 44,
                 height: 44,
@@ -360,12 +362,15 @@ class _ExperienceCard extends StatelessWidget {
                   color: ColorValues.bgChip(context),
                   border: Border.all(color: ColorValues.borderSurface(context)),
                 ),
+                clipBehavior: Clip.antiAlias,
                 child: Center(
-                  child: Text(
-                    primaryName[0].toUpperCase(),
-                    style: ExtendedTextTheme.titleMedium(context)
-                        .copyWith(color: accentColor),
-                  ),
+                  child: primaryImage != null
+                      ? Image.asset(primaryImage, fit: BoxFit.fill, width: 44, height: 44)
+                      : Text(
+                          primaryName[0].toUpperCase(),
+                          style: ExtendedTextTheme.titleMedium(context)
+                              .copyWith(color: accentColor),
+                        ),
                 ),
               ),
               Gap(WidthValues.spacingXs),
@@ -451,7 +456,7 @@ class _CompanyNamesRow extends StatelessWidget {
     required this.context,
   });
 
-  final List<({String name, String? url})> companies;
+  final List<({String name, String? url, String? image})> companies;
   final Color accentColor;
   final BuildContext context;
 
