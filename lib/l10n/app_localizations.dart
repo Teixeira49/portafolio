@@ -517,6 +517,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'December'**
   String get dateDecemberLabel;
+
+  /// No description provided for @educationDegreeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Systems Engineer'**
+  String get educationDegreeTitle;
+
+  /// No description provided for @educationUniversityName.
+  ///
+  /// In en, this message translates to:
+  /// **'Metropolitan University of Venezuela (UNIMET)'**
+  String get educationUniversityName;
+
+  /// No description provided for @educationGraduatedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Graduated · Oct 2025'**
+  String get educationGraduatedLabel;
+
+  /// No description provided for @educationViewCertificateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'View Certificate'**
+  String get educationViewCertificateLabel;
 }
 
 class _AppLocalizationsDelegate
