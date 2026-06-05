@@ -220,4 +220,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dateDecemberLabel => 'December';
+
+  @override
+  String get educationDegreeTitle => 'Systems Engineer';
+
+  @override
+  String get educationUniversityName =>
+      'Metropolitan University of Venezuela (UNIMET)';
+
+  @override
+  String get educationGraduatedLabel => 'Graduated · Oct 2025';
+
+  @override
+  String get educationViewCertificateLabel => 'View Certificate';
 }

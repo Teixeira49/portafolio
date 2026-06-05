@@ -68,5 +68,9 @@
   "dateSeptemberLabel": "Septiembre",
   "dateOctoberLabel": "Octubre",
   "dateNovemberLabel": "Noviembre",
-  "dateDecemberLabel": "Diciembre"
+  "dateDecemberLabel": "Diciembre",
+  "educationDegreeTitle": "Ingeniero de Sistemas",
+  "educationUniversityName": "Universidad Metropolitana de Venezuela (UNIMET)",
+  "educationGraduatedLabel": "Graduado · Oct 2025",
+  "educationViewCertificateLabel": "Ver Certificado"
 }
