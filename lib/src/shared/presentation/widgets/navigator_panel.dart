@@ -225,9 +225,12 @@ class _SidebarHeader extends StatelessWidget {
           ),
           // Collapse toggle button (desktop only)
           if (onToggle != null)
-            _IconButton(
-              icon: expanded ? Icons.chevron_left : Icons.chevron_right,
-              onPressed: onToggle!,
+            Tooltip(
+              message: expanded ? 'Colapsar' : 'Expandir',
+              child: _IconButton(
+                icon: expanded ? Icons.chevron_left : Icons.chevron_right,
+                onPressed: onToggle!,
+              ),
             ),
         ],
       ),
@@ -272,7 +275,7 @@ class _NavItemState extends State<_NavItem> {
         Color fg;
         if (isActive) {
           bg = ColorValues.bgNavPill(context);
-          fg = Colors.white;
+          fg = ColorValues.textPrimary(context);
         } else if (_hovered) {
           bg = ColorValues.bgSidebarHover(context);
           fg = ColorValues.textPrimary(context);
@@ -303,7 +306,11 @@ class _NavItemState extends State<_NavItem> {
                 ),
                 child: Row(
                   children: [
-                    Icon(widget.icon, color: fg, size: 22),
+                    Icon(
+                      isActive ? _getFilledIcon(widget.icon) : widget.icon,
+                      color: fg,
+                      size: 22,
+                    ),
                     const Gap(14),
                     Expanded(
                       child: AnimatedOpacity(
@@ -329,6 +336,16 @@ class _NavItemState extends State<_NavItem> {
         );
       },
     );
+  }
+
+  IconData _getFilledIcon(IconData outlineIcon) {
+    final iconMap = {
+      Icons.home_outlined: Icons.home,
+      Icons.person_outlined: Icons.person,
+      Icons.chat_outlined: Icons.chat,
+      Icons.school_outlined: Icons.school,
+    };
+    return iconMap[outlineIcon] ?? outlineIcon;
   }
 }
 
