@@ -32,6 +32,7 @@ class CertificationsBody extends StatelessWidget {
                 issuingEntity: cert['issuing_entity'] as String,
                 date: cert['date'] as String,
                 link: cert['link'] as String,
+                image: cert['image'] as String?,
               ),
             );
           }).toList(),

@@ -13,12 +13,14 @@ class CertificationsCard extends StatefulWidget {
     required this.issuingEntity,
     required this.date,
     required this.link,
+    this.image,
   });
 
   final String title;
   final String issuingEntity;
   final String date;
   final String link;
+  final String? image;
 
   @override
   State<CertificationsCard> createState() => _CertificationsCardState();
@@ -129,16 +131,19 @@ class _CertificationsCardState extends State<CertificationsCard> {
     return Container(
       width: 40,
       height: 40,
+      clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: ColorValues.borderSurface(context)),
         borderRadius: BorderRadius.circular(11),
       ),
-      child: Icon(
-        Icons.workspace_premium_outlined,
-        size: 22,
-        color: Colors.grey.shade600,
-      ),
+      child: widget.image != null
+          ? Image.asset(widget.image!, fit: BoxFit.cover, width: 40, height: 40)
+          : Icon(
+              Icons.workspace_premium_outlined,
+              size: 22,
+              color: Colors.grey.shade600,
+            ),
     );
   }
 
