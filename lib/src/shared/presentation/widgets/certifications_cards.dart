@@ -14,6 +14,8 @@ class CertificationsCard extends StatefulWidget {
     required this.date,
     required this.link,
     this.image,
+    this.location,
+    this.locationLink,
   });
 
   final String title;
@@ -21,6 +23,8 @@ class CertificationsCard extends StatefulWidget {
   final String date;
   final String link;
   final String? image;
+  final String? location;
+  final String? locationLink;
 
   @override
   State<CertificationsCard> createState() => _CertificationsCardState();
@@ -104,6 +108,11 @@ class _CertificationsCardState extends State<CertificationsCard> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
+                        if (widget.location != null && widget.location!.isNotEmpty)
+                          _LocationLink(
+                            location: widget.location!,
+                            link: widget.locationLink ?? '',
+                          ),
                         Text(
                           widget.date,
                           style: TextStyle(
@@ -167,6 +176,62 @@ class _CertificationsCardState extends State<CertificationsCard> {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _LocationLink extends StatefulWidget {
+  const _LocationLink({required this.location, required this.link});
+  final String location;
+  final String link;
+
+  @override
+  State<_LocationLink> createState() => _LocationLinkState();
+}
+
+class _LocationLinkState extends State<_LocationLink> {
+  bool _hovered = false;
+
+  bool get _isOnline => widget.location.toLowerCase().contains('online');
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: widget.link.isNotEmpty
+            ? () => launchUrl(
+                  Uri.parse(widget.link),
+                  mode: LaunchMode.externalApplication,
+                )
+            : null,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              _isOnline ? Icons.language : Icons.location_on,
+              size: 13,
+              color: Color(0xFFE60000),
+            ),
+            const SizedBox(width: 4),
+            Flexible(
+              child: Text(
+                widget.location,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 12.5,
+                  color: _hovered && widget.link.isNotEmpty
+                      ? ColorValues.textSecondary(context)
+                      : ColorValues.textTertiary(context),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
