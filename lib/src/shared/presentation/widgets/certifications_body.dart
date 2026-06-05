@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/variables/values/values.dart';
 import 'certifications_cards.dart';
+
+// Mirrors .cert-grid: repeat(auto-fill, minmax(310px, 1fr)), gap: 14px
+const double _kMinCardWidth = 310;
+const double _kGap = 14;
 
 class CertificationsBody extends StatelessWidget {
   const CertificationsBody({super.key, required this.certifications});
@@ -10,50 +13,30 @@ class CertificationsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: WidthValues.spacingSm,
-      children: _buildCertifications(context, certifications),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final cols = (constraints.maxWidth / (_kMinCardWidth + _kGap))
+            .floor()
+            .clamp(1, certifications.length);
+        final cardWidth =
+            (constraints.maxWidth - (cols - 1) * _kGap) / cols;
+
+        return Wrap(
+          spacing: _kGap,
+          runSpacing: _kGap,
+          children: certifications.map((cert) {
+            return SizedBox(
+              width: cardWidth,
+              child: CertificationsCard(
+                title: cert['title'] as String,
+                issuingEntity: cert['issuing_entity'] as String,
+                date: cert['date'] as String,
+                link: cert['link'] as String,
+              ),
+            );
+          }).toList(),
+        );
+      },
     );
-  }
-
-  List<Widget> _buildCertifications(
-    BuildContext context,
-    List<dynamic> project,
-  ) {
-    final columnCount = _calculateResponsiveColumn(context) + 1;
-    final rows = <List<dynamic>>[];
-    for (var i = 0; i < project.length; i += columnCount) {
-      final end =
-          (i + columnCount < project.length) ? i + columnCount : project.length;
-      rows.add(project.sublist(i, end));
-    }
-
-    return rows.map((rowProject) {
-      return Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: WidthValues.spacingSm,
-        children:
-            rowProject.map((skillBlock) {
-              return Expanded(
-                child: CertificationsCard(
-                  title: skillBlock['title'],
-                  issuingEntity: skillBlock['issuing_entity'],
-                  location: skillBlock['location'],
-                  date: skillBlock['date'],
-                  link: skillBlock['link'],
-                ),
-              );
-            }).toList(),
-      );
-    }).toList();
-  }
-
-  int _calculateResponsiveColumn(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    if (width < 1200) {
-      return 0;
-    } else {
-      return 1;
-    }
   }
 }
