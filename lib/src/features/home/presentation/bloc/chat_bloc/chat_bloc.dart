@@ -40,6 +40,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         state.copyWith(
           chatId: messages.id,
           chatName: messages.name,
+          chatRoute: event.chatName,
           messages: messages.messages,
           status: ChatStatus.loaded,
         ),
