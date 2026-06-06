@@ -85,5 +85,11 @@ class AssetIcons {
 
   static const String iconProfile = '$_iconRoute/profile_icon.svg';
 
+  static const String iconInstagram = '$_iconRoute/instagram-icon.svg';
+
+  static const String iconTelegram = '$_iconRoute/telegram.svg';
+
   static const String iconLock = '$_iconRoute/lock.svg';
+
+  static const String iconTerminal = '$_iconRoute/terminal-svgrepo-com.svg';
 }

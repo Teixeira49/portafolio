@@ -11,6 +11,7 @@ class _SocialChannel {
     required this.url,
     required this.bgColor,
     required this.iconPath,
+    this.comingSoon = false,
   });
 
   final String name;
@@ -18,10 +19,11 @@ class _SocialChannel {
   final String url;
   final Color bgColor;
   final String iconPath;
+  final bool comingSoon;
 }
 
 // ---------------------------------------------------------------------------
-// Social channel tile — icon + name + handle, tappable with launchUrl
+// Social channel tile
 // ---------------------------------------------------------------------------
 
 class _SocialChannelTile extends StatefulWidget {
@@ -37,84 +39,109 @@ class _SocialChannelTileState extends State<_SocialChannelTile> {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
+    final isEs = Localizations.localeOf(context).languageCode == 'es';
+    final ch = widget.channel;
+
+    final tile = MouseRegion(
+      cursor: ch.comingSoon ? SystemMouseCursors.forbidden : SystemMouseCursors.click,
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
       child: GestureDetector(
-        onTap: () => launchUrl(
-          Uri.parse(widget.channel.url),
-          mode: LaunchMode.externalApplication,
-        ),
+        onTap: ch.comingSoon
+            ? null
+            : () => launchUrl(Uri.parse(ch.url), mode: LaunchMode.externalApplication),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 150),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           decoration: BoxDecoration(
-            color: _hovered
+            color: _hovered && !ch.comingSoon
                 ? ColorValues.bgSidebarHover(context)
                 : ColorValues.bgChip(context),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(color: ColorValues.borderChip(context)),
           ),
-          child: Row(
-            children: [
-              // Brand icon in colored square
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: widget.channel.bgColor,
-                  borderRadius: BorderRadius.circular(10),
+          child: Opacity(
+            opacity: ch.comingSoon ? 0.45 : 1.0,
+            child: Row(
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: ch.bgColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  padding: const EdgeInsets.all(8),
+                  child: SvgPicture.asset(
+                    ch.iconPath,
+                    fit: BoxFit.contain,
+                    colorFilter: const {'GitHub', 'LinkedIn', 'WhatsApp'}
+                            .contains(ch.name)
+                        ? const ColorFilter.mode(Colors.white, BlendMode.srcIn)
+                        : null,
+                  ),
                 ),
-                padding: const EdgeInsets.all(8),
-                child: SvgPicture.asset(
-                  widget.channel.iconPath,
-                  fit: BoxFit.contain,
-                  colorFilter: widget.channel.name == 'GitHub'
-                      ? const ColorFilter.mode(Colors.white, BlendMode.srcIn)
-                      : null,
-                ),
-              ),
-              const Gap(14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      widget.channel.name,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: ColorValues.textPrimary(context),
+                const Gap(14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        ch.name,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: ColorValues.textPrimary(context),
+                        ),
                       ),
-                    ),
-                    Text(
-                      widget.channel.handle,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 12.5,
-                        color: ColorValues.textTertiary(context),
+                      Text(
+                        ch.comingSoon
+                            ? (isEs ? 'Próximamente' : 'Coming soon')
+                            : ch.handle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 12.5,
+                          color: ch.comingSoon
+                              ? ColorValues.textTertiary(context)
+                              : ColorValues.textTertiary(context),
+                          fontStyle: ch.comingSoon ? FontStyle.italic : FontStyle.normal,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Icon(
-                Icons.arrow_forward_ios_rounded,
-                size: 14,
-                color: ColorValues.textTertiary(context),
-              ),
-            ],
+                if (!ch.comingSoon)
+                  Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 14,
+                    color: ColorValues.textTertiary(context),
+                  )
+                else
+                  Icon(
+                    Icons.lock_clock_outlined,
+                    size: 14,
+                    color: ColorValues.textTertiary(context),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
+    );
+
+    if (!ch.comingSoon) return tile;
+
+    return Tooltip(
+      message: isEs ? 'Próximamente' : 'Coming soon',
+      child: tile,
     );
   }
 }
 
 // ---------------------------------------------------------------------------
-// Close button (top-right of social panel)
+// Close button
 // ---------------------------------------------------------------------------
 
 class _CloseButton extends StatefulWidget {

@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -5,10 +6,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/utils/asset_icons.dart';
 import '../../../core/utils/helpers.dart';
-import '../../../core/variables/constants/constants.dart';
 import '../../../core/variables/values/values.dart';
 
 part '../widgets/contact_buttons.dart';
+
+const _emailJsServiceId = 'service_5h6tket';
+const _emailJsTemplateId = 'template_hq7hevs';
+const _emailJsPublicKey = 'Z80TJ3jprMnReQuF_';
 
 // ---------------------------------------------------------------------------
 // ContactDialog
@@ -25,7 +29,7 @@ class ContactDialog extends StatelessWidget {
       backgroundColor: Colors.transparent,
       insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 780, maxHeight: 640),
+        constraints: const BoxConstraints(maxWidth: 780, maxHeight: 680),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: isWide
@@ -52,18 +56,88 @@ class ContactDialog extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------------------
-// Left panel — visual email form
+// Left panel — functional email form
 // ---------------------------------------------------------------------------
 
-class _EmailFormPanel extends StatelessWidget {
+class _EmailFormPanel extends StatefulWidget {
+  @override
+  State<_EmailFormPanel> createState() => _EmailFormPanelState();
+}
+
+class _EmailFormPanelState extends State<_EmailFormPanel> {
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _messageController = TextEditingController();
+  bool _loading = false;
+  bool _sent = false;
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _messageController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _send() async {
+    if (!(_formKey.currentState?.validate() ?? false)) return;
+
+    setState(() => _loading = true);
+
+    try {
+      final response = await Dio().post<dynamic>(
+        'https://api.emailjs.com/api/v1.0/email/send',
+        options: Options(
+          headers: {'Content-Type': 'application/json'},
+          validateStatus: (s) => s != null,
+        ),
+        data: {
+          'service_id': _emailJsServiceId,
+          'template_id': _emailJsTemplateId,
+          'user_id': _emailJsPublicKey,
+          'template_params': {
+            'from_name': _nameController.text.trim(),
+            'from_email': _emailController.text.trim(),
+            'message': _messageController.text.trim(),
+          },
+        },
+      );
+
+      if (!mounted) return;
+
+      if (response.statusCode == 200) {
+        setState(() {
+          _sent = true;
+          _loading = false;
+        });
+      } else {
+        setState(() => _loading = false);
+        _showSnack(context, isEs: _isEs, success: false);
+      }
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _loading = false);
+      _showSnack(context, isEs: _isEs, success: false);
+    }
+  }
+
+  bool get _isEs => Localizations.localeOf(context).languageCode == 'es';
+
   @override
   Widget build(BuildContext context) {
-    final isEs =
-        Localizations.localeOf(context).languageCode == 'es';
+    final isEs = _isEs;
 
     return Container(
       color: ColorValues.bgSurface(context),
       padding: const EdgeInsets.all(32),
+      child: _sent ? _SuccessView(isEs: isEs) : _buildForm(isEs),
+    );
+  }
+
+  Widget _buildForm(bool isEs) {
+    return Form(
+      key: _formKey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,41 +162,128 @@ class _EmailFormPanel extends StatelessWidget {
             ),
           ),
           const Gap(24),
-          _FormField(
+          _ActiveFormField(
             label: isEs ? 'Nombre' : 'Name',
             hint: isEs ? 'Tu nombre' : 'Your name',
+            controller: _nameController,
+            validator: (v) =>
+                (v == null || v.trim().isEmpty) ? (isEs ? 'Requerido' : 'Required') : null,
           ),
           const Gap(16),
-          _FormField(
+          _ActiveFormField(
             label: isEs ? 'Correo' : 'Email',
             hint: isEs ? 'tucorreo@ejemplo.com' : 'youremail@example.com',
+            controller: _emailController,
+            keyboardType: TextInputType.emailAddress,
+            validator: (v) {
+              if (v == null || v.trim().isEmpty) {
+                return isEs ? 'Requerido' : 'Required';
+              }
+              final valid = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(v.trim());
+              return valid ? null : (isEs ? 'Correo inválido' : 'Invalid email');
+            },
           ),
           const Gap(16),
-          _FormField(
+          _ActiveFormField(
             label: isEs ? 'Mensaje' : 'Message',
             hint: isEs ? 'Escribe tu mensaje...' : 'Write your message...',
+            controller: _messageController,
             maxLines: 5,
+            validator: (v) =>
+                (v == null || v.trim().isEmpty) ? (isEs ? 'Requerido' : 'Required') : null,
           ),
           const Gap(24),
-          _SendButton(isEs: isEs),
+          _SendButton(isEs: isEs, loading: _loading, onPressed: _send),
         ],
       ),
     );
   }
 }
 
-// ── Visual-only form field ──────────────────────────────────────────────────
+void _showSnack(
+  BuildContext context, {
+  required bool isEs,
+  required bool success,
+}) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(
+        success
+            ? (isEs ? '¡Mensaje enviado!' : 'Message sent!')
+            : (isEs ? 'Error al enviar. Inténtalo de nuevo.' : 'Failed to send. Please try again.'),
+      ),
+      backgroundColor: success ? const Color(0xFF00E660) : Colors.red.shade700,
+      behavior: SnackBarBehavior.floating,
+    ),
+  );
+}
 
-class _FormField extends StatelessWidget {
-  const _FormField({
+// ── Success state ───────────────────────────────────────────────────────────
+
+class _SuccessView extends StatelessWidget {
+  const _SuccessView({required this.isEs});
+  final bool isEs;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 64,
+            height: 64,
+            decoration: const BoxDecoration(
+              color: Color(0xFF00E660),
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(Icons.check_rounded, color: Color(0xFF03331A), size: 36),
+          ),
+          const Gap(20),
+          Text(
+            isEs ? '¡Mensaje enviado!' : 'Message sent!',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: ColorValues.textPrimary(context),
+            ),
+          ),
+          const Gap(8),
+          Text(
+            isEs
+                ? 'Gracias por escribir. Te responderé pronto.'
+                : "Thanks for reaching out. I'll get back to you soon.",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 14,
+              color: ColorValues.textSecondary(context),
+              height: 1.5,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ── Active form field with validation ──────────────────────────────────────
+
+class _ActiveFormField extends StatelessWidget {
+  const _ActiveFormField({
     required this.label,
     required this.hint,
+    required this.controller,
     this.maxLines = 1,
+    this.keyboardType,
+    this.validator,
   });
 
   final String label;
   final String hint;
+  final TextEditingController controller;
   final int maxLines;
+  final TextInputType? keyboardType;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -138,9 +299,15 @@ class _FormField extends StatelessWidget {
           ),
         ),
         const Gap(6),
-        TextField(
-          enabled: false,
+        TextFormField(
+          controller: controller,
           maxLines: maxLines,
+          keyboardType: keyboardType,
+          validator: validator,
+          style: TextStyle(
+            fontSize: 14,
+            color: ColorValues.textPrimary(context),
+          ),
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: TextStyle(
@@ -155,21 +322,23 @@ class _FormField extends StatelessWidget {
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                color: ColorValues.borderChip(context),
-              ),
+              borderSide: BorderSide(color: ColorValues.borderChip(context)),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                color: ColorValues.borderChip(context),
-              ),
+              borderSide: BorderSide(color: ColorValues.borderChip(context)),
             ),
-            disabledBorder: OutlineInputBorder(
+            focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                color: ColorValues.borderChip(context),
-              ),
+              borderSide: const BorderSide(color: Color(0xFF00E660), width: 1.5),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Colors.red.shade400),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Colors.red.shade400, width: 1.5),
             ),
           ),
         ),
@@ -178,36 +347,57 @@ class _FormField extends StatelessWidget {
   }
 }
 
-// ── Visual-only send button ─────────────────────────────────────────────────
+// ── Send button ─────────────────────────────────────────────────────────────
 
 class _SendButton extends StatelessWidget {
-  const _SendButton({required this.isEs});
+  const _SendButton({
+    required this.isEs,
+    required this.loading,
+    required this.onPressed,
+  });
+
   final bool isEs;
+  final bool loading;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 46,
-      decoration: BoxDecoration(
-        color: const Color(0xFF00E660),
-        borderRadius: BorderRadius.circular(26),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Gap(20),
-          const Icon(Icons.send_rounded, color: Color(0xFF03331A), size: 17),
-          const Gap(8),
-          Text(
-            isEs ? 'Enviar correo' : 'Send email',
-            style: const TextStyle(
-              color: Color(0xFF03331A),
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
+    return GestureDetector(
+      onTap: loading ? null : onPressed,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        height: 46,
+        decoration: BoxDecoration(
+          color: loading ? const Color(0xFF00E660).withAlpha(153) : const Color(0xFF00E660),
+          borderRadius: BorderRadius.circular(26),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Gap(20),
+            if (loading)
+              const SizedBox(
+                width: 17,
+                height: 17,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Color(0xFF03331A),
+                ),
+              )
+            else
+              const Icon(Icons.send_rounded, color: Color(0xFF03331A), size: 17),
+            const Gap(8),
+            Text(
+              isEs ? 'Enviar correo' : 'Send email',
+              style: const TextStyle(
+                color: Color(0xFF03331A),
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+              ),
             ),
-          ),
-          const Gap(20),
-        ],
+            const Gap(20),
+          ],
+        ),
       ),
     );
   }
@@ -221,7 +411,6 @@ class _SocialPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isEs = Localizations.localeOf(context).languageCode == 'es';
-
     final channels = _buildChannels(context);
 
     return Container(
@@ -231,7 +420,6 @@ class _SocialPanel extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Close button row
           Align(
             alignment: Alignment.topRight,
             child: _CloseButton(),
@@ -249,7 +437,7 @@ class _SocialPanel extends StatelessWidget {
           Text(
             isEs
                 ? 'Elige tu canal preferido y conversemos por ahí.'
-                : 'Choose your preferred channel and let\'s talk.',
+                : "Choose your preferred channel and let's talk.",
             style: TextStyle(
               fontSize: 13,
               color: ColorValues.textSecondary(context),
@@ -270,41 +458,42 @@ class _SocialPanel extends StatelessWidget {
 
   List<_SocialChannel> _buildChannels(BuildContext context) {
     return [
-      if (Constants.linkedinAccount.isNotEmpty)
-        _SocialChannel(
-          name: 'LinkedIn',
-          handle: Constants.linkedinAccount,
-          url: Constants.linkedinAccount,
-          bgColor: const Color(0xFF0A66C2),
-          iconPath: AssetIcons.iconLinkedin,
-        ),
-      if (Constants.githubAccount.isNotEmpty)
-        _SocialChannel(
-          name: 'GitHub',
-          handle: Constants.githubAccount,
-          url: Constants.githubAccount,
-          bgColor: const Color(0xFF24292E),
-          iconPath: AssetIcons.iconGithubLight,
-        ),
-      if (Constants.mainPhoneNumber.isNotEmpty)
-        _SocialChannel(
-          name: 'WhatsApp',
-          handle: Constants.mainPhoneNumber,
-          url: Helpers.whatsMee(
-            context: context,
-            number: Constants.mainPhoneNumber,
-          ),
-          bgColor: const Color(0xFF25D366),
-          iconPath: AssetIcons.iconWhatsApp,
-        ),
-      if (Constants.gmailAccount.isNotEmpty)
-        _SocialChannel(
-          name: 'Gmail',
-          handle: Constants.gmailAccount,
-          url: 'mailto:${Constants.gmailAccount}',
-          bgColor: const Color(0xFFEA4335),
-          iconPath: AssetIcons.iconGmail,
-        ),
+      _SocialChannel(
+        name: 'WhatsApp',
+        handle: '+58 424 323 8366',
+        url: Helpers.whatsMee(context: context, number: '584243238366'),
+        bgColor: const Color(0xFF25D366),
+        iconPath: AssetIcons.iconWhatsApp,
+      ),
+      _SocialChannel(
+        name: 'Instagram',
+        handle: '@javier_a_teixeira._g',
+        url: 'https://www.instagram.com/javier_a_teixeira._g/',
+        bgColor: const Color(0xFFE1306C),
+        iconPath: AssetIcons.iconInstagram,
+      ),
+      _SocialChannel(
+        name: 'LinkedIn',
+        handle: 'ing-javier-teixeira',
+        url: 'https://www.linkedin.com/in/ing-javier-teixeira/',
+        bgColor: const Color(0xFF0A66C2),
+        iconPath: AssetIcons.iconLinkedin,
+      ),
+      _SocialChannel(
+        name: 'GitHub',
+        handle: '@teixeira49',
+        url: 'https://github.com/teixeira49',
+        bgColor: const Color(0xFF24292E),
+        iconPath: AssetIcons.iconGithubLight,
+      ),
+      _SocialChannel(
+        name: 'Telegram',
+        handle: '',
+        url: '',
+        bgColor: const Color(0xFF229ED9),
+        iconPath: AssetIcons.iconTelegram,
+        comingSoon: true,
+      ),
     ];
   }
 }
