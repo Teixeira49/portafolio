@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:portafolio/l10n/l10n.dart';
 import '../../../core/theme/responsive.dart';
+import '../../../core/utils/asset_icons.dart';
+import '../../../core/utils/asset_images.dart';
 import '../../../core/variables/constants/constants.dart';
 import '../../../core/variables/values/values.dart';
 import '../../../features/contact/contact.dart';
@@ -121,9 +124,6 @@ class _NavigationPanelState extends State<NavigationPanel> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Contact — green CTA button
-                _ContactButton(expanded: _isExpanded),
-                const Gap(8),
                 // Settings — ghost button
                 _GhostButton(
                   label: context.l10n.dashboardConfigButton,
@@ -134,6 +134,9 @@ class _NavigationPanelState extends State<NavigationPanel> {
                     builder: (_) => const SettingsDialog(),
                   ),
                 ),
+                const Gap(8),
+                // Contact — green CTA button
+                _ContactButton(expanded: _isExpanded),
                 // Divider
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -162,72 +165,103 @@ class _NavigationPanelState extends State<NavigationPanel> {
 // Header
 // ─────────────────────────────────────────────────────────────────────────────
 
-class _SidebarHeader extends StatelessWidget {
+class _SidebarHeader extends StatefulWidget {
   const _SidebarHeader({required this.expanded, required this.onToggle});
 
   final bool expanded;
   final VoidCallback? onToggle;
 
   @override
+  State<_SidebarHeader> createState() => _SidebarHeaderState();
+}
+
+class _SidebarHeaderState extends State<_SidebarHeader> {
+  bool _hovered = false;
+
+  @override
   Widget build(BuildContext context) {
+    // ── Collapsed: terminal icon centered → chevron on hover ─────────────────
+    if (!widget.expanded && widget.onToggle != null) {
+      return Padding(
+        // 14px (nav outer) + 12px (nav inner) = 26px — matches nav icon left edge
+        padding: const EdgeInsets.fromLTRB(26, 18, 8, 22),
+        child: _RightTooltip(
+          message: 'Expandir',
+          child: MouseRegion(
+            onEnter: (_) => setState(() => _hovered = true),
+            onExit: (_) => setState(() => _hovered = false),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 150),
+                  child: _hovered
+                      ? KeyedSubtree(
+                          key: const ValueKey('chevron'),
+                          child: _IconButton(
+                            icon: Icons.chevron_right,
+                            onPressed: widget.onToggle!,
+                          ),
+                        )
+                      : GestureDetector(
+                          key: const ValueKey('terminal'),
+                          onTap: widget.onToggle,
+                          child: SvgPicture.asset(
+                            AssetIcons.iconTerminal,
+                            width: 22,
+                            height: 22,
+                            colorFilter: ColorFilter.mode(
+                              ColorValues.textSecondary(context),
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
+    // ── Expanded: brand icon + name + collapse button ─────────────────────────
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 18, 8, 22),
       child: Row(
         children: [
-          // Brand mark — fades out when collapsed
-          AnimatedOpacity(
-            duration: _kAnimDuration,
-            opacity: expanded ? 1.0 : 0.0,
-            child: AnimatedContainer(
-              duration: _kAnimDuration,
-              width: expanded ? 34 : 0,
-              child: Container(
-                width: 34,
-                height: 34,
-                decoration: const BoxDecoration(
-                  color: Color(0xFFE60000),
-                  shape: BoxShape.circle,
-                ),
-                alignment: Alignment.center,
-                child: const Text(
-                  'JT',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 13,
-                    letterSpacing: 0.5,
-                  ),
-                ),
+          SizedBox(
+            width: 34,
+            height: 34,
+            child: SvgPicture.asset(
+              AssetIcons.iconTerminal,
+              width: 28,
+              height: 28,
+              colorFilter: ColorFilter.mode(
+                ColorValues.textPrimary(context),
+                BlendMode.srcIn,
               ),
             ),
           ),
-          AnimatedSize(
-            duration: _kAnimDuration,
-            curve: _kAnimCurve,
-            child: SizedBox(width: expanded ? 11 : 0),
-          ),
-          // Brand name — fades out when collapsed
+          const Gap(11),
           Expanded(
-            child: AnimatedOpacity(
-              duration: _kAnimDuration,
-              opacity: expanded ? 1.0 : 0.0,
-              child: Text(
-                'Ing. Teixeira',
-                maxLines: 1,
-                overflow: TextOverflow.clip,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: ColorValues.textPrimary(context),
-                ),
+            child: Text(
+              'Ing. Teixeira',
+              maxLines: 1,
+              overflow: TextOverflow.clip,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: ColorValues.textPrimary(context),
               ),
             ),
           ),
-          // Collapse toggle button (desktop only)
-          if (onToggle != null)
-            _IconButton(
-              icon: expanded ? Icons.chevron_left : Icons.chevron_right,
-              onPressed: onToggle!,
+          if (widget.onToggle != null)
+            _RightTooltip(
+              message: 'Colapsar',
+              child: _IconButton(
+                icon: Icons.chevron_left,
+                onPressed: widget.onToggle!,
+              ),
             ),
         ],
       ),
@@ -272,7 +306,7 @@ class _NavItemState extends State<_NavItem> {
         Color fg;
         if (isActive) {
           bg = ColorValues.bgNavPill(context);
-          fg = Colors.white;
+          fg = ColorValues.textPrimary(context);
         } else if (_hovered) {
           bg = ColorValues.bgSidebarHover(context);
           fg = ColorValues.textPrimary(context);
@@ -303,7 +337,11 @@ class _NavItemState extends State<_NavItem> {
                 ),
                 child: Row(
                   children: [
-                    Icon(widget.icon, color: fg, size: 22),
+                    Icon(
+                      isActive ? _getFilledIcon(widget.icon) : widget.icon,
+                      color: fg,
+                      size: 22,
+                    ),
                     const Gap(14),
                     Expanded(
                       child: AnimatedOpacity(
@@ -329,6 +367,16 @@ class _NavItemState extends State<_NavItem> {
         );
       },
     );
+  }
+
+  IconData _getFilledIcon(IconData outlineIcon) {
+    final iconMap = {
+      Icons.home_outlined: Icons.home,
+      Icons.person_outlined: Icons.person,
+      Icons.chat_outlined: Icons.chat,
+      Icons.school_outlined: Icons.school,
+    };
+    return iconMap[outlineIcon] ?? outlineIcon;
   }
 }
 
@@ -474,77 +522,672 @@ class _GhostButtonState extends State<_GhostButton> {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Profile footer (.profile)
+// Profile footer (.profile) — clickable, opens profile menu popup
 // ─────────────────────────────────────────────────────────────────────────────
 
-class _ProfileFooter extends StatelessWidget {
+class _ProfileFooter extends StatefulWidget {
   const _ProfileFooter({required this.expanded});
   final bool expanded;
 
   @override
+  State<_ProfileFooter> createState() => _ProfileFooterState();
+}
+
+class _ProfileFooterState extends State<_ProfileFooter> {
+  bool _hovered = false;
+  OverlayEntry? _menuEntry;
+
+  void _showMenu() {
+    final box = context.findRenderObject() as RenderBox?;
+    if (box == null) return;
+    final pos = box.localToGlobal(Offset.zero);
+    final size = box.size;
+
+    _menuEntry = OverlayEntry(
+      builder: (ctx) => _ProfileMenuOverlay(
+        anchorBottom: pos.dy,
+        anchorLeft: pos.dx,
+        anchorWidth: size.width,
+        onClose: _hideMenu,
+        onSettingsTap: () {
+          _hideMenu();
+          showDialog(
+            context: context,
+            builder: (_) => const SettingsDialog(),
+          );
+        },
+      ),
+    );
+    Overlay.of(context).insert(_menuEntry!);
+  }
+
+  void _hideMenu() {
+    _menuEntry?.remove();
+    _menuEntry = null;
+  }
+
+  @override
+  void dispose() {
+    _hideMenu();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-      child: Row(
-        children: [
-          // Avatar — gradient circle with "JT" initials
-          Container(
-            width: 38,
-            height: 38,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Color(0xFF3A3C3D), Color(0xFF202122)],
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: _showMenu,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          decoration: BoxDecoration(
+            color: _hovered
+                ? ColorValues.bgSidebarHover(context)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+          child: Row(
+            children: [
+              // Avatar — profile photo
+              Container(
+                width: 38,
+                height: 38,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: const Color(0xFF303233)),
+                ),
+                child: ClipOval(
+                  child: Image.asset(
+                    AssetImages.profile,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => Container(
+                      color: const Color(0xFF2B2D2E),
+                      alignment: Alignment.center,
+                      child: Text(
+                        'JT',
+                        style: TextStyle(
+                          color: ColorValues.textSecondary(context),
+                          fontWeight: FontWeight.w700,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
-              border: Border.all(color: const Color(0xFF303233)),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              'JT',
-              style: TextStyle(
-                color: ColorValues.textSecondary(context),
-                fontWeight: FontWeight.w700,
-                fontSize: 13,
+              const Gap(11),
+              // Name + role — animated opacity
+              Expanded(
+                child: AnimatedOpacity(
+                  duration: _kAnimDuration,
+                  opacity: widget.expanded ? 1.0 : 0.0,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        Constants.developerName,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 14.5,
+                          fontWeight: FontWeight.w600,
+                          color: ColorValues.textPrimary(context),
+                        ),
+                      ),
+                      Text(
+                        context.l10n.resumeTitleLabel,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 12.5,
+                          color: ColorValues.textTertiary(context),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Profile menu overlay — popup card shown above the profile footer
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _ProfileMenuOverlay extends StatefulWidget {
+  const _ProfileMenuOverlay({
+    required this.anchorBottom,
+    required this.anchorLeft,
+    required this.anchorWidth,
+    required this.onClose,
+    required this.onSettingsTap,
+  });
+
+  final double anchorBottom;
+  final double anchorLeft;
+  final double anchorWidth;
+  final VoidCallback onClose;
+  final VoidCallback onSettingsTap;
+
+  @override
+  State<_ProfileMenuOverlay> createState() => _ProfileMenuOverlayState();
+}
+
+class _ProfileMenuOverlayState extends State<_ProfileMenuOverlay>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _ctrl;
+  late final Animation<double> _opacity;
+  late final Animation<Offset> _slide;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 180),
+    );
+    _opacity = CurvedAnimation(parent: _ctrl, curve: Curves.easeOut);
+    _slide = Tween<Offset>(
+      begin: const Offset(0, 0.04),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeOut));
+    _ctrl.forward();
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  Future<void> _close() async {
+    await _ctrl.reverse();
+    widget.onClose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    const menuWidth = 320.0;
+    const menuGap = 8.0;
+
+    // Position popup above the profile footer, left-aligned with the sidebar
+    final left = widget.anchorLeft;
+    final bottom = MediaQuery.of(context).size.height - widget.anchorBottom + menuGap;
+
+    return Stack(
+      children: [
+        // Dismiss barrier
+        Positioned.fill(
+          child: GestureDetector(
+            onTap: _close,
+            behavior: HitTestBehavior.opaque,
+            child: const SizedBox.expand(),
+          ),
+        ),
+        // The card
+        Positioned(
+          left: left,
+          bottom: bottom,
+          width: menuWidth,
+          child: FadeTransition(
+            opacity: _opacity,
+            child: SlideTransition(
+              position: _slide,
+              child: _ProfileMenuCard(
+                onClose: _close,
+                onSettingsTap: widget.onSettingsTap,
               ),
             ),
           ),
-          const Gap(11),
-          // Name + role — animated opacity
-          Expanded(
-            child: AnimatedOpacity(
-              duration: _kAnimDuration,
-              opacity: expanded ? 1.0 : 0.0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    Constants.developerName,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 14.5,
-                      fontWeight: FontWeight.w600,
-                      color: ColorValues.textPrimary(context),
+        ),
+      ],
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Profile menu card content
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _ProfileMenuCard extends StatelessWidget {
+  const _ProfileMenuCard({
+    required this.onClose,
+    required this.onSettingsTap,
+  });
+
+  final VoidCallback onClose;
+  final VoidCallback onSettingsTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final menuBg = isDark ? const Color(0xFF202223) : Colors.white;
+    final lineColor = ColorValues.borderLine(context);
+
+    return Material(
+      color: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          color: menuBg,
+          border: Border.all(color: lineColor),
+          borderRadius: BorderRadius.circular(22),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: isDark ? 0.55 : 0.18),
+              blurRadius: 50,
+              offset: const Offset(0, 16),
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.fromLTRB(14, 14, 14, 10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // ── Top row: close button ────────────────────────────────────
+            Align(
+              alignment: Alignment.centerRight,
+              child: _MenuIconBtn(
+                icon: Icons.close_rounded,
+                onPressed: onClose,
+              ),
+            ),
+            const Gap(4),
+            // ── Avatar with green ring ───────────────────────────────────
+            Container(
+              width: 84,
+              height: 84,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFF00E660).withValues(alpha: 0.55),
+                    blurRadius: 0,
+                    spreadRadius: 3,
+                  ),
+                ],
+              ),
+              child: ClipOval(
+                child: Image.asset(
+                  AssetImages.profile,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => Container(
+                    color: const Color(0xFF2B2D2E),
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'JT',
+                      style: TextStyle(
+                        color: Colors.white54,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 24,
+                      ),
                     ),
                   ),
+                ),
+              ),
+            ),
+            const Gap(10),
+            // ── Greeting ────────────────────────────────────────────────
+            Text(
+              '¡Hola, Javier!',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: ColorValues.textPrimary(context),
+              ),
+            ),
+            const Gap(14),
+            // ── Manage portfolio button ──────────────────────────────────
+            // GestureDetector(
+            //   onTap: () {},
+            //   child: Container(
+            //     padding: const EdgeInsets.symmetric(
+            //       horizontal: 26,
+            //       vertical: 11,
+            //     ),
+            //     decoration: BoxDecoration(
+            //       border: Border.all(
+            //         color: ColorValues.borderChip(context),
+            //       ),
+            //       borderRadius: BorderRadius.circular(24),
+            //     ),
+            //     child: Text(
+            //       'Gestionar tu portafolio',
+            //       style: TextStyle(
+            //         fontSize: 14.5,
+            //         fontWeight: FontWeight.w600,
+            //         color: const Color(0xFF1F55C4),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // const Gap(14),
+            // ── Divider + rows ───────────────────────────────────────────
+            Divider(height: 1, thickness: 1, color: lineColor),
+            const Gap(8),
+            _PfRow(
+              icon: Icons.settings_outlined,
+              label: 'Ajustes',
+              onTap: onSettingsTap,
+            ),
+            // ── Divider + Más perfiles ───────────────────────────────────
+            const Gap(4),
+            Divider(height: 1, thickness: 1, color: lineColor),
+            const Gap(8),
+            // "Más perfiles" header
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+              child: Row(
+                children: [
                   Text(
-                    context.l10n.resumeTitleLabel,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                    'Más perfiles',
                     style: TextStyle(
-                      fontSize: 12.5,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
                       color: ColorValues.textTertiary(context),
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+            const Gap(4),
+            // Second profile row
+            _PfProfileRow(
+              name: 'Usuario',
+              email: 'youruser@gmail.com',
+              initials: 'YU',
+              color: const Color(0xFF1F55C4),
+            ),
+            const Gap(2),
+          ],
+        ),
       ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Profile menu row (icon + label)
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _PfRow extends StatefulWidget {
+  const _PfRow({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  State<_PfRow> createState() => _PfRowState();
+}
+
+class _PfRowState extends State<_PfRow> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 140),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 11),
+          decoration: BoxDecoration(
+            color: _hovered
+                ? ColorValues.bgSidebarHover(context)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                widget.icon,
+                size: 20,
+                color: _hovered
+                    ? ColorValues.textPrimary(context)
+                    : ColorValues.textSecondary(context),
+              ),
+              const Gap(13),
+              Text(
+                widget.label,
+                style: TextStyle(
+                  fontSize: 14.5,
+                  fontWeight: FontWeight.w600,
+                  color: _hovered
+                      ? ColorValues.textPrimary(context)
+                      : ColorValues.textSecondary(context),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Secondary profile row in "Más perfiles" section
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _PfProfileRow extends StatefulWidget {
+  const _PfProfileRow({
+    required this.name,
+    required this.email,
+    required this.initials,
+    required this.color,
+  });
+
+  final String name;
+  final String email;
+  final String initials;
+  final Color color;
+
+  @override
+  State<_PfProfileRow> createState() => _PfProfileRowState();
+}
+
+class _PfProfileRowState extends State<_PfProfileRow> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: () {},
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 140),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
+          decoration: BoxDecoration(
+            color: _hovered
+                ? ColorValues.bgSidebarHover(context)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              // Avatar circle with initials
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: widget.color,
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  widget.initials,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 13,
+                  ),
+                ),
+              ),
+              const Gap(12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      widget.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: ColorValues.textPrimary(context),
+                      ),
+                    ),
+                    Text(
+                      widget.email,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: ColorValues.textTertiary(context),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Small icon button used in the profile menu header
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _MenuIconBtn extends StatefulWidget {
+  const _MenuIconBtn({required this.icon, required this.onPressed});
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  @override
+  State<_MenuIconBtn> createState() => _MenuIconBtnState();
+}
+
+class _MenuIconBtnState extends State<_MenuIconBtn> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: widget.onPressed,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          width: 30,
+          height: 30,
+          decoration: BoxDecoration(
+            color: _hovered
+                ? ColorValues.bgChipHover(context)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Icon(
+            widget.icon,
+            size: 17,
+            color: _hovered
+                ? ColorValues.textPrimary(context)
+                : ColorValues.textSecondary(context),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Right-side tooltip — shows a tooltip to the right of its child via Overlay
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _RightTooltip extends StatefulWidget {
+  const _RightTooltip({required this.message, required this.child});
+  final String message;
+  final Widget child;
+
+  @override
+  State<_RightTooltip> createState() => _RightTooltipState();
+}
+
+class _RightTooltipState extends State<_RightTooltip> {
+  OverlayEntry? _entry;
+
+  void _show(BuildContext context) {
+    final box = context.findRenderObject() as RenderBox?;
+    if (box == null) return;
+    final pos = box.localToGlobal(Offset.zero);
+    final size = box.size;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    _entry = OverlayEntry(
+      builder: (_) => Positioned(
+        left: pos.dx + size.width + 8,
+        top: pos.dy + size.height / 2 - 16,
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            decoration: BoxDecoration(
+              color: isDark ? const Color(0xFF2C2C2E) : const Color(0xFF1C1C1E),
+              borderRadius: BorderRadius.circular(6),
+            ),
+            child: Text(
+              widget.message,
+              style: const TextStyle(color: Colors.white, fontSize: 12.5),
+            ),
+          ),
+        ),
+      ),
+    );
+    Overlay.of(context).insert(_entry!);
+  }
+
+  void _hide() {
+    _entry?.remove();
+    _entry = null;
+  }
+
+  @override
+  void dispose() {
+    _hide();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => _show(context),
+      onExit: (_) => _hide(),
+      child: widget.child,
     );
   }
 }

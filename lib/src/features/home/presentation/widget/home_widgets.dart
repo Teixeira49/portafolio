@@ -183,8 +183,7 @@ class _CloudWidgetState extends State<_CloudWidget>
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    // Light mode uses half opacity per design: body[data-theme="light"] .cloud{opacity:.5}
-    final opacity = isDark ? 0.85 : 0.45;
+    final opacity = isDark ? 0.85 : 0.70;
 
     return AnimatedBuilder(
       animation: _ctrl,
@@ -198,7 +197,10 @@ class _CloudWidgetState extends State<_CloudWidget>
       child: Opacity(
         opacity: opacity,
         child: ImageFiltered(
-          imageFilter: ImageFilter.blur(sigmaX: 70, sigmaY: 70),
+          imageFilter: ImageFilter.blur(
+            sigmaX: isDark ? 70 : 55,
+            sigmaY: isDark ? 70 : 55,
+          ),
           child: CustomPaint(
             painter: _CloudPainter(),
             size: Size.infinite,
@@ -259,40 +261,44 @@ class _ChatTextFieldWidgetState extends State<_ChatTextFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _toggle,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(28),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 220),
-            curve: Curves.easeInOut,
-            padding: const EdgeInsets.fromLTRB(18, 18, 18, 14),
-            decoration: BoxDecoration(
-              color: ColorValues.bgSurface(context),
-              borderRadius: BorderRadius.circular(28),
-              border: Border.all(
-                color: _isOpen
-                    ? ColorValues.borderSurfaceFocus(context)
-                    : ColorValues.borderSurface(context),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: _isOpen ? 0.8 : 0.7),
-                  blurRadius: _isOpen ? 70 : 60,
-                  spreadRadius: _isOpen ? -22 : -20,
-                  offset: const Offset(0, 18),
-                ),
-              ],
-            ),
-            child: AnimatedSize(
-              duration: const Duration(milliseconds: 300),
+    return BlocListener<ChatBloc, ChatState>(
+      listenWhen: (prev, curr) => prev.chatRoute != curr.chatRoute && curr.chatRoute == 'home_chat',
+      listener: (_, __) => setState(() => _isOpen = false),
+      child: GestureDetector(
+        onTap: _toggle,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(28),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 220),
               curve: Curves.easeInOut,
-              alignment: Alignment.topCenter,
-              child: _isOpen
-                  ? const _QuestionMenu(key: ValueKey('menu'))
-                  : const _ComposerDefault(key: ValueKey('default')),
+              padding: const EdgeInsets.fromLTRB(18, 18, 18, 14),
+              decoration: BoxDecoration(
+                color: ColorValues.bgSurface(context),
+                borderRadius: BorderRadius.circular(28),
+                border: Border.all(
+                  color: _isOpen
+                      ? ColorValues.borderSurfaceFocus(context)
+                      : ColorValues.borderSurface(context),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: _isOpen ? 0.8 : 0.7),
+                    blurRadius: _isOpen ? 70 : 60,
+                    spreadRadius: _isOpen ? -22 : -20,
+                    offset: const Offset(0, 18),
+                  ),
+                ],
+              ),
+              child: AnimatedSize(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                alignment: Alignment.topCenter,
+                child: _isOpen
+                    ? const _QuestionMenu(key: ValueKey('menu'))
+                    : const _ComposerDefault(key: ValueKey('default')),
+              ),
             ),
           ),
         ),

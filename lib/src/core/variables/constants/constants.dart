@@ -22,6 +22,9 @@ class Constants {
     defaultValue: StringConstants.emptyString,
   );
 
+  static const String instagramAccount =
+      'https://www.instagram.com/javier_a_teixeira._g/';
+
   static const String mainPhoneNumber = String.fromEnvironment(
     'MAIN_PHONE',
     defaultValue: StringConstants.emptyString,
