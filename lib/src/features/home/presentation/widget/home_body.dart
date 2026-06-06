@@ -181,9 +181,9 @@ class _HomeBodyState extends State<HomeBody>
                       alignment: composerAlign,
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(
-                          lerp(0, 16, moveProg),
+                          lerp(Responsive.isMobile(context) ? 16.0 : 0.0, 16, moveProg),
                           0,
-                          lerp(0, 16, moveProg),
+                          lerp(Responsive.isMobile(context) ? 16.0 : 0.0, 16, moveProg),
                           lerp(0, 16, moveProg),
                         ),
                         child: ConstrainedBox(

@@ -54,34 +54,62 @@ class _QuestionChipState extends State<_QuestionChip> {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) => setState(() => _hovered = true),
-      onExit: (_) => setState(() => _hovered = false),
-      child: GestureDetector(
-        onTap: () =>
-            context.read<ChatBloc>().add(GetChatMessages(widget.chatRoute)),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 160),
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-          decoration: BoxDecoration(
-            color: _hovered
-                ? ColorValues.bgChipHover(context)
-                : ColorValues.bgChip(context),
-            border: Border.all(color: ColorValues.borderChip(context)),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Text(
-            widget.question,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: _hovered
-                  ? ColorValues.textPrimary(context)
-                  : ColorValues.textSecondary(context),
+    return BlocBuilder<ChatBloc, ChatState>(
+      buildWhen: (prev, curr) => prev.chatRoute != curr.chatRoute,
+      builder: (context, state) {
+        final isActive = state.chatRoute == widget.chatRoute;
+        final isDark = Theme.of(context).brightness == Brightness.dark;
+
+        final Color bg;
+        final Color border;
+        final Color text;
+
+        if (isActive) {
+          bg = isDark ? const Color(0xFF1A3252) : const Color(0xFFEBF2FF);
+          border = isDark ? const Color(0xFF2A5499) : const Color(0xFFBAD0FB);
+          text = isDark ? const Color(0xFF6EA8FE) : const Color(0xFF1B5BCC);
+        } else if (_hovered) {
+          bg = ColorValues.bgChipHover(context);
+          border = ColorValues.borderChip(context);
+          text = ColorValues.textPrimary(context);
+        } else {
+          bg = ColorValues.bgChip(context);
+          border = ColorValues.borderChip(context);
+          text = ColorValues.textSecondary(context);
+        }
+
+        return MouseRegion(
+          cursor: isActive
+              ? SystemMouseCursors.basic
+              : SystemMouseCursors.click,
+          onEnter: (_) => setState(() => _hovered = true),
+          onExit: (_) => setState(() => _hovered = false),
+          child: GestureDetector(
+            onTap: isActive
+                ? null
+                : () => context
+                    .read<ChatBloc>()
+                    .add(GetChatMessages(widget.chatRoute)),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 160),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              decoration: BoxDecoration(
+                color: bg,
+                border: Border.all(color: border),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Text(
+                widget.question,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: text,
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
@@ -102,13 +130,13 @@ class _ButtonsMenu extends StatelessWidget {
       children: [
         _SocialButton(
           asset: AssetIcons.iconGithubLight,
-          route: Constants.githubAccount,
+          route: 'https://github.com/teixeira49',
           applyColorMask: true,
         ),
         const Gap(10),
         _SocialButton(
           asset: AssetIcons.iconLinkedin,
-          route: Constants.linkedinAccount,
+          route: 'https://www.linkedin.com/in/ing-javier-teixeira/',
         ),
         const Gap(10),
         _SocialButton(
