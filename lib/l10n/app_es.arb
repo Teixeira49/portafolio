@@ -72,5 +72,6 @@
   "educationDegreeTitle": "Ingeniero de Sistemas",
   "educationUniversityName": "Universidad Metropolitana de Venezuela (UNIMET)",
   "educationGraduatedLabel": "Graduado · Oct 2025",
-  "educationViewCertificateLabel": "Ver Certificado"
+  "educationViewCertificateLabel": "Ver Certificado",
+  "skillsFavoriteTooltip": "Tecnología favorita"
 }

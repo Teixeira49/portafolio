@@ -232,4 +232,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get educationViewCertificateLabel => 'Ver Certificado';
+
+  @override
+  String get skillsFavoriteTooltip => 'Tecnología favorita';
 }

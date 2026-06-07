@@ -233,4 +233,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get educationViewCertificateLabel => 'View Certificate';
+
+  @override
+  String get skillsFavoriteTooltip => 'Favorite technology';
 }

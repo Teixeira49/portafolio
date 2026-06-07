@@ -541,6 +541,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'View Certificate'**
   String get educationViewCertificateLabel;
+
+  /// No description provided for @skillsFavoriteTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite technology'**
+  String get skillsFavoriteTooltip;
 }
 
 class _AppLocalizationsDelegate

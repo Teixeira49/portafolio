@@ -72,5 +72,6 @@
   "educationDegreeTitle": "Systems Engineer",
   "educationUniversityName": "Metropolitan University of Venezuela (UNIMET)",
   "educationGraduatedLabel": "Graduated · Oct 2025",
-  "educationViewCertificateLabel": "View Certificate"
+  "educationViewCertificateLabel": "View Certificate",
+  "skillsFavoriteTooltip": "Favorite technology"
 }
