@@ -792,13 +792,25 @@ class _ProfileMenuCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // ── Top row: close button ────────────────────────────────────
-            Align(
-              alignment: Alignment.centerRight,
-              child: _MenuIconBtn(
-                icon: Icons.close_rounded,
-                onPressed: onClose,
-              ),
+            // ── Top row: label + close button ────────────────────────────
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Perfil del usuario',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 13.5,
+                      fontWeight: FontWeight.w600,
+                      color: ColorValues.textSecondary(context),
+                    ),
+                  ),
+                ),
+                _MenuIconBtn(
+                  icon: Icons.close_rounded,
+                  onPressed: onClose,
+                ),
+              ],
             ),
             const Gap(4),
             // ── Avatar with green ring ───────────────────────────────────
