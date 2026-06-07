@@ -547,6 +547,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Favorite technology'**
   String get skillsFavoriteTooltip;
+
+  /// No description provided for @projectFavoriteTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite project'**
+  String get projectFavoriteTooltip;
+
+  /// No description provided for @projectEducationalTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Educational project made for {institution}'**
+  String projectEducationalTooltip(String institution);
 }
 
 class _AppLocalizationsDelegate

@@ -38,6 +38,7 @@ class SkillsBody extends StatelessWidget {
                 asset: s['image'] as String?,
                 level: s['level'],
                 color: s['color'] as Color?,
+                isFavorite: s['isFavorite'] as bool? ?? false,
               ),
             );
           }).toList(),

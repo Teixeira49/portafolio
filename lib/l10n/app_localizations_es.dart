@@ -235,4 +235,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get skillsFavoriteTooltip => 'Tecnología favorita';
+
+  @override
+  String get projectFavoriteTooltip => 'Proyecto favorito';
+
+  @override
+  String projectEducationalTooltip(String institution) {
+    return 'Proyecto educativo hecho para $institution';
+  }
 }

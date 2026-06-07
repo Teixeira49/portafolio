@@ -73,5 +73,14 @@
   "educationUniversityName": "Universidad Metropolitana de Venezuela (UNIMET)",
   "educationGraduatedLabel": "Graduado · Oct 2025",
   "educationViewCertificateLabel": "Ver Certificado",
-  "skillsFavoriteTooltip": "Tecnología favorita"
+  "skillsFavoriteTooltip": "Tecnología favorita",
+  "projectFavoriteTooltip": "Proyecto favorito",
+  "projectEducationalTooltip": "Proyecto educativo hecho para {institution}",
+  "@projectEducationalTooltip": {
+    "placeholders": {
+      "institution": {
+        "type": "String"
+      }
+    }
+  }
 }
