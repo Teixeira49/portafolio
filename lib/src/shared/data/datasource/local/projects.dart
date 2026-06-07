@@ -18,6 +18,8 @@ List<Map<String, dynamic>> projects = [
           "API de inventario de libros para una tienda en línea, donde se puede realizar un CRUD de libros, realizar busquedas y consultar libros con stock bajo.",
     },
     "private": false,
+    "isFavorite": false,
+    "educationalInstitution": null,
   },
   {
     "name": "BCV Tracker",
@@ -38,6 +40,8 @@ List<Map<String, dynamic>> projects = [
           "API con Web Scraping que te permite conocer el precio del dolar y otras monedas disponibles en la BCV en Venezuela.",
     },
     "private": false,
+    "isFavorite": true,
+    "educationalInstitution": null,
   },
   {
     "name": "Prototipo NeoBanking - Suiche7B",
@@ -54,6 +58,8 @@ List<Map<String, dynamic>> projects = [
           "Diseño propuesto y prototipado para implementar nuevas funciones en la modalidad de pago movíl interbancario.",
     },
     "private": false,
+    "isFavorite": false,
+    "educationalInstitution": null,
   },
   {
     "name": "PadelNow App",
@@ -73,6 +79,8 @@ List<Map<String, dynamic>> projects = [
           "Aplicación móvil para reservar horarios en canchas de padel en Venezuela y organizar torneos de padel.",
     },
     "private": true,
+    "isFavorite": false,
+    "educationalInstitution": null,
   },
   {
     "name": "New You App",
@@ -92,6 +100,8 @@ List<Map<String, dynamic>> projects = [
           "Prototipo desarrollado para la revista NewYou en EEUU que muestra videos formato vertical  de sus productos y publicaciones de revista.",
     },
     "private": false,
+    "isFavorite": false,
+    "educationalInstitution": null,
   },
   {
     "name": "Arturos - POS",
@@ -111,6 +121,8 @@ List<Map<String, dynamic>> projects = [
           "Prototipo de POS basado en roles para la gestión de inventario, pedidos en tiempo real vía sockets, sucursales y clientes de la cadena de comida Arturos.",
     },
     "private": true,
+    "isFavorite": true,
+    "educationalInstitution": null,
   },
   {
     "name": "Kudo",
@@ -137,6 +149,8 @@ List<Map<String, dynamic>> projects = [
           "Aplicación de fidelización de clientes. Gestiona tarjetas de fidelización para que los clientes puedan coleccionar sellos y canjearlos por premios.",
     },
     "private": true,
+    "isFavorite": true,
+    "educationalInstitution": null,
   },
   {
     "name": "Drive On",
@@ -154,6 +168,8 @@ List<Map<String, dynamic>> projects = [
           "Prototipo de cartera de contactos de seguridad basada en roles que permite la gestión de presupuestos de seguros y contactos de emergencia.",
     },
     "private": false,
+    "isFavorite": false,
+    "educationalInstitution": null,
   },
   {
     "name": "JM Report",
@@ -178,6 +194,8 @@ List<Map<String, dynamic>> projects = [
           "Sistema clínico para la gestión de historias de pacientes, escritas de forma colaborativa entre médicos y residentes.",
     },
     "private": false,
+    "isFavorite": false,
+    "educationalInstitution": null,
   },
   {
     "name": "MetroTravel 2024",
@@ -197,6 +215,8 @@ List<Map<String, dynamic>> projects = [
           "Ejercicio de grafos universitario que muestra el uso del algoritmo de Dijkstra para encontrar la ruta más corta entre ascensos de vuelo",
     },
     "private": false,
+    "isFavorite": false,
+    "educationalInstitution": "UNIMET",
   },
   {
     "name": "En la Parada",
@@ -212,6 +232,8 @@ List<Map<String, dynamic>> projects = [
           "Arquitectura de microservicios para un sistema basado en roles para la compra y pago rápido de pasajes de autobús en Venezuela",
     },
     "private": true,
+    "isFavorite": false,
+    "educationalInstitution": null,
   },
   {
     "name": "Cinema - APP",
@@ -230,5 +252,7 @@ List<Map<String, dynamic>> projects = [
       "es": "Ejercicio universitario usando la API de MovieDB para ver información de películas",
     },
     "private": false,
+    "isFavorite": false,
+    "educationalInstitution": "UNIMET",
   },
 ];

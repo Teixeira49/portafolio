@@ -28,6 +28,8 @@ class ProjectCard extends StatefulWidget {
     required this.description,
     required this.private,
     required this.cardWidth,
+    this.isFavorite = false,
+    this.educationalInstitution,
   });
 
   final String name;
@@ -41,6 +43,8 @@ class ProjectCard extends StatefulWidget {
   final bool private;
   // Pre-computed card width so _TechBadgesRow can avoid LayoutBuilder.
   final double cardWidth;
+  final bool isFavorite;
+  final String? educationalInstitution;
 
   @override
   State<ProjectCard> createState() => _ProjectCardState();
@@ -113,11 +117,42 @@ class _ProjectCardState extends State<ProjectCard> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                widget.name,
-                style: ExtendedTextTheme.titleMedium(context),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Text(
+                      widget.name,
+                      style: ExtendedTextTheme.titleMedium(context),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  if (widget.isFavorite) ...[
+                    const SizedBox(width: 6),
+                    Tooltip(
+                      message: context.l10n.projectFavoriteTooltip,
+                      child: const Icon(
+                        Icons.star_rounded,
+                        size: 16,
+                        color: Color(0xFFFFBE00),
+                      ),
+                    ),
+                  ],
+                  if (widget.educationalInstitution != null) ...[
+                    const SizedBox(width: 4),
+                    Tooltip(
+                      message: context.l10n.projectEducationalTooltip(
+                        widget.educationalInstitution!,
+                      ),
+                      child: const Icon(
+                        Icons.school_rounded,
+                        size: 16,
+                        color: Color(0xFF7FA8FF),
+                      ),
+                    ),
+                  ],
+                ],
               ),
               Gap(WidthValues.spacingXxs),
               Text(
@@ -607,6 +642,45 @@ class _ProjectDetailModal extends StatelessWidget {
                           .toList(),
                     ),
 
+                    // ── Project type tags ────────────────────────────────────
+                    if (project.isFavorite || project.educationalInstitution != null) ...[
+                      const Gap(22),
+                      Text(
+                        isEs ? 'TIPO DE PROYECTO' : 'PROJECT TYPE',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: .5,
+                          color: ColorValues.textTertiary(context),
+                        ),
+                      ),
+                      const Gap(10),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          if (project.isFavorite)
+                            _ProjectTagChip(
+                              icon: Icons.star_rounded,
+                              iconColor: const Color(0xFFFFBE00),
+                              label: context.l10n.projectFavoriteTooltip,
+                              bgColor: const Color(0x22FFD000),
+                              borderColor: const Color(0x55FFB800),
+                            ),
+                          if (project.educationalInstitution != null)
+                            _ProjectTagChip(
+                              icon: Icons.school_rounded,
+                              iconColor: const Color(0xFF7FA8FF),
+                              label: context.l10n.projectEducationalTooltip(
+                                project.educationalInstitution!,
+                              ),
+                              bgColor: const Color(0x221E50F0),
+                              borderColor: const Color(0x554F8CFA),
+                            ),
+                        ],
+                      ),
+                    ],
+
                     // ── Action buttons ──────────────────────────────────────
                     const Gap(24),
                     Wrap(
@@ -730,6 +804,49 @@ class _ModalCloseButtonState extends State<_ModalCloseButton> {
                 : ColorValues.fgTertiary(context),
           ),
         ),
+      ),
+    );
+  }
+}
+
+// ── Project tag chip (used in modal "Project Type" section) ─────────────────
+
+class _ProjectTagChip extends StatelessWidget {
+  const _ProjectTagChip({
+    required this.icon,
+    required this.iconColor,
+    required this.label,
+    required this.bgColor,
+    required this.borderColor,
+  });
+
+  final IconData icon;
+  final Color iconColor;
+  final String label;
+  final Color bgColor;
+  final Color borderColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(WidthValues.radiusLg),
+        color: bgColor,
+        border: Border.all(color: borderColor),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 14, color: iconColor),
+          const SizedBox(width: 6),
+          Text(
+            label,
+            style: ExtendedTextTheme.titleExtraSmall(context).copyWith(
+              color: ColorValues.textSecondary(context),
+            ),
+          ),
+        ],
       ),
     );
   }
