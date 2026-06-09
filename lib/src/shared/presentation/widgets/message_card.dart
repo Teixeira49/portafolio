@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:portafolio/l10n/l10n.dart';
+import 'package:portafolio/src/core/providers/providers.dart';
 import 'package:portafolio/src/core/variables/values/values.dart';
 
 import '../../../core/variables/variables.dart';
@@ -55,25 +56,32 @@ class _UserMessage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Identity row: "Tú" + person icon
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  context.l10n.chatYouLabel,
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
-                    color: ColorValues.textPrimary(context),
-                  ),
-                ),
-                const Gap(8),
-                Icon(
-                  Icons.person_outline_rounded,
-                  size: 22,
-                  color: ColorValues.textTertiary(context),
-                ),
-              ],
+            // Identity row: user name (or "Tú") + person icon
+            ListenableBuilder(
+              listenable: getIt<AppProvider>(),
+              builder: (context, _) {
+                final label = getIt<AppProvider>().activeUserName ??
+                    context.l10n.chatYouLabel;
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      label,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: ColorValues.textPrimary(context),
+                      ),
+                    ),
+                    const Gap(8),
+                    Icon(
+                      Icons.person_outline_rounded,
+                      size: 22,
+                      color: ColorValues.textTertiary(context),
+                    ),
+                  ],
+                );
+              },
             ),
             const Gap(9),
             // Bubble (.ubub) — max 80 % of parent width

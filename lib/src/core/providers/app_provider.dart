@@ -10,6 +10,15 @@ class AppProvider extends ChangeNotifier {
 
   Locale? get locale => _locale;
 
+  String? _activeUserName;
+  String? get activeUserName => _activeUserName;
+
+  void setActiveUserName(String? name) {
+    if (_activeUserName == name) return;
+    _activeUserName = name;
+    notifyListeners();
+  }
+
   ThemeMode _themeMode = ThemeMode.system;
 
   ThemeMode get themeMode => _themeMode;

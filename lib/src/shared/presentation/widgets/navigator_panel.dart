@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:portafolio/l10n/l10n.dart';
+import '../../../core/providers/providers.dart';
 import '../../../core/theme/responsive.dart';
 import '../../../core/utils/asset_icons.dart';
 import '../../../core/utils/asset_images.dart';
@@ -403,6 +404,7 @@ class _ContactButtonState extends State<_ContactButton> {
       child: GestureDetector(
         onTap: () => showDialog(
           context: context,
+          barrierColor: Colors.black.withAlpha(200),
           builder: (_) => const ContactDialog(),
         ),
         child: AnimatedContainer(
@@ -536,6 +538,7 @@ class _ProfileFooter extends StatefulWidget {
 class _ProfileFooterState extends State<_ProfileFooter> {
   bool _hovered = false;
   OverlayEntry? _menuEntry;
+  String? _addedUserName;
 
   void _showMenu() {
     final box = context.findRenderObject() as RenderBox?;
@@ -548,6 +551,7 @@ class _ProfileFooterState extends State<_ProfileFooter> {
         anchorBottom: pos.dy,
         anchorLeft: pos.dx,
         anchorWidth: size.width,
+        addedUserName: _addedUserName,
         onClose: _hideMenu,
         onSettingsTap: () {
           _hideMenu();
@@ -555,6 +559,26 @@ class _ProfileFooterState extends State<_ProfileFooter> {
             context: context,
             builder: (_) => const SettingsDialog(),
           );
+        },
+        onAddUserTap: () async {
+          _hideMenu();
+          final result = await showDialog<String>(
+            context: context,
+            builder: (_) => const _AddUserDialog(),
+          );
+          if (result != null && result.trim().isNotEmpty) {
+            setState(() => _addedUserName = result.trim());
+            getIt<AppProvider>().setActiveUserName(result.trim());
+          }
+        },
+        onSignOutTap: () {
+          _hideMenu();
+          setState(() => _addedUserName = null);
+          getIt<AppProvider>().setActiveUserName(null);
+        },
+        onSelectDefaultUser: () {
+          _hideMenu();
+          getIt<AppProvider>().setActiveUserName(null);
         },
       ),
     );
@@ -670,6 +694,10 @@ class _ProfileMenuOverlay extends StatefulWidget {
     required this.anchorWidth,
     required this.onClose,
     required this.onSettingsTap,
+    required this.onAddUserTap,
+    required this.onSignOutTap,
+    required this.onSelectDefaultUser,
+    this.addedUserName,
   });
 
   final double anchorBottom;
@@ -677,6 +705,10 @@ class _ProfileMenuOverlay extends StatefulWidget {
   final double anchorWidth;
   final VoidCallback onClose;
   final VoidCallback onSettingsTap;
+  final VoidCallback onAddUserTap;
+  final VoidCallback onSignOutTap;
+  final VoidCallback onSelectDefaultUser;
+  final String? addedUserName;
 
   @override
   State<_ProfileMenuOverlay> createState() => _ProfileMenuOverlayState();
@@ -745,6 +777,10 @@ class _ProfileMenuOverlayState extends State<_ProfileMenuOverlay>
               child: _ProfileMenuCard(
                 onClose: _close,
                 onSettingsTap: widget.onSettingsTap,
+                onAddUserTap: widget.onAddUserTap,
+                onSignOutTap: widget.onSignOutTap,
+                onSelectDefaultUser: widget.onSelectDefaultUser,
+                addedUserName: widget.addedUserName,
               ),
             ),
           ),
@@ -762,10 +798,31 @@ class _ProfileMenuCard extends StatelessWidget {
   const _ProfileMenuCard({
     required this.onClose,
     required this.onSettingsTap,
+    required this.onAddUserTap,
+    required this.onSignOutTap,
+    required this.onSelectDefaultUser,
+    this.addedUserName,
   });
 
   final VoidCallback onClose;
   final VoidCallback onSettingsTap;
+  final VoidCallback onAddUserTap;
+  final VoidCallback onSignOutTap;
+  final VoidCallback onSelectDefaultUser;
+  final String? addedUserName;
+
+  String _getInitials(String name) {
+    final parts = name.trim().split(RegExp(r'\s+'));
+    if (parts.length >= 2) {
+      return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
+    }
+    return name.isNotEmpty ? name[0].toUpperCase() : '?';
+  }
+
+  String _generateEmail(String name) {
+    final slug = name.trim().toLowerCase().replaceAll(RegExp(r'\s+'), '');
+    return '$slug@gmail.com';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -792,25 +849,29 @@ class _ProfileMenuCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // ── Top row: label + close button ────────────────────────────
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
+            // ── Top row: label centered + close button pinned right ──────
+            SizedBox(
+              height: 30,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Text(
                     'Perfil del usuario',
-                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 13.5,
                       fontWeight: FontWeight.w600,
                       color: ColorValues.textSecondary(context),
                     ),
                   ),
-                ),
-                _MenuIconBtn(
-                  icon: Icons.close_rounded,
-                  onPressed: onClose,
-                ),
-              ],
+                  Positioned(
+                    right: 0,
+                    child: _MenuIconBtn(
+                      icon: Icons.close_rounded,
+                      onPressed: onClose,
+                    ),
+                  ),
+                ],
+              ),
             ),
             const Gap(4),
             // ── Avatar with green ring ───────────────────────────────────
@@ -857,31 +918,6 @@ class _ProfileMenuCard extends StatelessWidget {
               ),
             ),
             const Gap(14),
-            // ── Manage portfolio button ──────────────────────────────────
-            // GestureDetector(
-            //   onTap: () {},
-            //   child: Container(
-            //     padding: const EdgeInsets.symmetric(
-            //       horizontal: 26,
-            //       vertical: 11,
-            //     ),
-            //     decoration: BoxDecoration(
-            //       border: Border.all(
-            //         color: ColorValues.borderChip(context),
-            //       ),
-            //       borderRadius: BorderRadius.circular(24),
-            //     ),
-            //     child: Text(
-            //       'Gestionar tu portafolio',
-            //       style: TextStyle(
-            //         fontSize: 14.5,
-            //         fontWeight: FontWeight.w600,
-            //         color: const Color(0xFF1F55C4),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            // const Gap(14),
             // ── Divider + rows ───────────────────────────────────────────
             Divider(height: 1, thickness: 1, color: lineColor),
             const Gap(8),
@@ -917,8 +953,277 @@ class _ProfileMenuCard extends StatelessWidget {
               email: 'youruser@gmail.com',
               initials: 'YU',
               color: const Color(0xFF1F55C4),
+              onTap: onSelectDefaultUser,
             ),
             const Gap(2),
+            // ── Added user or "Añadir usuario" ───────────────────────────
+            if (addedUserName != null) ...[
+              _PfProfileRow(
+                name: addedUserName!,
+                email: _generateEmail(addedUserName!),
+                initials: _getInitials(addedUserName!),
+                color: const Color(0xFF7C3AED),
+              ),
+              const Gap(2),
+              Divider(height: 1, thickness: 1, color: lineColor),
+              const Gap(4),
+              _PfRow(
+                icon: Icons.logout_rounded,
+                label: 'Cerrar sesión',
+                onTap: onSignOutTap,
+              ),
+            ] else
+              _AddUserRow(onTap: onAddUserTap),
+            const Gap(2),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// "Añadir usuario" row — shown when no custom user has been added yet
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _AddUserRow extends StatefulWidget {
+  const _AddUserRow({required this.onTap});
+  final VoidCallback onTap;
+
+  @override
+  State<_AddUserRow> createState() => _AddUserRowState();
+}
+
+class _AddUserRowState extends State<_AddUserRow> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 140),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
+          decoration: BoxDecoration(
+            color: _hovered
+                ? ColorValues.bgSidebarHover(context)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: ColorValues.borderLine(context),
+                    width: 1.5,
+                  ),
+                ),
+                alignment: Alignment.center,
+                child: Icon(
+                  Icons.add_rounded,
+                  size: 18,
+                  color: ColorValues.textSecondary(context),
+                ),
+              ),
+              const Gap(12),
+              Text(
+                'Añadir usuario',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: _hovered
+                      ? ColorValues.textPrimary(context)
+                      : ColorValues.textSecondary(context),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Dialog for entering a new user name
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _AddUserDialog extends StatefulWidget {
+  const _AddUserDialog();
+
+  @override
+  State<_AddUserDialog> createState() => _AddUserDialogState();
+}
+
+class _AddUserDialogState extends State<_AddUserDialog> {
+  final _controller = TextEditingController();
+  bool _hasText = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      final has = _controller.text.trim().isNotEmpty;
+      if (has != _hasText) setState(() => _hasText = has);
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? const Color(0xFF202223) : Colors.white;
+    final lineColor = ColorValues.borderLine(context);
+
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      child: Container(
+        width: 340,
+        decoration: BoxDecoration(
+          color: bg,
+          border: Border.all(color: lineColor),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: isDark ? 0.55 : 0.18),
+              blurRadius: 40,
+              offset: const Offset(0, 12),
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Header
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Añadir usuario',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: ColorValues.textPrimary(context),
+                    ),
+                  ),
+                ),
+                _MenuIconBtn(
+                  icon: Icons.close_rounded,
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+              ],
+            ),
+            const Gap(16),
+            // Text field
+            TextField(
+              controller: _controller,
+              autofocus: true,
+              maxLength: 30,
+              textCapitalization: TextCapitalization.words,
+              onSubmitted: (v) {
+                if (v.trim().isNotEmpty) Navigator.of(context).pop(v.trim());
+              },
+              style: TextStyle(
+                fontSize: 14.5,
+                color: ColorValues.textPrimary(context),
+              ),
+              decoration: InputDecoration(
+                hintText: 'Tu nombre',
+                hintStyle: TextStyle(
+                  color: ColorValues.textTertiary(context),
+                  fontSize: 14.5,
+                ),
+                filled: true,
+                fillColor: isDark
+                    ? const Color(0xFF2B2D2E)
+                    : const Color(0xFFF4F4F5),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 12,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(
+                    color: Color(0xFF00E660),
+                    width: 1.5,
+                  ),
+                ),
+              ),
+            ),
+            const Gap(16),
+            // Buttons
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 18,
+                      vertical: 10,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Text(
+                    'Cancelar',
+                    style: TextStyle(
+                      color: ColorValues.textSecondary(context),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                const Gap(8),
+                AnimatedOpacity(
+                  duration: const Duration(milliseconds: 150),
+                  opacity: _hasText ? 1.0 : 0.45,
+                  child: GestureDetector(
+                    onTap: _hasText
+                        ? () => Navigator.of(context)
+                            .pop(_controller.text.trim())
+                        : null,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 22,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF00E660),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Text(
+                        'Aceptar',
+                        style: TextStyle(
+                          color: Color(0xFF03331A),
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -1003,12 +1308,14 @@ class _PfProfileRow extends StatefulWidget {
     required this.email,
     required this.initials,
     required this.color,
+    this.onTap,
   });
 
   final String name;
   final String email;
   final String initials;
   final Color color;
+  final VoidCallback? onTap;
 
   @override
   State<_PfProfileRow> createState() => _PfProfileRowState();
@@ -1024,7 +1331,7 @@ class _PfProfileRowState extends State<_PfProfileRow> {
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
       child: GestureDetector(
-        onTap: () {},
+        onTap: widget.onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 140),
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
