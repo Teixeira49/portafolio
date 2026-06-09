@@ -16,6 +16,8 @@
   "dashboardOpenPanelTooltip": "Expand Panel",
   "homePageQuestionLayer": "Ask your question...",
   "homePageIAModelLayer": "Teixeira V.1.0",
+  "modelFlashSubtitle": "Fast and concise",
+  "modelProSubtitle": "Detailed and thorough",
   "homePageDownloadResumeButton": "Resume",
   "homePageAboutMeQuestionButton": "Who are you?",
   "homePageSkillsQuestionButton": "What skills do you have?",

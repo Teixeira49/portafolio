@@ -8,6 +8,7 @@ import 'package:portafolio/src/features/home/data/repositories/home_repository.d
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:portafolio/l10n/l10n.dart';
+import '../../../../core/providers/providers.dart';
 import '../../../../core/theme/responsive.dart';
 import '../../../../core/utils/asset_icons.dart';
 import '../../../../core/utils/helpers.dart';

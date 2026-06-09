@@ -1,6 +1,8 @@
 // lib/providers/app_provider.dart
 import 'package:flutter/material.dart';
 
+enum AppModel { flash, pro }
+
 class AppProvider extends ChangeNotifier {
   Locale? _locale;
 
@@ -11,6 +13,16 @@ class AppProvider extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.system;
 
   ThemeMode get themeMode => _themeMode;
+
+  AppModel _selectedModel = AppModel.flash;
+
+  AppModel get selectedModel => _selectedModel;
+
+  void setModel(AppModel model) {
+    if (_selectedModel == model) return;
+    _selectedModel = model;
+    notifyListeners();
+  }
 
   void setThemeMode(ThemeMode mode) {
     _themeMode = mode;

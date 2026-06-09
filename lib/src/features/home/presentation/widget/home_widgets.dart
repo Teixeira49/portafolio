@@ -357,7 +357,7 @@ class _ComposerDefault extends StatelessWidget {
   }
 }
 
-// ── Model pill — "Teixeira V.1.0" + chevron ──────────────────────────────────
+// ── Model pill — current model name + chevron dropdown ───────────────────────
 
 class _ModelPill extends StatefulWidget {
   @override
@@ -366,44 +366,254 @@ class _ModelPill extends StatefulWidget {
 
 class _ModelPillState extends State<_ModelPill> {
   bool _hovered = false;
+  OverlayEntry? _dropdownEntry;
+
+  void _openDropdown() {
+    final box = context.findRenderObject() as RenderBox?;
+    if (box == null) return;
+    final pos = box.localToGlobal(Offset.zero);
+    final size = box.size;
+    final currentModel = getIt<AppProvider>().selectedModel;
+    final isHome = context.read<ChatBloc>().getChatId() == 0;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    _dropdownEntry = OverlayEntry(
+      builder: (ctx) => _ModelDropdown(
+        anchorTop: isHome ? pos.dy + size.height + 6 : null,
+        anchorBottom: isHome ? null : screenHeight - pos.dy + 6,
+        anchorLeft: pos.dx,
+        selectedModel: currentModel,
+        onClose: _closeDropdown,
+        onSelect: (model) {
+          getIt<AppProvider>().setModel(model);
+          _closeDropdown();
+        },
+      ),
+    );
+    Overlay.of(context).insert(_dropdownEntry!);
+  }
+
+  void _closeDropdown() {
+    _dropdownEntry?.remove();
+    _dropdownEntry = null;
+  }
+
+  @override
+  void dispose() {
+    _closeDropdown();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) => setState(() => _hovered = true),
-      onExit: (_) => setState(() => _hovered = false),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 160),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        decoration: BoxDecoration(
-          color: _hovered
-              ? ColorValues.bgChipHover(context)
-              : ColorValues.bgChip(context),
-          border: Border.all(color: ColorValues.borderChip(context)),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              context.l10n.homePageIAModelLayer,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
+    return ListenableBuilder(
+      listenable: getIt<AppProvider>(),
+      builder: (context, _) {
+        final model = getIt<AppProvider>().selectedModel;
+        final modelName = model == AppModel.flash ? 'Teixeira Flash' : 'Teixeira Pro';
+        return MouseRegion(
+          cursor: SystemMouseCursors.click,
+          onEnter: (_) => setState(() => _hovered = true),
+          onExit: (_) => setState(() => _hovered = false),
+          child: GestureDetector(
+            onTap: _openDropdown,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 160),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              decoration: BoxDecoration(
                 color: _hovered
-                    ? ColorValues.textPrimary(context)
-                    : ColorValues.textSecondary(context),
+                    ? ColorValues.bgChipHover(context)
+                    : ColorValues.bgChip(context),
+                border: Border.all(color: ColorValues.borderChip(context)),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    modelName,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: _hovered
+                          ? ColorValues.textPrimary(context)
+                          : ColorValues.textSecondary(context),
+                    ),
+                  ),
+                  const Gap(8),
+                  Icon(
+                    Icons.keyboard_arrow_down_rounded,
+                    size: 15,
+                    color: _hovered
+                        ? ColorValues.textPrimary(context)
+                        : ColorValues.textSecondary(context),
+                  ),
+                ],
               ),
             ),
-            const Gap(8),
-            Icon(
-              Icons.keyboard_arrow_down_rounded,
-              size: 15,
-              color: _hovered
-                  ? ColorValues.textPrimary(context)
-                  : ColorValues.textSecondary(context),
+          ),
+        );
+      },
+    );
+  }
+}
+
+// ── Model dropdown overlay ────────────────────────────────────────────────────
+
+class _ModelDropdown extends StatelessWidget {
+  const _ModelDropdown({
+    this.anchorTop,
+    this.anchorBottom,
+    required this.anchorLeft,
+    required this.selectedModel,
+    required this.onClose,
+    required this.onSelect,
+  });
+
+  final double? anchorTop;
+  final double? anchorBottom;
+  final double anchorLeft;
+  final AppModel selectedModel;
+  final VoidCallback onClose;
+  final void Function(AppModel) onSelect;
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final menuBg = isDark ? const Color(0xFF202223) : Colors.white;
+
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: GestureDetector(
+            onTap: onClose,
+            behavior: HitTestBehavior.opaque,
+            child: const SizedBox.expand(),
+          ),
+        ),
+        Positioned(
+          top: anchorTop,
+          bottom: anchorBottom,
+          left: anchorLeft,
+          child: Material(
+            color: Colors.transparent,
+            child: Container(
+              width: 220,
+              decoration: BoxDecoration(
+                color: menuBg,
+                border: Border.all(color: ColorValues.borderLine(context)),
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(
+                      alpha: isDark ? 0.4 : 0.12,
+                    ),
+                    blurRadius: 24,
+                    offset: const Offset(0, 8),
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(6),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _ModelDropdownItem(
+                    label: 'Flash',
+                    subtitle: context.l10n.modelFlashSubtitle,
+                    isSelected: selectedModel == AppModel.flash,
+                    onTap: () => onSelect(AppModel.flash),
+                  ),
+                  _ModelDropdownItem(
+                    label: 'Pro',
+                    subtitle: context.l10n.modelProSubtitle,
+                    isSelected: selectedModel == AppModel.pro,
+                    onTap: () => onSelect(AppModel.pro),
+                  ),
+                ],
+              ),
             ),
-          ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// ── Model dropdown item ───────────────────────────────────────────────────────
+
+class _ModelDropdownItem extends StatefulWidget {
+  const _ModelDropdownItem({
+    required this.label,
+    required this.subtitle,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final String label;
+  final String subtitle;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  State<_ModelDropdownItem> createState() => _ModelDropdownItemState();
+}
+
+class _ModelDropdownItemState extends State<_ModelDropdownItem> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final primaryColor = Theme.of(context).primaryColor;
+
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 140),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          decoration: BoxDecoration(
+            color: widget.isSelected
+                ? primaryColor.withAlpha(30)
+                : _hovered
+                    ? ColorValues.bgSidebarHover(context)
+                    : Colors.transparent,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Teixeira ${widget.label}',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: widget.isSelected
+                            ? primaryColor
+                            : ColorValues.textPrimary(context),
+                      ),
+                    ),
+                    const Gap(2),
+                    Text(
+                      widget.subtitle,
+                      style: TextStyle(
+                        fontSize: 11.5,
+                        color: ColorValues.textTertiary(context),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (widget.isSelected)
+                Icon(Icons.check_rounded, size: 16, color: primaryColor),
+            ],
+          ),
         ),
       ),
     );

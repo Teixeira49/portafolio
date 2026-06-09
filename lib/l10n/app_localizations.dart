@@ -200,6 +200,18 @@ abstract class AppLocalizations {
   /// **'Teixeira V.1.0'**
   String get homePageIAModelLayer;
 
+  /// No description provided for @modelFlashSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast and concise'**
+  String get modelFlashSubtitle;
+
+  /// No description provided for @modelProSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Detailed and thorough'**
+  String get modelProSubtitle;
+
   /// No description provided for @homePageDownloadResumeButton.
   ///
   /// In en, this message translates to:

@@ -61,6 +61,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homePageIAModelLayer => 'Teixeira V.1.0';
 
   @override
+  String get modelFlashSubtitle => 'Rápido y conciso';
+
+  @override
+  String get modelProSubtitle => 'Detallado y preciso';
+
+  @override
   String get homePageDownloadResumeButton => 'Curriculum';
 
   @override
