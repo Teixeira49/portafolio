@@ -6,6 +6,8 @@ import 'package:portafolio/src/core/utils/helpers.dart';
 import 'package:portafolio/src/core/variables/values/values.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'certificate_viewer_modal.dart';
+
 Future<void> _openUrl(String url) async {
   final uri = Uri.tryParse(url);
   if (uri == null) return;
@@ -440,6 +442,21 @@ class _ExperienceCard extends StatelessWidget {
               color: ColorValues.textSecondary(context),
             ),
           ),
+          // ── Certificate link (optional) ──────────────────────────────────
+          if (item['cert_link'] != null) ...[
+            Gap(WidthValues.spacingXs),
+            Align(
+              alignment: Alignment.centerRight,
+              child: _ExpCertButton(
+                certLink: item['cert_link'] as String,
+                accentColor: accentColor,
+                modalTitle: item['event'] as String? ?? companies.first.name,
+                modalIssuingEntity: companies.map((c) => c.name).join(' · '),
+                modalDate: dateStr,
+                modalImage: companies.first.image,
+              ),
+            ),
+          ],
         ],
       ),
     );
@@ -615,6 +632,65 @@ class _HackathonBadge extends StatelessWidget {
           color: color,
           letterSpacing: 0.8,
           height: 1.3,
+        ),
+      ),
+    );
+  }
+}
+
+// ── Experience certificate button ─────────────────────────────────────────────
+// Identical appearance to the cert link in CertificationsCard but uses the
+// entry's accentColor instead of brandGreenSolid.
+
+class _ExpCertButton extends StatelessWidget {
+  const _ExpCertButton({
+    required this.certLink,
+    required this.accentColor,
+    required this.modalTitle,
+    required this.modalIssuingEntity,
+    required this.modalDate,
+    this.modalImage,
+  });
+
+  final String certLink;
+  final Color accentColor;
+  final String modalTitle;
+  final String modalIssuingEntity;
+  final String modalDate;
+  final String? modalImage;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () => showDialog(
+          context: context,
+          builder: (_) => CertificateViewerModal(
+            title: modalTitle,
+            issuingEntity: modalIssuingEntity,
+            date: modalDate,
+            link: certLink,
+            image: modalImage,
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 7,
+          children: [
+            Icon(Icons.open_in_new, size: 16, color: accentColor),
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: Text(
+                context.l10n.educationViewCertificateLabel,
+                style: TextStyle(
+                  fontSize: 13.5,
+                  fontWeight: FontWeight.w600,
+                  color: accentColor,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

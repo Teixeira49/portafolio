@@ -48,6 +48,7 @@ List<Map<String, dynamic>> experience = [
           "Con el objetivo de presentar una mejora en los pagos móviles interbancarios en Venezuela, fui seleccionado mediante una propuesta teórica entre más de 40 equipos para participar en la final. Los finalistas tuvieron que desarrollar un prototipo en Figma y presentar una presentación en vivo para defender la propuesta inicial.",
     },
     "category": "Hackathon",
+    "cert_link": "https://drive.google.com/file/d/1OyELk8PCuFIH7GQxzApphuzq8CDOfOZL/view?usp=drive_link",
   },
   {
     "init_time": "12/2025",
@@ -82,6 +83,7 @@ List<Map<String, dynamic>> experience = [
           "Con el objetivo de presentar una mejora en los pagos móviles interbancarios en Venezuela, fui seleccionado mediante una propuesta teórica entre más de 40 equipos para participar en la final. Los finalistas tuvieron que desarrollar un prototipo en Figma y presentar una presentación en vivo para defender la propuesta inicial.",
     },
     "category": "Hackathon",
+    "cert_link": "https://drive.google.com/file/d/1OyELk8PCuFIH7GQxzApphuzq8CDOfOZL/view?usp=drive_link",
   },
   {
     "init_time": "04/2025",
