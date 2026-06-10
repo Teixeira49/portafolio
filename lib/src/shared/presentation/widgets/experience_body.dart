@@ -360,12 +360,12 @@ class _ExperienceCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(WidthValues.radiusSm),
                   color: ColorValues.bgChip(context),
-                  border: Border.all(color: ColorValues.borderSurface(context)),
+                  border: primaryImage == null ? Border.all(color: ColorValues.borderSurface(context)) : null,
                 ),
                 clipBehavior: Clip.antiAlias,
                 child: Center(
                   child: primaryImage != null
-                      ? Image.asset(primaryImage, fit: BoxFit.fill, width: 44, height: 44)
+                      ? Image.asset(primaryImage, fit: BoxFit.cover, width: 44, height: 44)
                       : Text(
                           primaryName[0].toUpperCase(),
                           style: ExtendedTextTheme.titleMedium(context)
