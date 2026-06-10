@@ -18,6 +18,7 @@ class _HomeBodyState extends State<HomeBody>
   // Cached chat content used while the animation plays
   List<Message> _chatMessages = const [];
   String _chatName = '';
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -37,14 +38,18 @@ class _HomeBodyState extends State<HomeBody>
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ChatBloc, ChatState>(
-      // Only listen when a new chat fully loads
       listenWhen: (prev, curr) =>
-          prev.chatName != curr.chatName && curr.status.isLoaded,
+          prev.status != curr.status &&
+          (curr.status.isLoading || curr.status.isLoaded),
       listener: (context, state) {
-        if (state.chatName == 'Home Chat') {
+        if (state.status.isLoading) {
+          setState(() => _isLoading = true);
+        } else if (state.chatName == 'Home Chat') {
+          setState(() => _isLoading = false);
           _ctrl.reverse();
         } else {
           setState(() {
+            _isLoading = false;
             _chatMessages = state.messages;
             _chatName = state.chatName;
           });
@@ -157,9 +162,8 @@ class _HomeBodyState extends State<HomeBody>
                       ),
 
                     // ── Layer 2 — Chat content (fades in) ─────────────────
-                    // AnimatedSwitcher handles chat↔chat cross-fades:
-                    // when _chatName changes, old content fades out while
-                    // new content fades in simultaneously.
+                    // AnimatedSwitcher handles chat↔chat cross-fades and
+                    // swaps in a skeleton while the next chat is loading.
                     if (chatOpacity > 0)
                       Opacity(
                         opacity: chatOpacity,
@@ -167,12 +171,17 @@ class _HomeBodyState extends State<HomeBody>
                           duration: const Duration(milliseconds: 320),
                           transitionBuilder: (child, animation) =>
                               FadeTransition(opacity: animation, child: child),
-                          child: _ChatContent(
-                            key: ValueKey(_chatName),
-                            chatName: _chatName,
-                            messages: _chatMessages,
-                            composerHeight: composerH,
-                          ),
+                          child: _isLoading
+                              ? _ChatLoadingSkeleton(
+                                  key: const ValueKey('__loading__'),
+                                  composerHeight: composerH,
+                                )
+                              : _ChatContent(
+                                  key: ValueKey(_chatName),
+                                  chatName: _chatName,
+                                  messages: _chatMessages,
+                                  composerHeight: composerH,
+                                ),
                         ),
                       ),
 

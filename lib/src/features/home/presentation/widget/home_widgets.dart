@@ -107,6 +107,168 @@ class _ChatContent extends StatelessWidget {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Chat loading skeleton — pulsing placeholder shown while a chat is loading
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _ChatLoadingSkeleton extends StatefulWidget {
+  const _ChatLoadingSkeleton({super.key, required this.composerHeight});
+  final double composerHeight;
+
+  @override
+  State<_ChatLoadingSkeleton> createState() => _ChatLoadingSkeletonState();
+}
+
+class _ChatLoadingSkeletonState extends State<_ChatLoadingSkeleton>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _ctrl;
+  late final Animation<double> _pulse;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1100),
+    )..repeat(reverse: true);
+    _pulse = CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut);
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  Widget _block({required double width, double height = 14, double radius = 8}) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return AnimatedBuilder(
+      animation: _pulse,
+      builder: (_, __) => Opacity(
+        opacity: 0.25 + _pulse.value * 0.2,
+        child: Container(
+          width: width,
+          height: height,
+          decoration: BoxDecoration(
+            color: isDark ? Colors.white : Colors.black,
+            borderRadius: BorderRadius.circular(radius),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _botRow(BuildContext context, {int lines = 2}) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Avatar circle
+        AnimatedBuilder(
+          animation: _pulse,
+          builder: (_, __) => Opacity(
+            opacity: 0.25 + _pulse.value * 0.2,
+            child: Container(
+              width: 42,
+              height: 42,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
+              ),
+            ),
+          ),
+        ),
+        const Gap(16),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _block(width: 100, height: 13),
+              const Gap(10),
+              for (int i = 0; i < lines; i++) ...[
+                _block(
+                  width: double.infinity,
+                  height: 13,
+                ),
+                const Gap(8),
+              ],
+              _block(width: 160, height: 13),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _userRow(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        _block(width: 60, height: 13),
+        const Gap(10),
+        Align(
+          alignment: Alignment.centerRight,
+          child: FractionallySizedBox(
+            widthFactor: 0.6,
+            alignment: Alignment.centerRight,
+            child: AnimatedBuilder(
+              animation: _pulse,
+              builder: (_, __) => Opacity(
+                opacity: 0.25 + _pulse.value * 0.2,
+                child: Container(
+                  height: 70,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white
+                        : Colors.black,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(8),
+                      bottomRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: WidthValues.spacing2xl,
+        bottom: widget.composerHeight + 12,
+        left: WidthValues.spacingMd,
+        right: WidthValues.spacingMd,
+      ),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 880),
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _userRow(context),
+              const Gap(28),
+              _botRow(context, lines: 2),
+              const Gap(28),
+              _userRow(context),
+              const Gap(28),
+              _botRow(context, lines: 4),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Cloud — three blurred coloured blobs with a continuous drift animation.
 // Mirrors the CSS .cloud element from design/Teixeira Portfolio.html.
 // ─────────────────────────────────────────────────────────────────────────────
