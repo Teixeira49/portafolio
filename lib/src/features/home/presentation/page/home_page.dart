@@ -14,6 +14,7 @@ import '../../../../core/utils/helpers.dart';
 import '../../../../core/variables/variables.dart';
 import '../../../../shared/presentation/widgets/base_layout.dart';
 import '../../../../shared/presentation/widgets/custom_badged.dart';
+import '../../../curriculum/curriculum.dart';
 import '../../../../shared/presentation/widgets/message_content.dart';
 import '../../data/datasource/local/get_chat_local_datasource.dart';
 import '../../domain/entities/message.dart';

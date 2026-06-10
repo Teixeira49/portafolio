@@ -848,7 +848,10 @@ class _CvButtonState extends State<_CvButton> {
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
       child: GestureDetector(
-        onTap: () => launchUrl(Uri.parse(Constants.resume)),
+        onTap: () => showDialog(
+          context: context,
+          builder: (_) => const CurriculumDialog(),
+        ),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 180),
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 11),

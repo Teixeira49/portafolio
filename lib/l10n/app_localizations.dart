@@ -619,6 +619,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your name'**
   String get profileNameHint;
+
+  /// No description provided for @cvModalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Curriculum'**
+  String get cvModalTitle;
+
+  /// No description provided for @cvModalSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust and download the version you need.'**
+  String get cvModalSubtitle;
+
+  /// No description provided for @cvModalLanguageSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get cvModalLanguageSection;
+
+  /// No description provided for @cvModalPhotoSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo'**
+  String get cvModalPhotoSection;
+
+  /// No description provided for @cvModalShowPhotoLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Show photo'**
+  String get cvModalShowPhotoLabel;
+
+  /// No description provided for @cvModalShowPhotoSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Include profile photo'**
+  String get cvModalShowPhotoSubtitle;
+
+  /// No description provided for @cvModalStatusPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing:'**
+  String get cvModalStatusPrefix;
+
+  /// No description provided for @cvModalWithPhotoLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'with photo'**
+  String get cvModalWithPhotoLabel;
+
+  /// No description provided for @cvModalWithoutPhotoLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'without photo'**
+  String get cvModalWithoutPhotoLabel;
+
+  /// No description provided for @cvModalDownloadButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Download PDF'**
+  String get cvModalDownloadButton;
+
+  /// No description provided for @certModalOpenInDrive.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in Drive'**
+  String get certModalOpenInDrive;
 }
 
 class _AppLocalizationsDelegate

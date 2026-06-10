@@ -116,5 +116,16 @@
   "profileNameHint": "Your name",
   "@profileNameHint": {
     "description": "Hint text for the user name input field"
-  }
+  },
+  "cvModalTitle": "Curriculum",
+  "cvModalSubtitle": "Adjust and download the version you need.",
+  "cvModalLanguageSection": "Language",
+  "cvModalPhotoSection": "Photo",
+  "cvModalShowPhotoLabel": "Show photo",
+  "cvModalShowPhotoSubtitle": "Include profile photo",
+  "cvModalStatusPrefix": "Showing:",
+  "cvModalWithPhotoLabel": "with photo",
+  "cvModalWithoutPhotoLabel": "without photo",
+  "cvModalDownloadButton": "Download PDF",
+  "certModalOpenInDrive": "Open in Drive"
 }

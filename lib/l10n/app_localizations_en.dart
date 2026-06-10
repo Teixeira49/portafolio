@@ -274,4 +274,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileNameHint => 'Your name';
+
+  @override
+  String get cvModalTitle => 'Curriculum';
+
+  @override
+  String get cvModalSubtitle => 'Adjust and download the version you need.';
+
+  @override
+  String get cvModalLanguageSection => 'Language';
+
+  @override
+  String get cvModalPhotoSection => 'Photo';
+
+  @override
+  String get cvModalShowPhotoLabel => 'Show photo';
+
+  @override
+  String get cvModalShowPhotoSubtitle => 'Include profile photo';
+
+  @override
+  String get cvModalStatusPrefix => 'Showing:';
+
+  @override
+  String get cvModalWithPhotoLabel => 'with photo';
+
+  @override
+  String get cvModalWithoutPhotoLabel => 'without photo';
+
+  @override
+  String get cvModalDownloadButton => 'Download PDF';
+
+  @override
+  String get certModalOpenInDrive => 'Open in Drive';
 }
