@@ -3,6 +3,7 @@ import 'package:portafolio/l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/variables/variables.dart';
+import 'certificate_viewer_modal.dart';
 
 // Mirrors .cert-card: surface card with hover lift, cert-top (icon + name)
 // and cert-foot (institution + date + green link).
@@ -40,7 +41,18 @@ class _CertificationsCardState extends State<CertificationsCard> {
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
       child: GestureDetector(
-        onTap: () => launchUrl(Uri.parse(widget.link)),
+        onTap: () => showDialog(
+          context: context,
+          builder: (_) => CertificateViewerModal(
+            title: widget.title,
+            issuingEntity: widget.issuingEntity,
+            date: widget.date,
+            link: widget.link,
+            image: widget.image,
+            location: widget.location,
+            locationLink: widget.locationLink,
+          ),
+        ),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 140),
           transform: Matrix4.translationValues(0, _hovered ? -2 : 0, 0),
