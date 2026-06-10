@@ -39,6 +39,7 @@ class SettingsDialog extends StatelessWidget {
                 ),
               ],
             ),
+            const Divider(),
             _SettingsSectionRow(
               sectionTitle: context.l10n.settingsPageThemeLabel,
               sectionRows: [
@@ -47,6 +48,7 @@ class SettingsDialog extends StatelessWidget {
                   currentTheme: appProvider.themeMode,
                   myTheme: ThemeMode.light,
                   label: context.l10n.themeLightLabel,
+                  selectedColor: ColorValues.brandGreenSolid(context),
                   onTap: () {
                     getIt<AppProvider>().setThemeMode(ThemeMode.light);
                   },
@@ -56,51 +58,50 @@ class SettingsDialog extends StatelessWidget {
                   currentTheme: appProvider.themeMode,
                   myTheme: ThemeMode.dark,
                   label: context.l10n.themeDarkLabel,
+                  selectedColor: ColorValues.brandBlueSolid(context),
                   onTap: () {
                     getIt<AppProvider>().setThemeMode(ThemeMode.dark);
                   },
                 ),
-
                 _ThemeOptionButton(
                   icon: Icons.settings,
                   currentTheme: appProvider.themeMode,
                   myTheme: ThemeMode.system,
                   label: context.l10n.themeSystemLabel,
+                  selectedColor: ColorValues.brandRedSolid(context),
                   onTap: () {
                     getIt<AppProvider>().setThemeMode(ThemeMode.system);
                   },
                 ),
               ],
             ),
+            const Divider(),
             _SettingsSectionRow(
               sectionTitle: context.l10n.settingsPageLanguageLabel,
               sectionRows: [
                 _LanguageButton(
-                  // La clave de traducción para 'Automático (Sistema)'
                   label: context.l10n.languageSystemLabel,
-                  // El locale para esta opción es null
                   locale: null,
                   currentLocale: appProvider.locale,
+                  selectedColor: ColorValues.brandGreenSolid(context),
                   onTap: () {
-                    // Llama a setLocale con null para resetear al idioma del sistema
                     getIt<AppProvider>().setLocale(null);
                   },
                 ),
-                // Opción para Inglés
                 _LanguageButton(
                   label: context.l10n.languageEnglishLabel,
                   locale: const Locale('en'),
                   currentLocale: appProvider.locale,
+                  selectedColor: ColorValues.brandBlueSolid(context),
                   onTap: () {
                     getIt<AppProvider>().setLocale(const Locale('en'));
                   },
                 ),
-
-                // Opción para Español
                 _LanguageButton(
                   label: context.l10n.languageSpanishLabel,
                   locale: const Locale('es'),
                   currentLocale: appProvider.locale,
+                  selectedColor: ColorValues.brandRedSolid(context),
                   onTap: () {
                     getIt<AppProvider>().setLocale(const Locale('es'));
                   },

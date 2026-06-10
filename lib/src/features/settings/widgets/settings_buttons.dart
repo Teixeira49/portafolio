@@ -6,12 +6,14 @@ class _LanguageButton extends StatelessWidget {
     required this.locale,
     required this.currentLocale,
     required this.onTap,
+    required this.selectedColor,
   });
 
   final String label;
   final Locale? locale;
   final Locale? currentLocale;
   final VoidCallback onTap;
+  final Color selectedColor;
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +22,12 @@ class _LanguageButton extends StatelessWidget {
     return OutlinedButton(
       onPressed: onTap,
       style: OutlinedButton.styleFrom(
-        backgroundColor:
-            isSelected ? Theme.of(context).primaryColor.withAlpha(40) : null,
-        side:
-            isSelected
-                ? BorderSide(color: Theme.of(context).primaryColor, width: 1)
-                : null,
-        // Add hover effect color
+        backgroundColor: isSelected ? selectedColor.withAlpha(40) : null,
+        side: isSelected
+            ? BorderSide(color: selectedColor, width: 1)
+            : null,
         foregroundColor: Theme.of(context).textTheme.bodyMedium?.color,
-        overlayColor: Theme.of(context).primaryColor.withAlpha(30),
+        overlayColor: selectedColor.withAlpha(30),
       ),
       child: Text(
         label,
@@ -47,6 +46,7 @@ class _ThemeOptionButton extends StatelessWidget {
     required this.onTap,
     required this.currentTheme,
     required this.myTheme,
+    required this.selectedColor,
   });
 
   final IconData icon;
@@ -54,31 +54,48 @@ class _ThemeOptionButton extends StatelessWidget {
   final ThemeMode currentTheme;
   final ThemeMode myTheme;
   final VoidCallback onTap;
+  final Color selectedColor;
 
   @override
   Widget build(BuildContext context) {
+    final isSelected = currentTheme == myTheme;
+
     return Material(
-      color:
-          currentTheme == myTheme
-              ? Theme.of(context).primaryColor.withAlpha(40)
-              : ColorValues.utilityGray200(context),
+      color: Colors.transparent,
       borderRadius: BorderRadius.all(Radius.circular(WidthValues.radiusSm)),
       child: InkWell(
         borderRadius: BorderRadius.all(Radius.circular(WidthValues.radiusSm)),
         hoverColor: ColorValues.bgBrandPrimary(context),
         hoverDuration: const Duration(milliseconds: 250),
         onTap: onTap,
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
           padding: EdgeInsets.symmetric(
             horizontal: WidthValues.padding,
             vertical: WidthValues.spacingSm,
           ),
           width: 120,
+          decoration: BoxDecoration(
+            color: isSelected
+                ? selectedColor.withAlpha(40)
+                : (Theme.of(context).brightness == Brightness.light
+                    ? Colors.white
+                    : ColorValues.utilityGray200(context)),
+            borderRadius: BorderRadius.all(Radius.circular(WidthValues.radiusSm)),
+            border: Border.all(
+              color: isSelected ? selectedColor : Colors.transparent,
+              width: 1.5,
+            ),
+          ),
           child: Column(
             spacing: WidthValues.spacingXs,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(icon, size: WidthValues.spacingXl),
+              Icon(
+                icon,
+                size: WidthValues.spacingXl,
+                color: selectedColor,
+              ),
               Text(
                 label,
                 style: ExtendedTextTheme.textSmall(context),

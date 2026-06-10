@@ -1,0 +1,247 @@
+{
+  "chats": {
+    "home_chat": {
+      "id": 0,
+      "name": "Home Chat",
+      "messages": [
+        {
+          "id": 1,
+          "member": "You",
+          "text": {
+            "es": "user_name",
+            "en": "user_name"
+          }
+        },
+        {
+          "id": 2,
+          "member": "Javier Teixeira",
+          "text": {
+            "es": "Bienvenido a mi portafolio interactivo. Este espacio está diseñado para que puedas explorar mi perfil profesional de forma dinámica: desde mis habilidades técnicas y proyectos hasta mi experiencia laboral y formación académica.\n\nSiéntete libre de navegar por cada sección usando el panel lateral. Estoy aquí para responder cualquier consulta que tengas. 🚀",
+            "en": "Welcome to my interactive portfolio. This space is designed so you can explore my professional profile dynamically — from my technical skills and projects to my work experience and academic background.\n\nFeel free to navigate through each section using the sidebar panel. I'm here to answer any questions you may have. 🚀"
+          }
+        }
+      ]
+    },
+    "about_chat": {
+      "id": 1,
+      "name": "about_chat",
+      "messages": [
+        {
+          "id": 1,
+          "member": "You",
+          "text": {
+            "es": "¡Saludos, Javier Teixeira! Me gustaría comenzar con una presentación formal. ¿Podrías compartir una tarjeta de contacto o de visita que resuma quién eres y cómo pueden contactarte?",
+            "en": "Hello Javier Teixeira! I'd like to start with a formal introduction. Could you share a contact or business card that summarizes who you are and how to reach you?"
+          }
+        },
+        {
+          "id": 2,
+          "member": "Javier Teixeira",
+          "text": {
+            "es": "¡Con mucho gusto! Aquí tienes mi tarjeta de presentación con los datos más relevantes para contactarme y conocer mi perfil de un vistazo 👇",
+            "en": "With pleasure! Here's my presentation card with the most relevant details to contact me and get a quick overview of my profile 👇"
+          },
+          "contentCode": "resume"
+        },
+        {
+          "id": 3,
+          "member": "You",
+          "text": {
+            "es": "¡Excelente presentación! Ahora me gustaría profundizar un poco más. ¿Podrías describir tu perfil ejecutivo con detalle? Me interesa entender en qué áreas te especializas y qué te distingue como profesional en el mundo tecnológico.",
+            "en": "Excellent introduction! Now I'd like to dig a little deeper. Could you describe your executive profile in detail? I'm interested in understanding your areas of specialization and what sets you apart as a professional in the technology world."
+          }
+        },
+        {
+          "id": 4,
+          "member": "Javier Teixeira",
+          "text": {
+            "es": "Mi perfil combina **solidez técnica** con visión estratégica y un enfoque orientado a resultados. 🚀\n\nSoy **Ingeniero de Sistemas** egresado de la Universidad Metropolitana (UNIMET), con experiencia sólida en desarrollo de software, arquitectura de aplicaciones y bases de datos relacionales y no relacionales.\n\nMi especialización principal es el **Desarrollo Full-Stack**, con un fuerte énfasis en el ecosistema móvil y de servicios backend. Entre mis competencias clave destacan:\n\n- Diseño y desarrollo de aplicaciones móviles con **Flutter** bajo el patrón Clean Architecture y BLoC.\n- Implementación de APIs RESTful y Endpoints con **Node.js**, así como Microservicios con **Spring Boot**.\n- Gestión de bases de datos con **PostgreSQL** y soluciones en tiempo real con **Firebase**.\n- Aplicación de buenas prácticas: principios **SOLID**, inyección de dependencias y pruebas unitarias.\n\nMás allá del área técnica, complemento mi perfil con conocimientos en **marketing digital**, estrategia de contenidos y docencia. Soy un profesional comprometido con la innovación continua, con capacidad para liderar proyectos de alto impacto y adaptarme con agilidad a entornos tecnológicos cambiantes. 💡",
+            "en": "My profile blends **strong technical expertise** with strategic vision and a results-driven approach. 🚀\n\nI am a **Systems Engineer** graduated from the Metropolitan University (UNIMET), with solid experience in software development, application architecture, and both relational and non-relational databases.\n\nMy primary specialization is **Full-Stack Development**, with a strong emphasis on mobile and backend service ecosystems. My key competencies include:\n\n- Design and development of mobile applications with **Flutter** using Clean Architecture and BLoC patterns.\n- Implementation of RESTful APIs and Endpoints with **Node.js**, as well as Microservices with **Spring Boot**.\n- Database management with **PostgreSQL** and real-time solutions with **Firebase**.\n- Application of best practices: **SOLID** principles, dependency injection, and unit testing.\n\nBeyond the technical domain, I complement my profile with knowledge in **digital marketing**, content strategy, and teaching. I am a professional committed to continuous innovation, capable of leading high-impact projects and adapting swiftly to fast-changing technological environments. 💡"
+          }
+        }
+      ]
+    },
+    "skills_chat": {
+      "id": 2,
+      "name": "skills_chat",
+      "messages": [
+        {
+          "id": 1,
+          "member": "You",
+          "text": {
+            "es": "Me gustaría comenzar explorando tus competencias lingüísticas. ¿Podrías indicarme qué idiomas manejas y cómo calificarías tu nivel de dominio en cada uno? Esto me ayudará a entender con qué perfiles internacionales podrías trabajar cómodamente.",
+            "en": "I'd like to start by exploring your language competencies. Could you tell me which languages you speak and how you would rate your proficiency level in each one? This will help me understand which international profiles you could work with comfortably."
+          }
+        },
+        {
+          "id": 2,
+          "member": "Javier Teixeira",
+          "text": {
+            "es": "Excelente punto de partida. La comunicación efectiva es fundamental en cualquier entorno profesional. Aquí te presento mi perfil lingüístico actual:",
+            "en": "Excellent starting point. Effective communication is fundamental in any professional environment. Here is my current linguistic profile:"
+          },
+          "contentCode": "language_skills"
+        },
+        {
+          "id": 3,
+          "member": "You",
+          "text": {
+            "es": "Perfecto, gracias por el detalle. Ahora me interesa conocer a fondo tus habilidades como desarrollador. ¿Podrías mostrarme un recuadro organizado con tus competencias técnicas de desarrollo, incluyendo icono, nombre de la tecnología y el nivel de dominio que tienes en cada una?",
+            "en": "Perfect, thank you for the details. Now I'm interested in learning about your developer skills in depth. Could you show me an organized panel with your technical development competencies, including an icon, technology name, and your proficiency level for each one?"
+          }
+        },
+        {
+          "id": 4,
+          "member": "Javier Teixeira",
+          "text": {
+            "es": "Por supuesto. A lo largo de mi carrera he trabajado con un amplio ecosistema de tecnologías. Aquí te presento mis habilidades técnicas de desarrollo, clasificadas por área y nivel de dominio:",
+            "en": "Of course. Throughout my career I have worked with a broad technology ecosystem. Here are my technical development skills, classified by area and proficiency level:"
+          },
+          "contentCode": "development_skills"
+        },
+        {
+          "id": 5,
+          "member": "You",
+          "text": {
+            "es": "Muy completo. Ahora me gustaría que profundizaras en tus habilidades de infraestructura, DevOps y herramientas de soporte, como control de versiones, plataformas Cloud u otras tecnologías complementarias. El formato debe ser el mismo: icono, nombre y nivel de dominio.",
+            "en": "Very comprehensive. Now I'd like you to elaborate on your infrastructure, DevOps, and supporting tool skills, such as version control, Cloud platforms, or other complementary technologies. The format should be the same: icon, name, and proficiency level."
+          }
+        },
+        {
+          "id": 6,
+          "member": "Javier Teixeira",
+          "text": {
+            "es": "Claro que sí. El conocimiento en infraestructura y herramientas es tan importante como el desarrollo en sí. Aquí están mis competencias en el ecosistema de Cloud, DevOps y utilidades técnicas:",
+            "en": "Absolutely. Knowledge of infrastructure and tools is just as important as development itself. Here are my competencies in the Cloud, DevOps, and technical utilities ecosystem:"
+          },
+          "contentCode": "tech_skills"
+        },
+        {
+          "id": 7,
+          "member": "You",
+          "text": {
+            "es": "Excelente panorama técnico. Para cerrar esta sección, me gustaría conocer también tus habilidades en herramientas de productividad y ofimática. Por favor, muéstrame el recuadro con el icono, el nombre de la herramienta y tu nivel de manejo.",
+            "en": "Excellent technical overview. To close this section, I'd also like to know about your productivity and office suite skills. Please show me the panel with the icon, tool name, and your proficiency level."
+          }
+        },
+        {
+          "id": 8,
+          "member": "Javier Teixeira",
+          "text": {
+            "es": "Para completar el panorama de mis competencias, aquí tienes mis habilidades en herramientas de oficina, productividad y gestión que forman parte de mi día a día profesional:",
+            "en": "To complete the full picture of my competencies, here are my office, productivity, and management tool skills that are part of my professional day-to-day:"
+          },
+          "contentCode": "office_skills"
+        }
+      ]
+    },
+    "projects_chat": {
+      "id": 3,
+      "name": "projects_chat",
+      "messages": [
+        {
+          "id": 1,
+          "member": "You",
+          "text": {
+            "es": "Me gustaría realizar un análisis detallado de tu portafolio de proyectos. Para cada proyecto, por favor incluye el nombre, el rango de fechas de desarrollo, las tecnologías utilizadas, los enlaces disponibles (repositorio y demo si aplica) y una descripción que resalte el valor o impacto del proyecto.",
+            "en": "I'd like to take a detailed look at your project portfolio. For each project, please include the name, development date range, technologies used, available links (repository and demo if applicable), and a description that highlights the value or impact of the project."
+          }
+        },
+        {
+          "id": 2,
+          "member": "Javier Teixeira",
+          "text": {
+            "es": "Con gusto. A continuación te presento los proyectos más representativos de mi trayectoria. Cada uno refleja distintos desafíos técnicos que he abordado y las soluciones que implementé para resolverlos:",
+            "en": "With pleasure. Here are the most representative projects of my career. Each one reflects different technical challenges I have tackled and the solutions I implemented to address them:"
+          },
+          "contentCode": "projects"
+        }
+      ]
+    },
+    "experience_chat": {
+      "id": 4,
+      "name": "experience_chat",
+      "messages": [
+        {
+          "id": 1,
+          "member": "You",
+          "text": {
+            "es": "Estoy muy interesado en conocer tu trayectoria laboral completa. ¿Podrías construir una línea de tiempo cronológica de tu experiencia profesional? Para cada posición, me gustaría conocer la empresa y cargo desempeñado, el período de duración y un resumen de las responsabilidades y logros más relevantes.",
+            "en": "I'm very interested in learning about your complete professional journey. Could you build a chronological timeline of your work experience? For each position, I'd like to know the company and role held, the duration of employment, and a summary of your most relevant responsibilities and achievements."
+          }
+        },
+        {
+          "id": 2,
+          "member": "Javier Teixeira",
+          "text": {
+            "es": "Con mucho gusto. Mi trayectoria profesional refleja un crecimiento constante tanto en responsabilidades técnicas como en liderazgo de proyectos. A continuación, te presento mi experiencia laboral organizada cronológicamente:",
+            "en": "With pleasure. My professional trajectory reflects consistent growth in both technical responsibilities and project leadership. Here is my work experience organized chronologically:"
+          },
+          "contentCode": "timeline_experience"
+        }
+      ]
+    },
+    "education_chat": {
+      "id": 5,
+      "name": "education_chat",
+      "messages": [
+        {
+          "id": 1,
+          "member": "You",
+          "text": {
+            "es": "Me gustaría conocer tu formación académica universitaria en detalle. Por favor, genera un informe que incluya el nombre de la institución, el logo del campus, el título obtenido y la fecha de graduación para cada carrera o estudio formal relevante.",
+            "en": "I'd like to know about your university academic background in detail. Please generate a report that includes the institution name, campus logo, degree obtained, and graduation date for each relevant formal degree or study."
+          }
+        },
+        {
+          "id": 2,
+          "member": "Javier Teixeira",
+          "text": {
+            "es": "Mi formación universitaria constituye la base sólida sobre la que he construido mi perfil profesional. Completé mi pregrado en la Universidad Metropolitana de Venezuela (UNIMET), obteniendo el título de **Ingeniero de Sistemas** el 23 de Octubre de 2025. A continuación, los detalles de mi casa de estudios:",
+            "en": "My university education forms the solid foundation upon which I have built my professional profile. I completed my undergraduate degree at the Metropolitan University of Venezuela (UNIMET), obtaining my **Systems Engineering** degree on October 23, 2025. Here are the details of my alma mater:"
+          },
+          "contentCode": "campus_banner"
+        },
+        {
+          "id": 3,
+          "member": "You",
+          "text": {
+            "es": "¡Felicitaciones por tu titulación! Para completar tu perfil académico, me gustaría conocer también tus certificaciones y cursos de formación continua. Por favor, genera una lista con el nombre de cada certificación o curso, la institución que lo emitió y la fecha de finalización.",
+            "en": "Congratulations on your degree! To complete your academic profile, I'd also like to learn about your certifications and continuing education courses. Please generate a list with the name of each certification or course, the issuing institution, and the completion date."
+          }
+        },
+        {
+          "id": 4,
+          "member": "Javier Teixeira",
+          "text": {
+            "es": "¡Gracias! La formación continua es parte fundamental de mi desarrollo profesional. Más allá del título universitario, me he mantenido actualizado a través de certificaciones especializadas que fortalecen mis competencias técnicas. Aquí el detalle completo:",
+            "en": "Thank you! Continuing education is a fundamental part of my professional development. Beyond my university degree, I have kept myself up to date through specialized certifications that strengthen my technical competencies. Here is the full detail:"
+          },
+          "contentCode": "certifications"
+        }
+      ]
+    },
+    "contact_chat": {
+      "id": 6,
+      "name": "contact_chat",
+      "messages": [
+        {
+          "id": 1,
+          "member": "You",
+          "text": {
+            "es": "user_name",
+            "en": "user_name"
+          }
+        },
+        {
+          "id": 2,
+          "member": "Javier Teixeira",
+          "text": {
+            "es": "Bienvenido a mi portafolio interactivo. Este espacio está diseñado para que puedas explorar mi perfil profesional de forma dinámica: desde mis habilidades técnicas y proyectos hasta mi experiencia laboral y formación académica.\n\nSiéntete libre de navegar por cada sección usando el panel lateral. Estoy aquí para responder cualquier consulta que tengas. 🚀",
+            "en": "Welcome to my interactive portfolio. This space is designed so you can explore my professional profile dynamically — from my technical skills and projects to my work experience and academic background.\n\nFeel free to navigate through each section using the sidebar panel. I'm here to answer any questions you may have. 🚀"
+          }
+        }
+      ]
+    }
+  }
+}

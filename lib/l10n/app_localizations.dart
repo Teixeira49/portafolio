@@ -200,6 +200,18 @@ abstract class AppLocalizations {
   /// **'Teixeira V.1.0'**
   String get homePageIAModelLayer;
 
+  /// No description provided for @modelFlashSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast and concise'**
+  String get modelFlashSubtitle;
+
+  /// No description provided for @modelProSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Detailed and thorough'**
+  String get modelProSubtitle;
+
   /// No description provided for @homePageDownloadResumeButton.
   ///
   /// In en, this message translates to:
@@ -541,6 +553,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'View Certificate'**
   String get educationViewCertificateLabel;
+
+  /// No description provided for @skillsFavoriteTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite technology'**
+  String get skillsFavoriteTooltip;
+
+  /// No description provided for @projectFavoriteTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite project'**
+  String get projectFavoriteTooltip;
+
+  /// No description provided for @projectEducationalTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Educational project made for {institution}'**
+  String projectEducationalTooltip(String institution);
+
+  /// Title shown at the top of the profile dropdown menu
+  ///
+  /// In en, this message translates to:
+  /// **'User profile'**
+  String get profileUserLabel;
+
+  /// Greeting shown in the profile dropdown menu
+  ///
+  /// In en, this message translates to:
+  /// **'Hello, Javier!'**
+  String get profileGreetingLabel;
+
+  /// Developer full name with title prefix
+  ///
+  /// In en, this message translates to:
+  /// **'Eng. Javier Teixeira'**
+  String get developerFullName;
+
+  /// Header for the additional profiles section
+  ///
+  /// In en, this message translates to:
+  /// **'More profiles'**
+  String get profileMoreProfilesLabel;
+
+  /// Name of the default user profile
+  ///
+  /// In en, this message translates to:
+  /// **'User'**
+  String get profileDefaultUserName;
+
+  /// Button to sign out the added user
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get profileSignOutLabel;
+
+  /// Button / title for adding a new user
+  ///
+  /// In en, this message translates to:
+  /// **'Add user'**
+  String get profileAddUserLabel;
+
+  /// Hint text for the user name input field
+  ///
+  /// In en, this message translates to:
+  /// **'Your name'**
+  String get profileNameHint;
 }
 
 class _AppLocalizationsDelegate

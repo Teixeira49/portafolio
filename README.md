@@ -52,7 +52,7 @@ El portafolio está organizado en las siguientes secciones, accesibles desde el 
 
 | Canal | Enlace |
 |---|---|
-| ✉️ Email | [jtexeira@estei.app](mailto:jtexeira@estei.app) |
+| ✉️ Email | [javiertxr@gmail.com](mailto:javiertxr@gmail.com) |
 | 💼 LinkedIn | [ing-javier-teixeira](https://www.linkedin.com/in/ing-javier-teixeira/) |
 | 🐙 GitHub | [@teixeira49](https://github.com/teixeira49) |
 | 📸 Instagram | [@javier_a_teixeira._g](https://www.instagram.com/javier_a_teixeira._g/) |

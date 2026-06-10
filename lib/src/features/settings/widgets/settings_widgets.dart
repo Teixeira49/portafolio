@@ -32,8 +32,62 @@ class _SettingsSectionRow extends StatelessWidget {
 
 class _SettingsIAModel extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Text(
-    context.l10n.homePageIAModelLayer,
-    style: ExtendedTextTheme.titleMedium(context),
+  Widget build(BuildContext context) => ListenableBuilder(
+    listenable: getIt<AppProvider>(),
+    builder: (context, _) {
+      final current = getIt<AppProvider>().selectedModel;
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _ModelOptionButton(
+            label: 'Flash',
+            model: AppModel.flash,
+            currentModel: current,
+          ),
+          SizedBox(width: WidthValues.spacingXs),
+          _ModelOptionButton(
+            label: 'Pro',
+            model: AppModel.pro,
+            currentModel: current,
+          ),
+        ],
+      );
+    },
   );
+}
+
+class _ModelOptionButton extends StatelessWidget {
+  const _ModelOptionButton({
+    required this.label,
+    required this.model,
+    required this.currentModel,
+  });
+
+  final String label;
+  final AppModel model;
+  final AppModel currentModel;
+
+  @override
+  Widget build(BuildContext context) {
+    final isSelected = model == currentModel;
+
+    return OutlinedButton(
+      onPressed: () => getIt<AppProvider>().setModel(model),
+      style: OutlinedButton.styleFrom(
+        backgroundColor:
+            isSelected ? Theme.of(context).primaryColor.withAlpha(40) : null,
+        side: isSelected
+            ? BorderSide(color: Theme.of(context).primaryColor, width: 1)
+            : null,
+        foregroundColor: Theme.of(context).textTheme.bodyMedium?.color,
+        overlayColor: Theme.of(context).primaryColor.withAlpha(30),
+      ),
+      child: Text(
+        label,
+        style: ExtendedTextTheme.textSmall(context),
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+      ),
+    );
+  }
 }

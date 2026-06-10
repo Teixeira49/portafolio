@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:portafolio/src/core/providers/providers.dart';
 
 import '../../models/entities_model/chat_model.dart';
 import '../../models/entities_model/message_model.dart';
@@ -17,7 +18,9 @@ class GetChatMessagesDatasourceImpl implements GetChatMessagesDatasource {
   @override
   Future<ChatModel> getChatMessages(ChatSelectorParams params) async {
     try {
-      String response = await rootBundle.loadString('assets/data/chats.json');
+      final isPro = getIt<AppProvider>().selectedModel == AppModel.pro;
+      final file = isPro ? 'assets/data/chats_pro.json' : 'assets/data/chats.json';
+      String response = await rootBundle.loadString(file);
       final data = jsonDecode(response) as Map<String, dynamic>;
       final messagesJson = data["chats"][params.chatName];
       if (messagesJson["messages"] != null) {

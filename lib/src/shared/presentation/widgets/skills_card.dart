@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:portafolio/l10n/l10n.dart';
 
 import '../../../core/variables/values/values.dart';
 import '../../domain/entities/enums/skill_level.dart';
@@ -29,12 +30,14 @@ class SkillsCard extends StatefulWidget {
     this.asset,
     required this.level,
     this.color,
+    this.isFavorite = false,
   });
 
   final String title;
   final String? asset;
   final SkillLevel level;
   final Color? color;
+  final bool isFavorite;
 
   @override
   State<SkillsCard> createState() => _SkillsCardState();
@@ -141,6 +144,17 @@ class _SkillsCardState extends State<SkillsCard> {
                 ],
               ),
             ),
+            if (widget.isFavorite) ...[
+              const SizedBox(width: 6),
+              Tooltip(
+                message: context.l10n.skillsFavoriteTooltip,
+                child: const Icon(
+                  Icons.star_rounded,
+                  size: 18,
+                  color: Color(0xFFFFBE00),
+                ),
+              ),
+            ],
           ],
         ),
       ),

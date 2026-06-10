@@ -2,12 +2,12 @@ import 'dart:ui' show ImageFilter;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:portafolio/src/features/home/data/repositories/home_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:portafolio/l10n/l10n.dart';
+import '../../../../core/providers/providers.dart';
 import '../../../../core/theme/responsive.dart';
 import '../../../../core/utils/asset_icons.dart';
 import '../../../../core/utils/helpers.dart';
@@ -59,8 +59,36 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  late AppModel _previousModel;
+
+  @override
+  void initState() {
+    super.initState();
+    _previousModel = getIt<AppProvider>().selectedModel;
+    getIt<AppProvider>().addListener(_onProviderChanged);
+  }
+
+  @override
+  void dispose() {
+    getIt<AppProvider>().removeListener(_onProviderChanged);
+    super.dispose();
+  }
+
+  void _onProviderChanged() {
+    final current = getIt<AppProvider>().selectedModel;
+    if (current == _previousModel) return;
+    _previousModel = current;
+    final route = context.read<ChatBloc>().state.chatRoute;
+    context.read<ChatBloc>().add(GetChatMessages(route.isNotEmpty ? route : 'home_chat'));
+  }
 
   @override
   Widget build(BuildContext context) {

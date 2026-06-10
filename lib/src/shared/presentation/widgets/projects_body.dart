@@ -49,6 +49,8 @@ class ProjectsBody extends StatelessWidget {
                     description: skillBlock['description'],
                     private: skillBlock['private'],
                     cardWidth: cardWidth,
+                    isFavorite: skillBlock['isFavorite'] as bool? ?? false,
+                    educationalInstitution: skillBlock['educationalInstitution'] as String?,
                   ),
                 );
               }).toList(),

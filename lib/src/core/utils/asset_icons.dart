@@ -5,6 +5,8 @@ class AssetIcons {
 
   static const String iconCss = '$_iconRoute/css_old.svg';
 
+  static const String iconDart = '$_iconRoute/dart.svg';
+
   static const String iconDJango = '$_iconRoute/django.svg';
 
   static const String iconFastApi = '$_iconRoute/fastapi.svg';

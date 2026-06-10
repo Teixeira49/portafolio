@@ -61,6 +61,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homePageIAModelLayer => 'Teixeira V.1.0';
 
   @override
+  String get modelFlashSubtitle => 'Rápido y conciso';
+
+  @override
+  String get modelProSubtitle => 'Detallado y preciso';
+
+  @override
   String get homePageDownloadResumeButton => 'Curriculum';
 
   @override
@@ -232,4 +238,39 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get educationViewCertificateLabel => 'Ver Certificado';
+
+  @override
+  String get skillsFavoriteTooltip => 'Tecnología favorita';
+
+  @override
+  String get projectFavoriteTooltip => 'Proyecto favorito';
+
+  @override
+  String projectEducationalTooltip(String institution) {
+    return 'Proyecto educativo hecho para $institution';
+  }
+
+  @override
+  String get profileUserLabel => 'Perfil del usuario';
+
+  @override
+  String get profileGreetingLabel => '¡Hola, Javier!';
+
+  @override
+  String get developerFullName => 'Ing. Javier Teixeira';
+
+  @override
+  String get profileMoreProfilesLabel => 'Más perfiles';
+
+  @override
+  String get profileDefaultUserName => 'Usuario';
+
+  @override
+  String get profileSignOutLabel => 'Cerrar sesión';
+
+  @override
+  String get profileAddUserLabel => 'Añadir usuario';
+
+  @override
+  String get profileNameHint => 'Tu nombre';
 }

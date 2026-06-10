@@ -107,10 +107,10 @@ class CampusBanner extends StatelessWidget {
             spacing: 16,
             runSpacing: 8,
             children: [
-              _MetaItem(
+              _MetaLink(
                 icon: Icons.location_on_outlined,
                 label: context.l10n.locationLabel,
-                color: ColorValues.textTertiary(context),
+                url: 'https://maps.app.goo.gl/aKsNY7nuwBhozjaP9',
               ),
               _MetaLink(
                 icon: Icons.language_outlined,
@@ -152,27 +152,6 @@ class CampusBanner extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-// .edu-meta-item — icon + dimmed text label
-class _MetaItem extends StatelessWidget {
-  const _MetaItem({required this.icon, required this.label, required this.color});
-
-  final IconData icon;
-  final String label;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, size: 17, color: color),
-        const SizedBox(width: 7),
-        Text(label, style: TextStyle(fontSize: 14, color: color)),
-      ],
     );
   }
 }

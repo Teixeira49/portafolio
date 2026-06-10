@@ -30,25 +30,49 @@ class ContactDialog extends StatelessWidget {
       insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 780, maxHeight: 680),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: isWide
-              ? Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Expanded(child: _EmailFormPanel()),
-                    Expanded(child: _SocialPanel()),
-                  ],
-                )
-              : SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      _EmailFormPanel(),
-                      _SocialPanel(),
-                    ],
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: ColorValues.borderLine(context)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withAlpha(180),
+                    blurRadius: 90,
+                    spreadRadius: -20,
+                    offset: const Offset(0, 30),
                   ),
-                ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: isWide
+                    ? Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(child: _EmailFormPanel()),
+                          Expanded(child: _SocialPanel()),
+                        ],
+                      )
+                    : SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            _EmailFormPanel(),
+                            _SocialPanel(),
+                          ],
+                        ),
+                      ),
+              ),
+            ),
+            Positioned(
+              top: 12,
+              right: 12,
+              child: _CloseButton(),
+            ),
+          ],
         ),
       ),
     );
@@ -420,11 +444,6 @@ class _SocialPanel extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: _CloseButton(),
-          ),
-          const Gap(4),
           Text(
             isEs ? 'O escríbeme por...' : 'Or write me on...',
             style: TextStyle(

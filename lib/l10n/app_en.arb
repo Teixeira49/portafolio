@@ -16,6 +16,8 @@
   "dashboardOpenPanelTooltip": "Expand Panel",
   "homePageQuestionLayer": "Ask your question...",
   "homePageIAModelLayer": "Teixeira V.1.0",
+  "modelFlashSubtitle": "Fast and concise",
+  "modelProSubtitle": "Detailed and thorough",
   "homePageDownloadResumeButton": "Resume",
   "homePageAboutMeQuestionButton": "Who are you?",
   "homePageSkillsQuestionButton": "What skills do you have?",
@@ -72,5 +74,47 @@
   "educationDegreeTitle": "Systems Engineer",
   "educationUniversityName": "Metropolitan University of Venezuela (UNIMET)",
   "educationGraduatedLabel": "Graduated · Oct 2025",
-  "educationViewCertificateLabel": "View Certificate"
+  "educationViewCertificateLabel": "View Certificate",
+  "skillsFavoriteTooltip": "Favorite technology",
+  "projectFavoriteTooltip": "Favorite project",
+  "projectEducationalTooltip": "Educational project made for {institution}",
+  "@projectEducationalTooltip": {
+    "placeholders": {
+      "institution": {
+        "type": "String"
+      }
+    }
+  },
+  "profileUserLabel": "User profile",
+  "@profileUserLabel": {
+    "description": "Title shown at the top of the profile dropdown menu"
+  },
+  "profileGreetingLabel": "Hello, Javier!",
+  "@profileGreetingLabel": {
+    "description": "Greeting shown in the profile dropdown menu"
+  },
+  "developerFullName": "Eng. Javier Teixeira",
+  "@developerFullName": {
+    "description": "Developer full name with title prefix"
+  },
+  "profileMoreProfilesLabel": "More profiles",
+  "@profileMoreProfilesLabel": {
+    "description": "Header for the additional profiles section"
+  },
+  "profileDefaultUserName": "User",
+  "@profileDefaultUserName": {
+    "description": "Name of the default user profile"
+  },
+  "profileSignOutLabel": "Sign out",
+  "@profileSignOutLabel": {
+    "description": "Button to sign out the added user"
+  },
+  "profileAddUserLabel": "Add user",
+  "@profileAddUserLabel": {
+    "description": "Button / title for adding a new user"
+  },
+  "profileNameHint": "Your name",
+  "@profileNameHint": {
+    "description": "Hint text for the user name input field"
+  }
 }
