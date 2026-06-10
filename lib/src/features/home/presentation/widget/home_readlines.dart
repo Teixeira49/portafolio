@@ -7,6 +7,15 @@ class _TitleChatHomeWidget extends StatelessWidget {
         ? ExtendedTextTheme.displayExtraSmall(context)
         : ExtendedTextTheme.displaySmall(context);
 
+    final accentGradient = LinearGradient(
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight,
+      colors: [
+        ColorValues.titleAccentGreen(context),
+        ColorValues.brandBlueSolid(context),
+      ],
+    );
+
     return Text.rich(
       textAlign: TextAlign.center,
       TextSpan(
@@ -19,8 +28,7 @@ class _TitleChatHomeWidget extends StatelessWidget {
             alignment: PlaceholderAlignment.baseline,
             baseline: TextBaseline.alphabetic,
             child: ShaderMask(
-              shaderCallback: (bounds) =>
-                  GradientValues.brandAccent.createShader(bounds),
+              shaderCallback: (bounds) => accentGradient.createShader(bounds),
               blendMode: BlendMode.srcIn,
               child: Text(
                 context.l10n.appMainTitleAccent,

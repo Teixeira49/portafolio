@@ -1798,6 +1798,46 @@ class ColorValues {
     dark: const Color(0xFFE60000),
   );
 
+  // ------------------------------------------------------------------
+  // <---------- Home composer cloud blob colors ---------------------->
+  // ------------------------------------------------------------------
+  // Theme-adaptive colors for the three ambient blobs behind the
+  // composer. Light variants are lighter/more pastel for readability
+  // on white backgrounds.
+  // ------------------------------------------------------------------
+
+  /// Cloud blob green — dark: #00E660  light: #00FF6A
+  static final _cloudBlobGreen = _ColorScheme(
+    light: const Color(0xFF00FF6A),
+    dark: const Color(0xFF00E660),
+  );
+
+  /// Cloud blob red — dark: #E60000  light: #FF3D3D
+  static final _cloudBlobRed = _ColorScheme(
+    light: const Color(0xFFFF3D3D),
+    dark: const Color(0xFFE60000),
+  );
+
+  /// Cloud blob blue — dark: #1F55C4  light: #3D70FF
+  static final _cloudBlobBlue = _ColorScheme(
+    light: const Color(0xFF3D70FF),
+    dark: const Color(0xFF1F55C4),
+  );
+
+  // ------------------------------------------------------------------
+  // <---------- Home title accent gradient --------------------------->
+  // ------------------------------------------------------------------
+  // Green start of the "Ing. Teixeira" ShaderMask gradient.
+  // In dark mode uses the vivid brand green; in light mode uses a
+  // darker shade for sufficient contrast on white.
+  // ------------------------------------------------------------------
+
+  /// Title accent gradient — green start. dark: #00E660  light: #007A33
+  static final _titleAccentGreen = _ColorScheme(
+    light: const Color(0xFF007A33),
+    dark: const Color(0xFF00E660),
+  );
+
   /// Sidebar item hover background.
   static Color bgSidebarHover(BuildContext context) =>
       _bgSidebarHover.getColor(context);
@@ -1849,6 +1889,22 @@ class ColorValues {
   /// Brand red, invariant. Use for the logo mark and error accents.
   static Color brandRedSolid(BuildContext context) =>
       _brandRedSolid.getColor(context);
+
+  /// Ambient cloud blob — green side, theme-adaptive.
+  static Color cloudBlobGreen(BuildContext context) =>
+      _cloudBlobGreen.getColor(context);
+
+  /// Ambient cloud blob — red side, theme-adaptive.
+  static Color cloudBlobRed(BuildContext context) =>
+      _cloudBlobRed.getColor(context);
+
+  /// Ambient cloud blob — blue side, theme-adaptive.
+  static Color cloudBlobBlue(BuildContext context) =>
+      _cloudBlobBlue.getColor(context);
+
+  /// Title accent gradient start — green side, theme-adaptive.
+  static Color titleAccentGreen(BuildContext context) =>
+      _titleAccentGreen.getColor(context);
 }
 
 class _ColorScheme {

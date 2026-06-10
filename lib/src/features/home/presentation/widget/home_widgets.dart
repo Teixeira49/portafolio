@@ -345,7 +345,7 @@ class _CloudWidgetState extends State<_CloudWidget>
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final opacity = isDark ? 0.85 : 0.70;
+    final opacity = isDark ? 0.85 : 0.55;
 
     return AnimatedBuilder(
       animation: _ctrl,
@@ -364,7 +364,11 @@ class _CloudWidgetState extends State<_CloudWidget>
             sigmaY: isDark ? 70 : 55,
           ),
           child: CustomPaint(
-            painter: _CloudPainter(),
+            painter: _CloudPainter(
+              green: ColorValues.cloudBlobGreen(context),
+              red: ColorValues.cloudBlobRed(context),
+              blue: ColorValues.cloudBlobBlue(context),
+            ),
             size: Size.infinite,
           ),
         ),
@@ -374,7 +378,15 @@ class _CloudWidgetState extends State<_CloudWidget>
 }
 
 class _CloudPainter extends CustomPainter {
-  const _CloudPainter();
+  const _CloudPainter({
+    required this.green,
+    required this.red,
+    required this.blue,
+  });
+
+  final Color green;
+  final Color red;
+  final Color blue;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -394,15 +406,16 @@ class _CloudPainter extends CustomPainter {
     }
 
     // green blob — 38%/60% at 26%/42% → Alignment(-0.48, -0.16)
-    drawBlob(const Alignment(-0.48, -0.16), 0.62, const Color(0xFF00E660));
+    drawBlob(const Alignment(-0.48, -0.16), 0.62, green);
     // red blob  — 40%/64% at 76%/60% → Alignment(0.52, 0.20)
-    drawBlob(const Alignment(0.52, 0.20), 0.70, const Color(0xFFE60000));
+    drawBlob(const Alignment(0.52, 0.20), 0.70, red);
     // blue blob — 54%/80% at 52%/52% → Alignment(0.04, 0.04)
-    drawBlob(const Alignment(0.04, 0.04), 0.82, const Color(0xFF1F55C4));
+    drawBlob(const Alignment(0.04, 0.04), 0.82, blue);
   }
 
   @override
-  bool shouldRepaint(_CloudPainter old) => false;
+  bool shouldRepaint(_CloudPainter old) =>
+      old.green != green || old.red != red || old.blue != blue;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
