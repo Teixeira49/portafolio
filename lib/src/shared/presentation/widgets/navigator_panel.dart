@@ -6,7 +6,6 @@ import '../../../core/providers/providers.dart';
 import '../../../core/theme/responsive.dart';
 import '../../../core/utils/asset_icons.dart';
 import '../../../core/utils/asset_images.dart';
-import '../../../core/variables/constants/constants.dart';
 import '../../../core/variables/values/values.dart';
 import '../../../features/contact/contact.dart';
 import '../../../features/home/presentation/bloc/chat_bloc/bloc.dart';
@@ -187,7 +186,7 @@ class _SidebarHeaderState extends State<_SidebarHeader> {
         // 14px (nav outer) + 12px (nav inner) = 26px — matches nav icon left edge
         padding: const EdgeInsets.fromLTRB(26, 18, 8, 22),
         child: _RightTooltip(
-          message: 'Expandir',
+          message: context.l10n.dashboardOpenPanelTooltip,
           child: MouseRegion(
             onEnter: (_) => setState(() => _hovered = true),
             onExit: (_) => setState(() => _hovered = false),
@@ -246,7 +245,7 @@ class _SidebarHeaderState extends State<_SidebarHeader> {
           const Gap(11),
           Expanded(
             child: Text(
-              'Ing. Teixeira',
+              context.l10n.appMainTitleAccent,
               maxLines: 1,
               overflow: TextOverflow.clip,
               style: TextStyle(
@@ -258,7 +257,7 @@ class _SidebarHeaderState extends State<_SidebarHeader> {
           ),
           if (widget.onToggle != null)
             _RightTooltip(
-              message: 'Colapsar',
+              message: context.l10n.dashboardClosePanelTooltip,
               child: _IconButton(
                 icon: Icons.chevron_left,
                 onPressed: widget.onToggle!,
@@ -653,7 +652,7 @@ class _ProfileFooterState extends State<_ProfileFooter> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        Constants.developerName,
+                        context.l10n.developerFullName,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -852,19 +851,20 @@ class _ProfileMenuCard extends StatelessWidget {
             // ── Top row: label centered + close button pinned right ──────
             SizedBox(
               height: 30,
+              width: double.infinity,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
                   Text(
-                    'Perfil del usuario',
+                    context.l10n.profileUserLabel,
                     style: TextStyle(
                       fontSize: 13.5,
                       fontWeight: FontWeight.w600,
                       color: ColorValues.textSecondary(context),
                     ),
                   ),
-                  Positioned(
-                    right: 0,
+                  Align(
+                    alignment: Alignment.centerRight, 
                     child: _MenuIconBtn(
                       icon: Icons.close_rounded,
                       onPressed: onClose,
@@ -908,13 +908,21 @@ class _ProfileMenuCard extends StatelessWidget {
               ),
             ),
             const Gap(10),
-            // ── Greeting ────────────────────────────────────────────────
+            // ── Greeting + subtitle ──────────────────────────────────────
             Text(
-              '¡Hola, Javier!',
+              context.l10n.profileGreetingLabel,
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
                 color: ColorValues.textPrimary(context),
+              ),
+            ),
+            const Gap(4),
+            Text(
+              context.l10n.resumeTitleLabel,
+              style: TextStyle(
+                fontSize: 13,
+                color: ColorValues.textTertiary(context),
               ),
             ),
             const Gap(14),
@@ -923,7 +931,7 @@ class _ProfileMenuCard extends StatelessWidget {
             const Gap(8),
             _PfRow(
               icon: Icons.settings_outlined,
-              label: 'Ajustes',
+              label: context.l10n.dashboardConfigButton,
               onTap: onSettingsTap,
             ),
             // ── Divider + Más perfiles ───────────────────────────────────
@@ -936,7 +944,7 @@ class _ProfileMenuCard extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    'Más perfiles',
+                    context.l10n.profileMoreProfilesLabel,
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -949,7 +957,7 @@ class _ProfileMenuCard extends StatelessWidget {
             const Gap(4),
             // Second profile row
             _PfProfileRow(
-              name: 'Usuario',
+              name: context.l10n.profileDefaultUserName,
               email: 'youruser@gmail.com',
               initials: 'YU',
               color: const Color(0xFF1F55C4),
@@ -969,7 +977,7 @@ class _ProfileMenuCard extends StatelessWidget {
               const Gap(4),
               _PfRow(
                 icon: Icons.logout_rounded,
-                label: 'Cerrar sesión',
+                label: context.l10n.profileSignOutLabel,
                 onTap: onSignOutTap,
               ),
             ] else
@@ -1035,7 +1043,7 @@ class _AddUserRowState extends State<_AddUserRow> {
               ),
               const Gap(12),
               Text(
-                'Añadir usuario',
+                context.l10n.profileAddUserLabel,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -1114,7 +1122,7 @@ class _AddUserDialogState extends State<_AddUserDialog> {
               children: [
                 Expanded(
                   child: Text(
-                    'Añadir usuario',
+                    context.l10n.profileAddUserLabel,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -1143,7 +1151,7 @@ class _AddUserDialogState extends State<_AddUserDialog> {
                 color: ColorValues.textPrimary(context),
               ),
               decoration: InputDecoration(
-                hintText: 'Tu nombre',
+                hintText: context.l10n.profileNameHint,
                 hintStyle: TextStyle(
                   color: ColorValues.textTertiary(context),
                   fontSize: 14.5,
@@ -1186,7 +1194,7 @@ class _AddUserDialogState extends State<_AddUserDialog> {
                     ),
                   ),
                   child: Text(
-                    'Cancelar',
+                    context.l10n.cancelButtonLabel,
                     style: TextStyle(
                       color: ColorValues.textSecondary(context),
                       fontWeight: FontWeight.w600,
@@ -1211,8 +1219,8 @@ class _AddUserDialogState extends State<_AddUserDialog> {
                         color: const Color(0xFF00E660),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: const Text(
-                        'Aceptar',
+                      child: Text(
+                        context.l10n.acceptButtonLabel,
                         style: TextStyle(
                           color: Color(0xFF03331A),
                           fontWeight: FontWeight.w700,

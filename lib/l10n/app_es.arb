@@ -84,5 +84,37 @@
         "type": "String"
       }
     }
+  },
+  "profileUserLabel": "Perfil del usuario",
+  "@profileUserLabel": {
+    "description": "Título mostrado en la cabecera del menú desplegable de perfil"
+  },
+  "profileGreetingLabel": "¡Hola, Javier!",
+  "@profileGreetingLabel": {
+    "description": "Saludo mostrado en el menú desplegable de perfil"
+  },
+  "developerFullName": "Ing. Javier Teixeira",
+  "@developerFullName": {
+    "description": "Nombre completo del desarrollador con prefijo de título"
+  },
+  "profileMoreProfilesLabel": "Más perfiles",
+  "@profileMoreProfilesLabel": {
+    "description": "Encabezado de la sección de perfiles adicionales"
+  },
+  "profileDefaultUserName": "Usuario",
+  "@profileDefaultUserName": {
+    "description": "Nombre del perfil de usuario por defecto"
+  },
+  "profileSignOutLabel": "Cerrar sesión",
+  "@profileSignOutLabel": {
+    "description": "Botón para cerrar sesión del usuario añadido"
+  },
+  "profileAddUserLabel": "Añadir usuario",
+  "@profileAddUserLabel": {
+    "description": "Botón / título para añadir un nuevo usuario"
+  },
+  "profileNameHint": "Tu nombre",
+  "@profileNameHint": {
+    "description": "Hint del campo de texto para ingresar el nombre del usuario"
   }
 }

@@ -571,6 +571,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Educational project made for {institution}'**
   String projectEducationalTooltip(String institution);
+
+  /// Title shown at the top of the profile dropdown menu
+  ///
+  /// In en, this message translates to:
+  /// **'User profile'**
+  String get profileUserLabel;
+
+  /// Greeting shown in the profile dropdown menu
+  ///
+  /// In en, this message translates to:
+  /// **'Hello, Javier!'**
+  String get profileGreetingLabel;
+
+  /// Developer full name with title prefix
+  ///
+  /// In en, this message translates to:
+  /// **'Eng. Javier Teixeira'**
+  String get developerFullName;
+
+  /// Header for the additional profiles section
+  ///
+  /// In en, this message translates to:
+  /// **'More profiles'**
+  String get profileMoreProfilesLabel;
+
+  /// Name of the default user profile
+  ///
+  /// In en, this message translates to:
+  /// **'User'**
+  String get profileDefaultUserName;
+
+  /// Button to sign out the added user
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get profileSignOutLabel;
+
+  /// Button / title for adding a new user
+  ///
+  /// In en, this message translates to:
+  /// **'Add user'**
+  String get profileAddUserLabel;
+
+  /// Hint text for the user name input field
+  ///
+  /// In en, this message translates to:
+  /// **'Your name'**
+  String get profileNameHint;
 }
 
 class _AppLocalizationsDelegate

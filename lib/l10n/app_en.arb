@@ -84,5 +84,37 @@
         "type": "String"
       }
     }
+  },
+  "profileUserLabel": "User profile",
+  "@profileUserLabel": {
+    "description": "Title shown at the top of the profile dropdown menu"
+  },
+  "profileGreetingLabel": "Hello, Javier!",
+  "@profileGreetingLabel": {
+    "description": "Greeting shown in the profile dropdown menu"
+  },
+  "developerFullName": "Eng. Javier Teixeira",
+  "@developerFullName": {
+    "description": "Developer full name with title prefix"
+  },
+  "profileMoreProfilesLabel": "More profiles",
+  "@profileMoreProfilesLabel": {
+    "description": "Header for the additional profiles section"
+  },
+  "profileDefaultUserName": "User",
+  "@profileDefaultUserName": {
+    "description": "Name of the default user profile"
+  },
+  "profileSignOutLabel": "Sign out",
+  "@profileSignOutLabel": {
+    "description": "Button to sign out the added user"
+  },
+  "profileAddUserLabel": "Add user",
+  "@profileAddUserLabel": {
+    "description": "Button / title for adding a new user"
+  },
+  "profileNameHint": "Your name",
+  "@profileNameHint": {
+    "description": "Hint text for the user name input field"
   }
 }

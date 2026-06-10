@@ -249,4 +249,28 @@ class AppLocalizationsEs extends AppLocalizations {
   String projectEducationalTooltip(String institution) {
     return 'Proyecto educativo hecho para $institution';
   }
+
+  @override
+  String get profileUserLabel => 'Perfil del usuario';
+
+  @override
+  String get profileGreetingLabel => '¡Hola, Javier!';
+
+  @override
+  String get developerFullName => 'Ing. Javier Teixeira';
+
+  @override
+  String get profileMoreProfilesLabel => 'Más perfiles';
+
+  @override
+  String get profileDefaultUserName => 'Usuario';
+
+  @override
+  String get profileSignOutLabel => 'Cerrar sesión';
+
+  @override
+  String get profileAddUserLabel => 'Añadir usuario';
+
+  @override
+  String get profileNameHint => 'Tu nombre';
 }
