@@ -155,7 +155,7 @@ class _CertificationsCardState extends State<CertificationsCard> {
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: ColorValues.borderSurface(context)),
+        border: widget.image == null ? Border.all(color: ColorValues.borderSurface(context)) : null,
         borderRadius: BorderRadius.circular(11),
       ),
       child: widget.image != null
