@@ -77,6 +77,8 @@
   "educationViewCertificateLabel": "View Certificate",
   "experienceViewThesisLabel": "View Thesis",
   "experienceIndustrialProjectBadge": "Industrial Project",
+  "experienceSeeMore": "See more",
+  "experienceSeeLess": "See less",
   "skillsFavoriteTooltip": "Favorite technology",
   "projectFavoriteTooltip": "Favorite project",
   "projectEducationalTooltip": "Educational project made for {institution}",

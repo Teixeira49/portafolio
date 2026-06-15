@@ -566,6 +566,18 @@ abstract class AppLocalizations {
   /// **'Industrial Project'**
   String get experienceIndustrialProjectBadge;
 
+  /// No description provided for @experienceSeeMore.
+  ///
+  /// In en, this message translates to:
+  /// **'See more'**
+  String get experienceSeeMore;
+
+  /// No description provided for @experienceSeeLess.
+  ///
+  /// In en, this message translates to:
+  /// **'See less'**
+  String get experienceSeeLess;
+
   /// No description provided for @skillsFavoriteTooltip.
   ///
   /// In en, this message translates to:
