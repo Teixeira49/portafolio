@@ -22,9 +22,9 @@ List<Map<String, dynamic>> experience = [
     "event_urls": null,
     "description": {
       "en":
-          "Maintaining the mobile application built with Flutter, BLoC, FCM, and GoRouter. Building the Estei 2.0 backend using Node.js, NestJS, GraphQL, and MongoDB. Following an Agile SCRUM methodology with an AI-First philosophy and TDD development flow.",
+          "Took ownership of the Flutter mobile application — built on Clean Architecture with BLoC, FCM, and GoRouter — by redesigning critical user flows such as the payment experience, improving overall UX, introducing in-app testing, and managing the full CI/CD pipeline through Codemagic, TestFlight, and Firebase App Distributor.\n\nOn the backend, maintained the production system while co-developing Estei 2.0 — a next-generation version migrating toward a microservices philosophy. Both systems were built with Node.js, NestJS, Fastify, GraphQL, Algolia, JWT access control, and MongoDB.\n\nWorked under an Agile SCRUM methodology with an AI-First philosophy and TDD development flow, managing the team's daily routine through Jira and Confluence.",
       "es":
-          "Mantenimiento de la aplicación móvil desarrollada en Flutter, BLoC, FCM y GoRouter. Levantamiento del Backend Estei 2.0 usando Node.js, NestJS, GraphQL y MongoDB. Metodología de trabajo Ágil: SCRUM con filosofía AI-First y desarrollo mediante flujo TDD.",
+          "Tomé ownership de la aplicación móvil en Flutter — construida con Clean Architecture, BLoC, FCM y GoRouter — rediseñando flujos críticos como el flujo de pago del usuario, mejorando la experiencia general, incorporando testing dentro de la app y gestionando el pipeline completo de CI/CD con Codemagic, TestFlight y Firebase App Distributor.\n\nEn el backend, mantuve el sistema en producción mientras co-desarrollaba Estei 2.0 — una versión de nueva generación que migra hacia una filosofía de microservicios. Ambos sistemas desarrollados con Node.js, NestJS, Fastify, GraphQL, Algolia, control de acceso JWT y MongoDB.\n\nMetodología de trabajo Ágil: SCRUM con filosofía AI-First y desarrollo mediante flujo TDD, gestionando la rutina del equipo a través de Jira y Confluence.",
     },
     "category": "Full Time",
   },
