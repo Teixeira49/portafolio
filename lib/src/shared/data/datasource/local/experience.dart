@@ -56,14 +56,14 @@ List<Map<String, dynamic>> experience = [
     "company": "Banking Technologies Consulting",
     "company_url": "https://bankingtech.com.ve",
     "image": "assets/images/exp_btc.jpeg",
-    "role": "Software Engineer",
+    "role": "Software Engineer | ML Engineer",
     "event": null,
     "event_urls": null,
     "description": {
       "en":
-          "Implemented a YOLO-trained Machine Learning model in a KYC system, enhanced with image processing using OpenCV2, EasyOCR, and Torch. Built liveness detection with Mediapipe, OpenCV2, and Deepface for identity similarity and gesture verification. Developed a multitenant internal CRM with JWT access control using Next.js and Tanstack Query.",
+          "Co-built from scratch — in a two-person team — a FastAPI monolith following Clean Architecture and Vertical Slicing, serving as the unified backend for both the KYC system and the internal CRM. The architecture was designed with scalability in mind, laying the foundation for a multitenant platform for business registration and information validation.\n\nOn the KYC side, implemented a YOLO-trained Machine Learning model enhanced with image processing using OpenCV2, EasyOCR, and Torch. Built liveness detection with Mediapipe, OpenCV2, and Deepface to verify identity similarity and user gestures. Co-developed a Flutter SDK to expose the KYC capabilities to third-party mobile applications.\n\nOn the CRM side, delivered a multitenant internal tool with JWT access control, built with Next.js and Tanstack Query to give operations teams a fast and reliable interface over the same backend.",
       "es":
-          "Implementación de un modelo de Machine Learning entrenado en YOLO dentro de un sistema KYC, mejorado con tratamiento de imágenes usando OpenCV2, EasyOCR y Torch. Detección de pruebas de vida mediante Mediapipe, OpenCV2 y Deepface para determinar similitud de identidad y gestos. Desarrollo de un CRM multitenant interno con control de acceso JWT en Next.js y Tanstack Query.",
+          "Co-construí desde cero — en un equipo de dos personas — un monolito en FastAPI con Clean Architecture y Vertical Slicing, que actúa como backend unificado tanto para el sistema KYC como para el CRM interno. La arquitectura fue diseñada pensando en escala, sentando las bases para una plataforma multitenant de validación de registros e información empresarial.\n\nDel lado del KYC, implementé un modelo de Machine Learning entrenado en YOLO mejorado con tratamiento de imágenes usando OpenCV2, EasyOCR y Torch. Construí la detección de pruebas de vida con Mediapipe, OpenCV2 y Deepface para verificar similitud de identidad y gestos del usuario. Co-desarrollé un SDK en Flutter para exponer las capacidades del KYC a aplicaciones móviles de terceros.\n\nDel lado del CRM, entregué una herramienta interna multitenant con control de acceso JWT, construida con Next.js y Tanstack Query para ofrecer a los equipos de operaciones una interfaz rápida y confiable sobre el mismo backend.",
     },
     "category": "Full Time",
   },
