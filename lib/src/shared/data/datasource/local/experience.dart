@@ -43,9 +43,9 @@ List<Map<String, dynamic>> experience = [
     ],
     "description": {
       "en":
-          "Participated in the second edition of the InspiraVE challenge organized by EY Venezuela and Kurius, an innovation competition where teams proposed and developed tech solutions to real business problems.",
+          "Selected as a finalist in the InspiraVE challenge by EY Venezuela and Kurius. I co-developed Neopago, a product designed to boost payment flows and drive sales growth for small businesses in Venezuela. The solution was pitched live to an investor jury, defending both the business value and technical vision behind it.",
       "es":
-          "Participación en la segunda edición del Reto InspiraVE organizado por EY Venezuela y Kurius, un concurso de innovación donde los equipos propusieron y desarrollaron soluciones tecnológicas a problemas empresariales reales.",
+          "Seleccionado como finalista en el Reto InspiraVE de EY Venezuela y Kurius. Co-desarrollé Neopago, un producto diseñado para aumentar el flujo de cobros e impulsar las ventas de los pequeños comercios en Venezuela. La solución fue presentada en vivo ante un jurado de inversionistas, defendiendo tanto el valor de negocio como la visión técnica detrás de ella.",
     },
     "category": "Hackathon",
     "cert_link": "https://drive.google.com/file/d/1OyELk8PCuFIH7GQxzApphuzq8CDOfOZL/view?usp=drive_link",
@@ -78,9 +78,9 @@ List<Map<String, dynamic>> experience = [
     "event_urls": ["https://suiche7b.com.ve/?p=29269"],
     "description": {
       "en":
-          "Finalist in the second edition of Desafío S7B. With the goal of presenting an improvement to interbank mobile payments in Venezuela, I was selected through a theoretical proposal from among more than 40 teams to participate in the final. Finalists had to develop a Figma prototype and perform a live pitch to defend the proposal.",
+          "Finalist in the second edition of Desafío S7B. With the goal of reimagining interbank mobile payments in Venezuela, my proposal stood out among more than 40 competing teams and secured a spot in the final. As a finalist, I built a high-fidelity Figma prototype and delivered a live pitch to defend the solution's impact and viability.",
       "es":
-          "Finalista en la segunda edición del Desafío S7B. Con el objetivo de presentar una mejora en los pagos móviles interbancarios en Venezuela, fui seleccionado mediante una propuesta teórica entre más de 40 equipos para participar en la final. Los finalistas tuvieron que desarrollar un prototipo en Figma y realizar una presentación en vivo para defender la propuesta.",
+          "Finalista en la segunda edición del Desafío S7B. Con el objetivo de reinventar los pagos móviles interbancarios en Venezuela, mi propuesta destacó entre más de 40 equipos competidores y logró un lugar en la final. Como finalista, desarrollé un prototipo de alta fidelidad en Figma y realicé una presentación en vivo para defender el impacto y la viabilidad de la solución.",
     },
     "category": "Hackathon",
     "cert_link": "https://drive.google.com/file/d/1OyELk8PCuFIH7GQxzApphuzq8CDOfOZL/view?usp=drive_link",
@@ -146,9 +146,9 @@ List<Map<String, dynamic>> experience = [
     "event_urls": null,
     "description": {
       "en":
-          "Time for general education where I learn about frameworks, programming languages, architecture, and more",
+          "Time for general education where I learn about frameworks, programming languages, architecture, and more — all while completing my Systems Engineering degree in parallel.",
       "es":
-          "Tiempo para la educación general donde aprendo sobre frameworks, lenguajes de programación, arquitectura y más",
+          "Tiempo para la educación general donde aprendo sobre frameworks, lenguajes de programación, arquitectura y más — todo mientras completaba en paralelo mi carrera de Ingeniería de Sistemas.",
     },
     "category": "Full Time",
   },
