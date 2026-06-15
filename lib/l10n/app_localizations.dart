@@ -554,6 +554,18 @@ abstract class AppLocalizations {
   /// **'View Certificate'**
   String get educationViewCertificateLabel;
 
+  /// No description provided for @experienceViewThesisLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'View Thesis'**
+  String get experienceViewThesisLabel;
+
+  /// No description provided for @experienceIndustrialProjectBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Industrial Project'**
+  String get experienceIndustrialProjectBadge;
+
   /// No description provided for @skillsFavoriteTooltip.
   ///
   /// In en, this message translates to:

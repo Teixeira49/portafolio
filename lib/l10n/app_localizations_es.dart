@@ -240,6 +240,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get educationViewCertificateLabel => 'Ver Certificado';
 
   @override
+  String get experienceViewThesisLabel => 'Ver Trabajo de Grado';
+
+  @override
+  String get experienceIndustrialProjectBadge => 'Proyecto Industrial';
+
+  @override
   String get skillsFavoriteTooltip => 'Tecnología favorita';
 
   @override

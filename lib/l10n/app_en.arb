@@ -75,6 +75,8 @@
   "educationUniversityName": "Metropolitan University of Venezuela (UNIMET)",
   "educationGraduatedLabel": "Graduated · Oct 2025",
   "educationViewCertificateLabel": "View Certificate",
+  "experienceViewThesisLabel": "View Thesis",
+  "experienceIndustrialProjectBadge": "Industrial Project",
   "skillsFavoriteTooltip": "Favorite technology",
   "projectFavoriteTooltip": "Favorite project",
   "projectEducationalTooltip": "Educational project made for {institution}",

@@ -75,6 +75,8 @@
   "educationUniversityName": "Universidad Metropolitana de Venezuela (UNIMET)",
   "educationGraduatedLabel": "Graduado · Oct 2025",
   "educationViewCertificateLabel": "Ver Certificado",
+  "experienceViewThesisLabel": "Ver Trabajo de Grado",
+  "experienceIndustrialProjectBadge": "Proyecto Industrial",
   "skillsFavoriteTooltip": "Tecnología favorita",
   "projectFavoriteTooltip": "Proyecto favorito",
   "projectEducationalTooltip": "Proyecto educativo hecho para {institution}",
