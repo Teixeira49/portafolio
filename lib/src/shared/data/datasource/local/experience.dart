@@ -96,9 +96,9 @@ List<Map<String, dynamic>> experience = [
     "event_urls": null,
     "description": {
       "en":
-          "Developed mobile applications using Clean Architecture and Flutter, including SocketIO and FCM integration across multiple projects such as Kudo App and Padel Now. Implemented JWT client-side access control and state management with BLoC and GetX. Built backend endpoints with Node.js and integrated Supabase and MongoDB databases.",
+          "Delivered cross-platform Flutter applications built on Clean Architecture across multiple client projects. Leveraged BLoC for state management in Kudo App and ArturosPos — including a Flutter Web implementation of the latter — and GetX in Padel Now. Integrated FCM for push notifications and connected all apps to their backends through both SocketIO and REST APIs, with JWT-based access control on the client side.\n\nOn the backend, designed and built monolith architectures using Node.js — Express for Padel Now and NestJS for Kudo App — each backed by the right data layer: MongoDB for Padel Now and Supabase (PostgreSQL) for Kudo App.",
       "es":
-          "Desarrollo de aplicaciones móviles con Clean Architecture y Flutter incluyendo la implementación de SocketIO y FCM en proyectos como Kudo App y Padel Now. Control de acceso JWT en cliente y manejo de estados con BLoC y GetX en Flutter. Implementación de endpoints en Node.js y bases de datos Supabase y MongoDB.",
+          "Desarrollé aplicaciones Flutter multiplataforma con Clean Architecture en múltiples proyectos de clientes. Usé BLoC como manejador de estados en Kudo App y ArturosPos — incluyendo una implementación en Flutter Web para este último — y GetX en Padel Now. Integré FCM para notificaciones push y conecté todas las apps a sus respectivos backends mediante SocketIO y REST API, con control de acceso JWT en el cliente.\n\nEn el backend, diseñé y construí arquitecturas monolíticas con Node.js — Express para Padel Now y NestJS para Kudo App — respaldados por su capa de datos correspondiente: MongoDB para Padel Now y Supabase (PostgreSQL) para Kudo App.",
     },
     "category": "Full Time",
   },
