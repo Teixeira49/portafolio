@@ -337,6 +337,7 @@ class _ExperienceCard extends StatelessWidget {
         ? null
         : (item['event_urls'] as List).cast<String>();
     final isHackathon = (item['category'] as String?) == 'Hackathon';
+    final isIndustrialProject = (item['category'] as String?) == 'Industrial Project';
     final dateStr = _buildDateStr(context);
     final dateColor = accentColor;
 
@@ -393,9 +394,14 @@ class _ExperienceCard extends StatelessWidget {
                             context: context,
                           ),
                         ),
-                        if (isHackathon) ...[
+                        if (isHackathon || isIndustrialProject) ...[
                           Gap(WidthValues.spacingXxs),
-                          _HackathonBadge(color: accentColor),
+                          _HackathonBadge(
+                            color: accentColor,
+                            label: isHackathon
+                                ? 'Hackathon'
+                                : context.l10n.experienceIndustrialProjectBadge,
+                          ),
                         ],
                       ],
                     ),
@@ -438,6 +444,7 @@ class _ExperienceCard extends StatelessWidget {
           Gap(WidthValues.spacingXs),
           Text(
             _localizedDesc(context),
+            textAlign: TextAlign.justify,
             style: ExtendedTextTheme.textSmall(context).copyWith(
               color: ColorValues.textSecondary(context),
             ),
@@ -454,6 +461,17 @@ class _ExperienceCard extends StatelessWidget {
                 modalIssuingEntity: companies.map((c) => c.name).join(' · '),
                 modalDate: dateStr,
                 modalImage: companies.first.image,
+              ),
+            ),
+          ],
+          // ── Thesis link (optional) ────────────────────────────────────────
+          if (item['thesis_link'] != null) ...[
+            Gap(WidthValues.spacingXs),
+            Align(
+              alignment: Alignment.centerRight,
+              child: _ExpThesisButton(
+                thesisLink: item['thesis_link'] as String,
+                accentColor: accentColor,
               ),
             ),
           ],
@@ -611,9 +629,10 @@ class _EventSubtitle extends StatelessWidget {
 // ── Hackathon badge ───────────────────────────────────────────────────────────
 
 class _HackathonBadge extends StatelessWidget {
-  const _HackathonBadge({required this.color});
+  const _HackathonBadge({required this.color, this.label = 'Hackathon'});
 
   final Color color;
+  final String label;
 
   @override
   Widget build(BuildContext context) {
@@ -625,7 +644,7 @@ class _HackathonBadge extends StatelessWidget {
         border: Border.all(color: color.withAlpha(80)),
       ),
       child: Text(
-        'Hackathon',
+        label,
         style: TextStyle(
           fontSize: 9,
           fontWeight: FontWeight.w700,
@@ -688,6 +707,47 @@ class _ExpCertButton extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: accentColor,
                 ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ── Experience thesis button ──────────────────────────────────────────────────
+// Opens the university library entry for the thesis directly in the browser.
+
+class _ExpThesisButton extends StatelessWidget {
+  const _ExpThesisButton({
+    required this.thesisLink,
+    required this.accentColor,
+  });
+
+  final String thesisLink;
+  final Color accentColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () async {
+          final uri = Uri.parse(thesisLink);
+          await launchUrl(uri, mode: LaunchMode.externalApplication);
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 7,
+          children: [
+            Icon(Icons.menu_book_outlined, size: 16, color: accentColor),
+            Text(
+              context.l10n.experienceViewThesisLabel,
+              style: TextStyle(
+                fontSize: 13.5,
+                fontWeight: FontWeight.w600,
+                color: accentColor,
               ),
             ),
           ],

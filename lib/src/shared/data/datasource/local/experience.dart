@@ -105,7 +105,7 @@ List<Map<String, dynamic>> experience = [
   {
     "init_time": "03/2024",
     "end_time": "03/2025",
-    "company": "JM Rios",
+    "company": "Hospital J.M. de los Rios",
     "company_url": "https://hospitaljmdelosrios.org.ve/?i=1",
     "image": "assets/images/exp_jm.jpg",
     "role": "Fullstack Developer",
@@ -113,11 +113,12 @@ List<Map<String, dynamic>> experience = [
     "event_urls": null,
     "description": {
       "en":
-          "Developed a mobile application with Clean Architecture and Flutter for managing clinical patient records. Designed and implemented Spring Boot microservices with a PostgreSQL database to manage patients, diagnoses, and doctors. The project received Honorable Mention in the Industrial Project evaluation.",
+          "Led the full-stack development of an intranet application built to empower doctors to create, review, and manage clinical cases end-to-end. The engagement started with a structured requirements gathering process that shaped the use cases and drove the project roadmap, managed throughout on a Trello board.\n\nArchitected and built a Spring Boot microservices system from scratch — covering the full clinical domain flow — using Feign for inter-service communication and JPARepository as the ORM. The relational database was designed from the ground up: modeled in diagrams.net, set up in PGAdmin4, and backed by PostgreSQL. JWT-based access control was implemented across the entire system.\n\nOn the frontend, a Figma prototype was designed and validated before a single line of code was written, then brought to life as a Flutter application built with Clean Architecture and the Cubit pattern for state management, connected to the backend via REST API. The project earned Honorable Mention as the capstone project of my Systems Engineering degree.",
       "es":
-          "Desarrollo de aplicación móvil con Clean Architecture y Flutter para la gestión de historias clínicas de pacientes. Diseño e implementación de microservicios en Spring Boot y base de datos PostgreSQL para gestionar pacientes, diagnósticos y doctores. El proyecto recibió Mención Honorífica en la evaluación del Proyecto Industrial.",
+          "Lideré el desarrollo fullstack de una aplicación intranet diseñada para que los doctores pudieran crear, revisar y gestionar casos clínicos de extremo a extremo. El proyecto arrancó con un levantamiento de requerimientos estructurado que definió los casos de uso y dio forma al alcance del trabajo, administrado durante todo el ciclo en un tablero de Trello.\n\nArquitecté y levanté desde cero un sistema de microservicios en Spring Boot cubriendo el flujo completo del dominio clínico, utilizando Feign para la comunicación entre servicios y JPARepository como ORM. La base de datos relacional se diseñó desde cero: modelada en diagrams.net, levantada en PGAdmin4 y respaldada en PostgreSQL. El control de acceso JWT fue implementado a lo largo de todo el sistema.\n\nEn el frontend, se diseñó y validó un prototipo en Figma antes de escribir una sola línea de código, que luego se materializó como una aplicación Flutter construida con Clean Architecture y el patrón Cubit para el manejo de estados, conectada al backend vía REST API. El proyecto obtuvo Mención Honorífica como proyecto de grado de la carrera de Ingeniería de Sistemas.",
     },
     "category": "Industrial Project",
+    "thesis_link": "https://unimet.ent.sirsi.net/client/es_ES/default/search/detailnonmodal/ent:\$002f\$002fSD_ILS\$002f0\$002fSD_ILS:137932/one",
   },
   {
     "init_time": "06/2023",
@@ -130,9 +131,9 @@ List<Map<String, dynamic>> experience = [
     "event_urls": null,
     "description": {
       "en":
-          "Built Spring Boot microservices connected to a PostgreSQL database to manage tickets, passengers, buses, and application users. Worked within an Agile SCRUM methodology.",
+          "Contributed to the backend of a transportation platform by developing and personally standing up multiple Spring Boot microservices, covering the full domain flow from users and passengers to operations. Used JPARepository as the ORM and managed the PostgreSQL database through PGAdmin4, optimizing schemas to strengthen table relationships and improve data integrity across services. JWT-based access control was implemented to secure the system endpoints.\n\nDelivered under an Agile SCRUM workflow managed in Jira, with Bitbucket for version control. This role deepened my understanding of microservices architecture — its advantages over monoliths and how to evaluate when each approach is the right fit.",
       "es":
-          "Construcción de microservicios en Spring Boot comunicados a una base de datos PostgreSQL para administrar tickets, pasajeros, autobuses y usuarios de la aplicación. Metodología de trabajo Ágil: SCRUM.",
+          "Contribuí al backend de una plataforma de transporte desarrollando y levantando personalmente múltiples microservicios en Spring Boot, cubriendo el flujo completo del dominio desde usuarios y pasajeros hasta operaciones. Utilicé JPARepository como ORM y administré la base de datos PostgreSQL a través de PGAdmin4, optimizando los esquemas para fortalecer las relaciones entre tablas y mejorar la integridad de los datos entre servicios. El control de acceso JWT fue implementado para asegurar los endpoints del sistema.\n\nTrabajé bajo una metodología Ágil SCRUM administrada en Jira, con Bitbucket para el control de versiones. Este rol consolidó mi comprensión de la arquitectura de microservicios — sus ventajas frente al monolito y cómo evaluar cuándo aplicar cada enfoque.",
     },
     "category": "Part Time",
   },
