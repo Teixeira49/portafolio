@@ -442,12 +442,12 @@ class _ExperienceCard extends StatelessWidget {
           ),
           // ── Description ─────────────────────────────────────────────────
           Gap(WidthValues.spacingXs),
-          Text(
-            _localizedDesc(context),
-            textAlign: TextAlign.justify,
+          _ExpandableDescription(
+            text: _localizedDesc(context),
             style: ExtendedTextTheme.textSmall(context).copyWith(
               color: ColorValues.textSecondary(context),
             ),
+            accentColor: accentColor,
           ),
           // ── Certificate link (optional) ──────────────────────────────────
           if (item['cert_link'] != null) ...[
@@ -626,6 +626,127 @@ class _EventSubtitle extends StatelessWidget {
   }
 }
 
+// ── Expandable description ────────────────────────────────────────────────────
+
+class _ExpandableDescription extends StatefulWidget {
+  const _ExpandableDescription({
+    required this.text,
+    required this.style,
+    required this.accentColor,
+  });
+
+  final String text;
+  final TextStyle style;
+  final Color accentColor;
+
+  @override
+  State<_ExpandableDescription> createState() => _ExpandableDescriptionState();
+}
+
+class _ExpandableDescriptionState extends State<_ExpandableDescription> {
+  static const int _maxLines = 4;
+  bool _expanded = false;
+  bool _overflows = false;
+  final _textKey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _detectOverflow());
+  }
+
+  @override
+  void didUpdateWidget(_ExpandableDescription old) {
+    super.didUpdateWidget(old);
+    if (old.text != widget.text || old.style != widget.style) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _detectOverflow());
+    }
+  }
+
+  void _detectOverflow() {
+    if (!mounted || _expanded) return;
+    final ro = _textKey.currentContext?.findRenderObject();
+    if (ro is! RenderBox || !ro.hasSize) return;
+    final tp = TextPainter(
+      text: TextSpan(text: widget.text, style: widget.style),
+      maxLines: _maxLines,
+      textDirection: TextDirection.ltr,
+    )..layout(maxWidth: ro.size.width);
+    final overflows = tp.didExceedMaxLines;
+    if (overflows != _overflows) {
+      setState(() => _overflows = overflows);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          key: _textKey,
+          widget.text,
+          textAlign: TextAlign.justify,
+          maxLines: _expanded ? null : _maxLines,
+          overflow: _expanded ? TextOverflow.visible : TextOverflow.ellipsis,
+          style: widget.style,
+        ),
+        if (_overflows || _expanded) ...[
+          const SizedBox(height: 6),
+          _ExpandToggleButton(
+            expanded: _expanded,
+            color: widget.accentColor,
+            onTap: () => setState(() => _expanded = !_expanded),
+          ),
+        ],
+      ],
+    );
+  }
+}
+
+// ── Expand toggle button ──────────────────────────────────────────────────────
+
+class _ExpandToggleButton extends StatelessWidget {
+  const _ExpandToggleButton({
+    required this.expanded,
+    required this.color,
+    required this.onTap,
+  });
+
+  final bool expanded;
+  final Color color;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 4,
+          children: [
+            Icon(
+              expanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+              size: 16,
+              color: color,
+            ),
+            Text(
+              expanded ? context.l10n.experienceSeeLess : context.l10n.experienceSeeMore,
+              style: TextStyle(
+                fontSize: 12.5,
+                fontWeight: FontWeight.w600,
+                color: color,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 // ── Hackathon badge ───────────────────────────────────────────────────────────
 
 class _HackathonBadge extends StatelessWidget {
@@ -697,7 +818,7 @@ class _ExpCertButton extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           spacing: 7,
           children: [
-            Icon(Icons.open_in_new, size: 16, color: accentColor),
+            Icon(Icons.link_outlined, size: 16, color: accentColor),
             MouseRegion(
               cursor: SystemMouseCursors.click,
               child: Text(
