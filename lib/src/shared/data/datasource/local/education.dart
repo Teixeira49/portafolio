@@ -1,13 +1,49 @@
 
 List certifications = [
   {
+    "title": "IA de 0 a Agentes",
+    "issuing_entity": "The Big School",
+    "image": "assets/images/edu_big.png",
+    "location": "Online",
+    "location_link": "",
+    "date": "30/05/2026",
+    "link": "https://drive.google.com/file/d/12tbMARkE-Dh7dChC_v9i-Ikt-AbH0AqW/view?usp=sharing"
+  },
+  {
+    "title": "Data Science con Inteligencia Artificial",
+    "issuing_entity": "The Big School",
+    "image": "assets/images/edu_big.png",
+    "location": "Online",
+    "location_link": "",
+    "date": "03/05/2026",
+    "link": "https://drive.google.com/file/d/1U-K8vq_wkv6DID6qPEjVO0QfBcMiPvSw/view?usp=sharing"
+  },
+  {
+    "title": "SEO para la IA y Google",
+    "issuing_entity": "The Big School",
+    "image": "assets/images/edu_big.png",
+    "location": "Online",
+    "location_link": "",
+    "date": "03/05/2026",
+    "link": "https://drive.google.com/file/d/1M4P_yIVKtNL1iahiOxwOsWyUtkgjWZb4/view?usp=sharing"
+  },
+  {
     "title": "Curso de Marketing digital con Inteligencia Artificial",
     "issuing_entity": "The Big School",
     "image": "assets/images/edu_big.png",
     "location": "Online",
     "location_link": "",
-    "date": "22/08/2021",
-    "link": "https://drive.google.com/file/d/1OyELk8PCuFIH7GQxzApphuzq8CDOfOZL/view?usp=drive_link"
+    "date": "10/04/2026",
+    "link": "https://drive.google.com/file/d/1vXdRpGT25Qes1XGignu7BCXhvahBZsT1/view?usp=share_link"
+  },
+  {
+    "title": "Ciberseguridad y Hacking Ético: Técnicas de detección de vulnerabilidades y defensa digital",
+    "issuing_entity": "The Big School",
+    "image": "assets/images/edu_big.png",
+    "location": "Online",
+    "location_link": "",
+    "date": "10/04/2026",
+    "link": "https://drive.google.com/file/d/185xYe96nzEawex2Z7VXdJeNEf_muI_gw/view?usp=sharing"
   },
   {
     "title": "Desarrollo con IA de 0 a Experto",
@@ -15,8 +51,8 @@ List certifications = [
     "image": "assets/images/edu_big.png",
     "location": "Online",
     "location_link": "",
-    "date": "22/08/2021",
-    "link": "https://drive.google.com/file/d/1OyELk8PCuFIH7GQxzApphuzq8CDOfOZL/view?usp=drive_link"
+    "date": "13/03/2026",
+    "link": "https://drive.google.com/file/d/16h-j760OTuZQhJVhlVOd_NO5DekpPnY8/view?usp=share_link"
   },
   {
     "title": "Taller de Pedagogía y Didáctica para Preparadores",
