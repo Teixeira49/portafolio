@@ -48,7 +48,7 @@ List<Map<String, dynamic>> experience = [
           "Seleccionado como finalista en el Reto InspiraVE de EY Venezuela y Kurius. Co-desarrollé Neopago, un producto diseñado para aumentar el flujo de cobros e impulsar las ventas de los pequeños comercios en Venezuela. La solución fue presentada en vivo ante un jurado de inversionistas, defendiendo tanto el valor de negocio como la visión técnica detrás de ella.",
     },
     "category": "Hackathon",
-    "cert_link": "https://drive.google.com/file/d/1OyELk8PCuFIH7GQxzApphuzq8CDOfOZL/view?usp=drive_link",
+    "cert_link": "https://drive.google.com/file/d/1faSJzgzwibYxOOCkJ03M8TgkIXGf7PBG/view?usp=share_link",
   },
   {
     "init_time": "12/2025",
