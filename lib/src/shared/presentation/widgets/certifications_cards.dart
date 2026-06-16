@@ -90,6 +90,8 @@ class _CertificationsCardState extends State<CertificationsCard> {
                   Expanded(
                     child: Text(
                       widget.title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: 15.5,
                         fontWeight: FontWeight.w700,

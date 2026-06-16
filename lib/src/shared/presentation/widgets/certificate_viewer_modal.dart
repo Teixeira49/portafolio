@@ -53,18 +53,34 @@ class CertificateViewerModal extends StatefulWidget {
 class _CertificateViewerModalState extends State<CertificateViewerModal> {
   late final String _viewType;
   late final String _embedUrl;
+  late final html.IFrameElement _iframe;
 
   @override
   void initState() {
     super.initState();
     _embedUrl = _toEmbedUrl(widget.link);
     _viewType = 'cert-viewer-${_certIframeCounter++}';
+    _iframe = html.IFrameElement()
+      ..src = _embedUrl
+      ..allow = 'autoplay'
+      ..style.cssText = 'border:none;width:100%;height:100%;';
     ui_web.platformViewRegistry.registerViewFactory(_viewType, (int id) {
-      return html.IFrameElement()
-        ..src = _embedUrl
-        ..allow = 'autoplay'
-        ..style.cssText = 'border:none;width:100%;height:100%;';
+      return _iframe;
     });
+  }
+
+  void _close() {
+    _iframe.src = 'about:blank';
+    if (mounted) Navigator.of(context).pop();
+  }
+
+  @override
+  void dispose() {
+    final iframe = _iframe;
+    iframe.src = 'about:blank';
+    // Defer the DOM removal until after Flutter's close animation (~300ms).
+    Future.delayed(const Duration(milliseconds: 400), iframe.remove);
+    super.dispose();
   }
 
   @override
@@ -152,7 +168,7 @@ class _CertificateViewerModalState extends State<CertificateViewerModal> {
                     const Gap(12),
                     // Close
                     GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
+                      onTap: _close,
                       child: Icon(
                         Icons.close_rounded,
                         size: 20,
